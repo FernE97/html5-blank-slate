@@ -22,7 +22,7 @@ add_theme_support('post-thumbnails');
 function enqueue_my_scripts() {
 	if (!is_admin()) { // Don't load scripts in the admin section
 		wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
-		wp_register_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js', false, '1.5', true);
+		wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js', false, '1.5', true);
 		wp_enqueue_script( 'jquery' );
 		
 		// enqueue all other js files here
