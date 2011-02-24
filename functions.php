@@ -19,6 +19,10 @@ add_theme_support('post-thumbnails');
 
 
 // Enqueue Scripts
+
+// Enables HTML5 elements and feature detects
+wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/lib/js/modernizr.js', '', '1.6');
+
 function enqueue_my_scripts() {
 	if (!is_admin()) { // Don't load scripts in the admin section
 		wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
