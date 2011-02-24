@@ -26,10 +26,7 @@
 		<link rel="stylesheet" type="text/css" media="screen,projection" href="<?php bloginfo('stylesheet_directory'); ?>/lib/css/ie6.css?v=1.0">
 	<![endif]-->
 
-	<!-- All JavaScript in the footer except for Modernizr & Selectivizr -->
-	
-	<!--  Enables HTML5 elements and feature detects -->
-	<script src="<?php bloginfo('template_url'); ?>/lib/js/modernizr.js?v=1.6"></script>
+	<?php // JavaScript added through functions.php to avoid conflicts ?>
 	
 	<!-- Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) -->
 	<!--[if lt IE 9]>
@@ -61,3 +58,4 @@
 		<?php } ?>
 		</nav>
 	</header>
+	
