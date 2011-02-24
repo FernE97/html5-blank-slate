@@ -20,12 +20,9 @@
 	
 	<!-- Place favicon.ico and apple-touch-icon.png in the root of the domain -->
 
-	<!-- Versioning enabled for the use of expires in htaccess -->
+	<!-- Versioning enabled for caching -->
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>?v=1.0">
-	<!--[if IE 6]>
-		<link rel="stylesheet" type="text/css" media="screen,projection" href="<?php bloginfo('stylesheet_directory'); ?>/lib/css/ie6.css?v=1.0">
-	<![endif]-->
-
+	
 	<?php // JavaScript added through functions.php to avoid conflicts ?>
 	
 	<!-- Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) -->
@@ -58,4 +55,3 @@
 		<?php } ?>
 		</nav>
 	</header>
-	
