@@ -19,10 +19,6 @@ add_theme_support('post-thumbnails');
 
 
 // Enqueue Scripts
-
-// Enables HTML5 elements and feature detects
-wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/lib/js/modernizr.js', '', '1.6');
-
 function enqueue_my_scripts() {
 	if (!is_admin()) { // Don't load scripts in the admin section
 		wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
@@ -30,6 +26,7 @@ function enqueue_my_scripts() {
 		wp_enqueue_script( 'jquery' );
 		
 		// enqueue all other js files here
+		wp_enqueue_script('modernizr', get_bloginfo('template_url') . '/lib/js/modernizr.js', '', '1.6');
 		wp_enqueue_script('plugins', get_bloginfo('template_url') . '/lib/js/plugins.js', array('jquery'), '1.0', true);
 		wp_enqueue_script('script', get_bloginfo('template_url') . '/lib/js/script.js', array('jquery'), '1.0', true);
 	}
