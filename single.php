@@ -9,12 +9,12 @@ get_header(); ?>
 
 	<div id="content" role="main">
 
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		
-		<article class="post" id="post-<?php the_ID(); ?>">
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header>
 				<h1><?php the_title(); ?></h1>
-				<time datetime="<?php the_time('Y-m-d') ?>" pubdate><?php the_time('F j, Y') ?></time>
+				<time datetime="<?php the_time( 'Y-m-d' ) ?>" pubdate><?php the_time( 'F j, Y' ) ?></time>
 			</header>
 			<?php the_content(); ?>
 			<section>
