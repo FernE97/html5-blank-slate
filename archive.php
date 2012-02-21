@@ -6,25 +6,31 @@
 	=================================================
 */
 get_header(); ?>
-
+	
 	<div id="content" role="main">
 
-		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+		<header>
+			<h1><?php single_cat_title( 'Archive for ' ); ?></h1>
+		</header>
+
+		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 		
-		<article class="post" id="post-<?php the_ID(); ?>">
+		<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<header>
 				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
-				<time datetime="<?php the_time('Y-m-d') ?>" pubdate><?php the_time('F j, Y') ?></time>
+				<time datetime="<?php the_time('Y-m-d') ?>" pubdate><?php the_time( 'F j, Y' ) ?></time>
 			</header>
 			<?php the_excerpt(); ?>
 		</article>
 		
+		<?php endwhile; ?>
+		
 		<div class="page-nav">
-			<div class="alignleft"><?php next_posts_link('&laquo; Older Entries') ?></div>
-			<div class="alignright"><?php previous_posts_link('Newer Entries &raquo;') ?></div>
+			<div class="alignleft"><?php next_posts_link( '&laquo; Older Entries' ) ?></div>
+			<div class="alignright"><?php previous_posts_link( 'Newer Entries &raquo;' ) ?></div>
 		</div>
-
-		<?php endwhile; endif; ?>
+		
+		<?php endif; ?>
 
 	</div><!-- end content -->
 	
