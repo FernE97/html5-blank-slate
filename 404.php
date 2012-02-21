@@ -9,7 +9,7 @@ get_header(); ?>
 
 	<div id="content" role="main">
 	
-		<article class="post" id="post-404-error">
+		<article id="post-404-error" <?php post_class(); ?>>
 			<h2>Page could not be found</h2>
 		</article>
 		
