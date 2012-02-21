@@ -11,27 +11,32 @@
 
 <footer role="contentinfo">
 	<nav role="navigation">
-	<?php if ( has_nav_menu('secondary') ) {
+	<?php if ( has_nav_menu( 'secondary ') ) {
 		wp_nav_menu( array (
-			'theme_location'    => 'secondary',
-			'container'         => false,
-			'menu_id'           => 'nav-sub',
-			'depth'             => 0, // set to 1 to disable dropdowns
-			'fallback_cb'       => false
+			'theme_location' => 'secondary',
+			'container'      => false,
+			'menu_id'        => 'nav-sub',
+			'depth'          => 0, // set to 1 to disable dropdowns
+			'fallback_cb'    => false
 		));
 	} else { ?>
 		<ul id="nav-sub" class="menu">
-			<?php wp_list_pages('title_li='); ?>
+			<?php wp_list_pages( 'title_li=' ); ?>
 		</ul>
-	<?php } ?>
+		<?php
+	} ?>
 	</nav>
-	<p id="copyright">&copy;<?php echo date('Y'); ?> www.efdezigns.com</p>
+	<p id="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://efdezigns.com/">Bay Area Web Design</a></p>
 </footer>
 
 <?php // JavaScript added through functions.php to avoid conflicts ?>
 
-<!--[if lt IE 7 ]>
-	<script src="<?php bloginfo('template_url'); ?>/lib/js/dd_belatedpng.js"></script>
+<!-- Prompt IE 6 & 7 users to install Chrome Frame -->
+<!--[if lt IE 8 ]>
+	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+	
+	<script src="<?php bloginfo( 'template_url' ); ?>/lib/js/dd_belatedpng.js"></script>
 	<script> DD_belatedPNG.fix('img, .png-bg'); </script>
 <![endif]-->
 
