@@ -1,9 +1,7 @@
 <?php
 
 // Custom Menus
-add_action( 'init', 'register_my_menus' );
-
-function register_my_menus() {
+function h5bs_register_menus() {
 	register_nav_menus(
 		array(
 			'primary'   => __('Primary Navigation'),
@@ -13,13 +11,15 @@ function register_my_menus() {
 	);
 }
 
+add_action( 'init', 'h5bs_register_menus' );
+
 
 // Image Thumbnails
 add_theme_support( 'post-thumbnails' );
 
 
 // Enqueue Global Scripts
-function enqueue_global_scripts() {
+function h5bs_enqueue_scripts() {
 	wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
 	wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', array(), '1.8.0', true );
 	wp_register_script( 'modernizr', get_template_directory_uri() . '/lib/js/modernizr.js', array(), '2.6.1', false );
@@ -29,7 +29,7 @@ function enqueue_global_scripts() {
 	wp_enqueue_script( 'custom-script' );
 }
 
-add_action( 'wp_enqueue_scripts', 'enqueue_global_scripts' );
+add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );
 
 
 // Sidebars & Widgetizes Areas
@@ -63,11 +63,9 @@ add_action( 'widgets_init', 'h5bs_register_sidebars' );
 
 
 // Client Options Page
-add_action( 'admin_menu', 'client_options_page' );
+function h5bs_client_options() {
 
-function client_options_page() {
-
-	if ( count($_POST) > 0 && isset($_POST['client_settings']) ) {
+	if ( count($_POST) > 0 && isset($_POST['h5bs_client_settings']) ) {
 		$options = array ( 'logo_url', 'logo_alt_text', 'google_analytics', 'facebook_url', 'twitter_username', 'linkedin_url', 'youtube_username', 'email', 'phone', 'phone_2', 'fax', 'address', 'address_2', 'city', 'state', 'zip_code' );
 		
 		foreach ( $options as $opt ) {
@@ -75,10 +73,13 @@ function client_options_page() {
 			add_option ( 'client_'.$opt, $_POST[$opt] );
 		}
 	}
-	add_menu_page( 'Client Settings', 'Client Options', 'manage_options', 'client_settings', 'client_settings' );
+	add_menu_page( 'Client Settings', 'Client Options', 'manage_options', 'h5bs_client_settings', 'h5bs_client_settings' );
 }
 
-function client_settings() { ?>
+add_action( 'admin_menu', 'h5bs_client_options' );
+
+
+function h5bs_client_settings() { ?>
 	<div class="wrap">  
 		<?php screen_icon('themes'); ?> <h2>Client Options</h2>
 
@@ -100,7 +101,7 @@ function client_settings() { ?>
 			</table>
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button-primary" value="Save Changes" />
-				<input type="hidden" name="client_settings" value="save" style="display:none;" />
+				<input type="hidden" name="h5bs_client_settings" value="save" style="display:none;" />
 			</p>
 			
 			<h3>Social Links</h3>
@@ -124,7 +125,7 @@ function client_settings() { ?>
 			</table>
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button-primary" value="Save Changes" />
-				<input type="hidden" name="client_settings" value="save" style="display:none;" />
+				<input type="hidden" name="h5bs_client_settings" value="save" style="display:none;" />
 			</p>
 			
 			<h3>Contact Information</h3>
@@ -168,7 +169,7 @@ function client_settings() { ?>
 			</table>
 			<p class="submit">
 				<input type="submit" name="submit" id="submit" class="button-primary" value="Save Changes" />
-				<input type="hidden" name="client_settings" value="save" style="display:none;" />
+				<input type="hidden" name="h5bs_client_settings" value="save" style="display:none;" />
 			</p>
 		</form>
 	</div><!-- end wrap -->
