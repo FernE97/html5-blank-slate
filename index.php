@@ -2,7 +2,6 @@
 /*
 	=================================================
 	HTML5 Blank Slate - Default Blog Template
-	Author: Eric Fernandez - http://efdezigns.com/
 	=================================================
 */
 get_header(); ?>

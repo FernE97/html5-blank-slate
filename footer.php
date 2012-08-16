@@ -2,7 +2,6 @@
 /*
 	=================================================
 	HTML5 Blank Slate - Default Footer Template
-	Author: Eric Fernandez - http://efdezigns.com/
 	=================================================
 */
 ?>

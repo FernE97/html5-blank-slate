@@ -2,7 +2,6 @@
 /*
 	=================================================
 	HTML5 Blank Slate - Default Header Template
-	Author: Eric Fernandez - http://efdezigns.com/
 	=================================================
 */
 ?>
