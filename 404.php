@@ -2,7 +2,7 @@
 /*
 	=================================================
 	HTML5 Blank Slate - Default 404 Template
-	Author: Eric Fernandez - www.efdezigns.com
+	Author: Eric Fernandez - http://efdezigns.com/
 	=================================================
 */
 get_header(); ?>
