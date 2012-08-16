@@ -32,48 +32,6 @@ function enqueue_global_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_global_scripts' );
 
 
-// dynamic classes and body IDs
-function dynamic_class() {
-
-	global $post;
-	$page_slug = $post->post_name;
-	
-	if ( ! empty( $post->post_parent ) ) {
-		$parent = get_post($post->post_parent);
-		$parent_slug = $parent->post_name;
-		$class = "$parent_slug $page_slug";
-	} else {
-		$class = "$page_slug";
-	}
-	
-	return $class;
-}
-
-function dynamic_body() {
-
-	$dynamic_class = dynamic_class();
- 
-	if ( is_front_page() ) {
-		echo 'id="home"';
-	
-	} elseif ( is_home() ) {
-		echo 'id="blog"';
-		
-	} elseif ( is_single() ) {
-		echo 'id="blog" class="single ' . $dynamic_class . '"';
-
-	} elseif ( is_archive() ) {
-		echo 'id="blog" class="archive"';
-		
-	} elseif ( is_search() ) {
-		echo 'id="search"';
-		
-	} else {
-		echo 'id="interior" class="' . $dynamic_class . '"';
-	}
-}
-
-
 // Client Options Page
 add_action( 'admin_menu', 'client_options_page' );
 

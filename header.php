@@ -37,7 +37,7 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php dynamic_body(); ?>>
+<body <?php body_class(); ?>>
 
 <div id="container">
 	<header role="banner">
