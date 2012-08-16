@@ -32,6 +32,36 @@ function enqueue_global_scripts() {
 add_action( 'wp_enqueue_scripts', 'enqueue_global_scripts' );
 
 
+// Sidebars & Widgetizes Areas
+function h5bs_register_sidebars() {
+	register_sidebar(array(
+		'id'            => 'sidebar1',
+		'name'          => 'Sidebar 1',
+		'description'   => 'The first (primary) sidebar.',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widgettitle">',
+		'after_title'   => '</h4>',
+	));
+
+	/* 
+	uncomment to add additional sidebar
+
+	register_sidebar(array(
+		'id'            => 'sidebar2',
+		'name'          => 'Sidebar 2',
+		'description'   => 'The second (secondary) sidebar.',
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h4 class="widgettitle">',
+		'after_title'   => '</h4>',
+	));
+	*/
+}
+
+add_action( 'widgets_init', 'h5bs_register_sidebars' );
+
+
 // Client Options Page
 add_action( 'admin_menu', 'client_options_page' );
 
