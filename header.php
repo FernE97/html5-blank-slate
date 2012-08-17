@@ -38,7 +38,7 @@
 <body <?php body_class(); ?>>
 
 <div id="container">
-	<header role="banner">
+	<header class="header" role="banner">
 		<nav role="navigation">
 		<?php if ( has_nav_menu( 'primary' ) ) {
 			wp_nav_menu( array (

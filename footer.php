@@ -8,7 +8,7 @@
 
 </div><!-- end container -->
 
-<footer role="contentinfo">
+<footer class="footer" role="contentinfo">
 	<nav role="navigation">
 	<?php if ( has_nav_menu( 'secondary ') ) {
 		wp_nav_menu( array (
