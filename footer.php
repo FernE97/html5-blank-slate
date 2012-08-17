@@ -10,21 +10,9 @@
 
 <footer class="footer" role="contentinfo">
 	<nav role="navigation">
-	<?php if ( has_nav_menu( 'secondary ') ) {
-		wp_nav_menu( array (
-			'theme_location' => 'secondary',
-			'container'      => false,
-			'menu_id'        => 'nav-sub',
-			'depth'          => 0, // set to 1 to disable dropdowns
-			'fallback_cb'    => false
-		));
-	} else { ?>
-		<ul id="nav-sub" class="menu">
-			<?php wp_list_pages( 'title_li=' ); ?>
-		</ul>
-		<?php
-	} ?>
+		<?php h5bs_secondary_nav(); ?>
 	</nav>
+
 	<p id="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://efdezigns.com/">Bay Area Web Design</a></p>
 </footer>
 

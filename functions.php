@@ -2,16 +2,69 @@
 
 // Custom Menus
 function h5bs_register_menus() {
-	register_nav_menus(
-		array(
-			'primary'   => __('Primary Navigation'),
-			'secondary' => __('Secondary Navigation'),
-			'tertiary'  => __('Tertiary Navigation')
-		)
-	);
+	register_nav_menus(array(
+		'primary'   => __('Primary Navigation'),
+		'secondary' => __('Secondary Navigation'),
+		'tertiary'  => __('Tertiary Navigation')
+	));
 }
 
 add_action( 'init', 'h5bs_register_menus' );
+
+
+function h5bs_primary_nav() {
+	wp_nav_menu(array( 
+		'container'       => false,                        // remove nav container
+		'menu'            => 'Main Menu',                  // nav name
+		'menu_id'         => 'nav-main',                   // custom id
+		'menu_class'      => 'nav group',                  // custom class
+		'theme_location'  => 'primary',                    // where it's located in the theme
+		'before'          => '',                           // before the menu
+		'after'           => '',                           // after the menu
+		'link_before'     => '',                           // before each link
+		'link_after'      => '',                           // after each link
+		'depth'           => 0,                            // set to 1 to disable dropdowns
+		'fallback_cb'     => 'h5bs_primary_nav_fallback'   // fallback function
+	));
+}
+
+function h5bs_secondary_nav() {
+	wp_nav_menu(array( 
+		'container'       => false,                        // remove nav container
+		'menu'            => 'Sub Menu',                   // nav name
+		'menu_id'         => 'nav-sub',                    // custom id
+		'menu_class'      => 'nav group',                  // custom class
+		'theme_location'  => 'secondary',                  // where it's located in the theme
+		'before'          => '',                           // before the menu
+		'after'           => '',                           // after the menu
+		'link_before'     => '',                           // before each link
+		'link_after'      => '',                           // after each link
+		'depth'           => 0,                            // set to 1 to disable dropdowns
+		'fallback_cb'     => 'h5bs_secondary_nav_fallback' // fallback function
+	));
+}
+
+function h5bs_primary_nav_fallback() {
+	wp_page_menu(array(
+		'menu_class'  => 'nav group',
+		'include'     => '',
+		'exclude'     => '',
+		'link_before' => '',
+		'link_after'  => '',
+		'show_home'   => true
+	));
+}
+
+function h5bs_secondary_nav_fallback() {
+	wp_page_menu(array(
+		'menu_class'  => 'nav group',
+		'include'     => '',
+		'exclude'     => '',
+		'link_before' => '',
+		'link_after'  => '',
+		'show_home'   => true
+	));
+}
 
 
 // Image Thumbnails

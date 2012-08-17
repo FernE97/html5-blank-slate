@@ -42,19 +42,6 @@
 		<p id="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 		
 		<nav role="navigation">
-		<?php if ( has_nav_menu( 'primary' ) ) {
-			wp_nav_menu( array (
-				'theme_location' => 'primary',
-				'container'      => '',
-				'menu_id'        => 'nav-main',
-				'depth'          => 0, // set to 1 to disable dropdowns
-				'fallback_cb'    => false
-			));
-		} else { ?>
-			<ul id="nav-main" class="menu">
-				<?php wp_list_pages( 'title_li=' ); ?>
-			</ul>
-			<?php
-		} ?>
+			<?php h5bs_primary_nav(); ?>
 		</nav>
 	</header>
