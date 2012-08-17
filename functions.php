@@ -71,6 +71,19 @@ function h5bs_secondary_nav_fallback() {
 add_theme_support( 'post-thumbnails' );
 
 
+// Remove junk from head
+function h5bs_remove_junk() {
+	// Really Simple Discovery
+	remove_action( 'wp_head', 'rsd_link' );
+	// Windows Live Writer
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	// WP Version
+	remove_action( 'wp_head', 'wp_generator' );
+}
+
+add_action( 'init', 'h5bs_remove_junk' );
+
+
 // Enqueue Global Scripts
 function h5bs_enqueue_scripts() {
 	wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
