@@ -15,7 +15,7 @@ add_action( 'init', 'h5bs_register_menus' );
 function h5bs_primary_nav() {
 	wp_nav_menu(array( 
 		'container'       => false,                        // remove nav container
-		'menu'            => 'Main Menu',                  // nav name
+		'menu'            => 'Primary Nav',                // nav name
 		'menu_id'         => 'nav-main',                   // custom id
 		'menu_class'      => 'nav group',                  // custom class
 		'theme_location'  => 'primary',                    // where it's located in the theme
@@ -31,7 +31,7 @@ function h5bs_primary_nav() {
 function h5bs_secondary_nav() {
 	wp_nav_menu(array( 
 		'container'       => false,                        // remove nav container
-		'menu'            => 'Sub Menu',                   // nav name
+		'menu'            => 'Secondary Nav',              // nav name
 		'menu_id'         => 'nav-sub',                    // custom id
 		'menu_class'      => 'nav group',                  // custom class
 		'theme_location'  => 'secondary',                  // where it's located in the theme
