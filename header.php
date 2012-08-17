@@ -39,6 +39,8 @@
 
 <div id="container">
 	<header class="header" role="banner">
+		<p id="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+		
 		<nav role="navigation">
 		<?php if ( has_nav_menu( 'primary' ) ) {
 			wp_nav_menu( array (
