@@ -6,7 +6,7 @@
 */
 get_header(); ?>
 	
-	<div id="content" role="main">
+	<div class="content" role="main">
 
 		<header>
 			<h1><?php single_cat_title( 'Archive for ' ); ?></h1>

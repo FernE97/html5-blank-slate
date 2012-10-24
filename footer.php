@@ -13,7 +13,7 @@
 		<?php h5bs_secondary_nav(); ?>
 	</nav>
 
-	<p id="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://efdezigns.com/">Bay Area Web Design</a></p>
+	<p class="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://efdezigns.com/">Bay Area Web Design</a></p>
 </footer>
 
 <?php // JavaScript added through functions.php to avoid conflicts ?>

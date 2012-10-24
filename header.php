@@ -37,9 +37,9 @@
 
 <body <?php body_class(); ?>>
 
-<div id="container">
+<div class="container">
 	<header class="header" role="banner">
-		<p id="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+		<p class="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 		
 		<nav role="navigation">
 			<?php h5bs_primary_nav(); ?>

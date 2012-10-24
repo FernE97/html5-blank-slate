@@ -6,7 +6,7 @@
 */
 get_header(); ?>
 
-	<div id="content" role="main">
+	<div class="content" role="main">
 	
 		<article id="post-404-error" <?php post_class( 'group' ); ?>>
 			<h2>Page could not be found</h2>
