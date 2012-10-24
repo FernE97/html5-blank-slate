@@ -13,119 +13,191 @@
 
 # Based off html5 Boilerplate
 
-# Force the latest IE version, use ChromeFrame if available
-<IfModule mod_setenvif.c>
-	<IfModule mod_headers.c>
-		BrowserMatch MSIE ie
-		Header set X-UA-Compatible "IE=Edge,chrome=1" env=ie
-	</IfModule>
-</IfModule>
+# ---------------------------------------------------------
+# Suppress the "www." at the beginning of URLs
+# ---------------------------------------------------------
+
+# Rewrite "www.example.com -> example.com".
+
+# <IfModule mod_rewrite.c>
+# 	RewriteCond %{HTTPS} !=on
+# 	RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+# 	RewriteRule ^ http://%1%{REQUEST_URI} [R=301,L]
+# </IfModule>
+
+
+# ---------------------------------------------------------
+# Better website experience for IE users
+# ---------------------------------------------------------
 
 <IfModule mod_headers.c>
-	Header append Vary User-Agent
+	Header set X-UA-Compatible "IE=Edge,chrome=1"
+	<FilesMatch "\.(js|css|gif|png|jpe?g|pdf|xml|oga|ogg|m4a|ogv|mp4|m4v|webm|svg|svgz|eot|ttf|otf|woff|ico|webp|appcache|manifest|htc|crx|oex|xpi|safariextz|vcf)$" >
+		Header unset X-UA-Compatible
+	</FilesMatch>
 </IfModule>
 
+
+# ---------------------------------------------------------
 # Allow access from all domains for webfonts
-<FilesMatch "\.(ttf|otf|eot|woff|font.css)$">
-	<IfModule mod_headers.c>
+# ---------------------------------------------------------
+
+<IfModule mod_headers.c>
+	<FilesMatch "\.(ttf|ttc|otf|eot|woff|font.css)$">
 		Header set Access-Control-Allow-Origin "*"
-	</IfModule>
-</FilesMatch>
+	</FilesMatch>
+</IfModule>
+
+
+# ---------------------------------------------------------
+# Proper MIME type for all files
+# ---------------------------------------------------------
+
+# JavaScript
+AddType application/javascript         js jsonp
+AddType application/json               json
+
+# Audio
+AddType audio/ogg                      oga ogg
+AddType audio/mp4                      m4a f4a f4b
 
 # Video
-AddType video/ogg                      ogg ogv
-AddType video/mp4                      mp4
+AddType video/ogg                      ogv
+AddType video/mp4                      mp4 m4v f4v f4p
 AddType video/webm                     webm
+AddType video/x-flv                    flv
 
-# Proper svg serving. Required for svg webfonts on iPad
-AddType     image/svg+xml              svg svgz 
+# SVG
+AddType     image/svg+xml              svg svgz
 AddEncoding gzip                       svgz
 
-# Webfonts                             
+# Webfonts
 AddType application/vnd.ms-fontobject  eot
-AddType font/truetype                  ttf
+AddType application/x-font-ttf         ttf ttc
 AddType font/opentype                  otf
-AddType font/woff                      woff
+AddType application/x-font-woff        woff
 
-# Assorted types                                      
-AddType image/vnd.microsoft.icon       ico
-AddType image/webp                     webp
-AddType text/cache-manifest            manifest
-AddType text/x-component               htc
-AddType application/x-chrome-extension crx
+# Assorted types
+AddType image/x-icon                        ico
+AddType image/webp                          webp
+AddType text/cache-manifest                 appcache manifest
+AddType text/x-component                    htc
+AddType application/xml                     rss atom xml rdf
+AddType application/x-chrome-extension      crx
+AddType application/x-opera-extension       oex
+AddType application/x-xpinstall             xpi
+AddType application/octet-stream            safariextz
+AddType application/x-web-app-manifest+json webapp
+AddType text/x-vcard                        vcf
+AddType application/x-shockwave-flash       swf
+AddType text/vtt                            vtt
 
 
-# gzip compression.
+# ---------------------------------------------------------
+# Gzip compression
+# ---------------------------------------------------------
+
 <IfModule mod_deflate.c>
+	<IfModule mod_setenvif.c>
+		<IfModule mod_headers.c>
+			SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+			RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+		</IfModule>
+	</IfModule>
 
-	# html, txt, css, js, json, xml, htc:
-	AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-	AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript 
-	AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
-
-	# webfonts and svg:
-	<FilesMatch "\.(ttf|otf|eot|svg)$" >
-		SetOutputFilter DEFLATE
-	</FilesMatch>
-	
+	<IfModule mod_filter.c>
+		AddOutputFilterByType DEFLATE application/atom+xml \
+			application/javascript \
+			application/json \
+			application/rss+xml \
+			application/vnd.ms-fontobject \
+			application/x-font-ttf \
+			application/xhtml+xml \
+			application/xml \
+			font/opentype \
+			image/svg+xml \
+			image/x-icon \
+			text/css \
+			text/html \
+			text/plain \
+			text/x-component \
+			text/xml
+	</IfModule>
 </IfModule>
 
 
-# Far-future expires headers
+# ---------------------------------------------------------
+# Expires headers (for better cache control)
+# ---------------------------------------------------------
 
 <IfModule mod_expires.c>
-	Header set Cache-Control "public"
 	ExpiresActive on
 
 	# Perhaps better to whitelist expires rules? Perhaps.
 	ExpiresDefault                          "access plus 1 month"
 
-	# cache.manifest needs re-requests in FF 3.6 (thx Remy ~Introducing HTML5)
+	# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
 	ExpiresByType text/cache-manifest       "access plus 0 seconds"
 
-	# your document html 
+	# Your document html
 	ExpiresByType text/html                 "access plus 0 seconds"
 
-	# data
+	# Data
 	ExpiresByType text/xml                  "access plus 0 seconds"
 	ExpiresByType application/xml           "access plus 0 seconds"
 	ExpiresByType application/json          "access plus 0 seconds"
 
-	# rss feed
+	# Feed
 	ExpiresByType application/rss+xml       "access plus 1 hour"
+	ExpiresByType application/atom+xml      "access plus 1 hour"
 
-	# favicon (cannot be renamed)
-	ExpiresByType image/vnd.microsoft.icon  "access plus 1 week" 
+	# Favicon (cannot be renamed)
+	ExpiresByType image/x-icon              "access plus 1 week"
 
-	# media: images, video, audio
+	# Media: images, video, audio
 	ExpiresByType image/gif                 "access plus 1 month"
 	ExpiresByType image/png                 "access plus 1 month"
-	ExpiresByType image/jpg                 "access plus 1 month"
 	ExpiresByType image/jpeg                "access plus 1 month"
 	ExpiresByType video/ogg                 "access plus 1 month"
 	ExpiresByType audio/ogg                 "access plus 1 month"
 	ExpiresByType video/mp4                 "access plus 1 month"
 	ExpiresByType video/webm                "access plus 1 month"
 
-	# webfonts
-	ExpiresByType font/truetype             "access plus 1 month"
+	# HTC files  (css3pie)
+	ExpiresByType text/x-component          "access plus 1 month"
+
+	# Webfonts
+	ExpiresByType application/x-font-ttf    "access plus 1 month"
 	ExpiresByType font/opentype             "access plus 1 month"
-	ExpiresByType font/woff                 "access plus 1 month"
+	ExpiresByType application/x-font-woff   "access plus 1 month"
 	ExpiresByType image/svg+xml             "access plus 1 month"
 	ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
 
-	# css and javascript
+	# CSS and JavaScript
 	ExpiresByType text/css                  "access plus 1 month"
 	ExpiresByType application/javascript    "access plus 1 month"
-	ExpiresByType text/javascript           "access plus 1 month"
 </IfModule>
 
+
+# ---------------------------------------------------------
+# ETag removal
+# ---------------------------------------------------------
+
+# FileETag None is not enough for every server.
+<IfModule mod_headers.c>
+	Header unset ETag
+</IfModule>
 
 # Since we're sending far-future expires, we don't need ETags for static content
 FileETag None
 
-# use utf-8 encoding for anything served text/plain or text/html
+
+# ---------------------------------------------------------
+# UTF-8 encoding
+# ---------------------------------------------------------
+
+# Use UTF-8 encoding for anything served text/plain or text/html
 AddDefaultCharset utf-8
 
-# force utf-8 for a number of file formats
-AddCharset utf-8 .html .css .js .xml .json .rss
+# Force UTF-8 for a number of file formats
+AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
