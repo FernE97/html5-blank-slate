@@ -130,6 +130,26 @@ function h5bs_register_sidebars() {
 add_action( 'widgets_init', 'h5bs_register_sidebars' );
 
 
+/** https://github.com/blineberry/Improved-HTML5-WordPress-Captions **/
+// Removes inline styling from wp-caption and changes to HTML5 figure/figcaption
+add_filter( 'img_caption_shortcode', 'h5bs_img_caption_shortcode_filter', 10, 3 );
+
+function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
+	extract(shortcode_atts(array(
+		'id'      => '',
+		'align'   => '',
+		'width'   => '',
+		'caption' => ''
+	), $attr));
+	
+	if ( 1 > (int) $width || empty($caption) )
+		return $val;
+
+	return '<figure id="' . $id . '" class="wp-caption ' . esc_attr($align) . '" style="width: ' . $width . 'px;">'
+	. do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
+}
+
+
 // Client Options Page
 require_once( 'lib/inc/client-options.php' );
 add_action( 'admin_menu', 'h5bs_client_options' );
