@@ -8,7 +8,7 @@
 
 </div><!-- end container -->
 
-<footer class="footer" role="contentinfo">
+<footer class="site-footer" role="contentinfo">
 	<nav role="navigation">
 		<?php h5bs_secondary_nav(); ?>
 	</nav>

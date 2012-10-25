@@ -38,7 +38,7 @@
 <body <?php body_class(); ?>>
 
 <div class="container">
-	<header class="header" role="banner">
+	<header class="site-header" role="banner">
 		<p class="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 		
 		<nav role="navigation">
