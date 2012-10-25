@@ -3,7 +3,7 @@
 	Theme URI: http://efdezigns.com/
 	Description: Incorporating HTML5 Boilerplate into WordPress
 	Author: Eric Fernandez - http://efdezigns.com/
-	Version: 1.2
+	Version: 1.3
 	Tags: blank, html5, clean, html5 boilerplate, best practices
 */
 
@@ -131,6 +131,7 @@ td { vertical-align: top; }
 	margin-left: auto;
 	margin-right: auto;
 }
+img.alignnone,
 img.alignleft,
 img.alignright,
 img.aligncenter {
