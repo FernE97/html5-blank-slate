@@ -21,13 +21,13 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root of the domain -->
 	
 	<!-- Versioning enabled for caching -->
-	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=1.2">
+	<link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=1.3">
 	
 	<?php // JavaScript added through functions.php to avoid conflicts ?>
 	
 	<!-- Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) -->
 	<!--[if lt IE 9]>
-		<script src="<?php bloginfo( 'template_url' ); ?>/lib/js/selectivizr.js?v=1.0.2"></script>
+		<script src="<?php echo get_template_directory_uri(); ?>/lib/js/selectivizr.js?v=1.0.2"></script>
 	<![endif]-->
 	
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
@@ -39,7 +39,7 @@
 
 <div class="container">
 	<header class="site-header" role="banner">
-		<p class="logo"><a href="<?php bloginfo( 'url' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+		<p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 		
 		<nav role="navigation">
 			<?php h5bs_primary_nav(); ?>
