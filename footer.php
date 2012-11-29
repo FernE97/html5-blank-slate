@@ -21,18 +21,23 @@
 <!-- Prompt IE 6 & 7 users to install Chrome Frame -->
 <!--[if lt IE 8 ]>
 	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
+	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
 
 <?php wp_footer(); ?>
 
+<?php if ( ! current_user_can( 'edit_pages' ) ) : // don't track admins or editors ?>
 <!-- Google Analytics -->
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-	s.parentNode.insertBefore(g,s)}(document,'script'));
+var _gaq = [['_setAccount', 'UA-XXXXXX-XX'], ['_trackPageview']];
+(function (d, t) {
+	var g = d.createElement(t),
+		s = d.getElementsByTagName(t)[0];
+	g.src = ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js';
+	s.parentNode.insertBefore(g, s);
+}(document, 'script'));
 </script>
+<?php endif; ?>
 
 </body>
 </html>
