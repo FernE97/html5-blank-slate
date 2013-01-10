@@ -8,22 +8,20 @@ get_header(); ?>
 
 	<div class="content" role="main">
 
-		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+		<?php while ( have_posts() ) : the_post(); ?>
 		
-		<article <?php post_class( 'group' ); ?> role="article">
+		<article id="post-<?php the_ID(); ?>" <?php post_class( 'group' ); ?> role="article">
 			<header>
 				<h1><?php the_title(); ?></h1>
 				<time datetime="<?php the_time( 'Y-m-d' ) ?>" pubdate><?php the_time( 'F j, Y' ) ?></time>
 			</header>
 
 			<?php the_content(); ?>
-			
-			<section>
-				<?php comment_form(); ?>
-			</section>
 		</article>
+
+		<?php comments_template( '', true ); ?>
 		
-		<?php endwhile; endif; ?>
+		<?php endwhile; ?>
 		
 	</div><!-- end content -->
 	

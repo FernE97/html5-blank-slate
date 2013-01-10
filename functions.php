@@ -130,6 +130,56 @@ function h5bs_register_sidebars() {
 add_action( 'widgets_init', 'h5bs_register_sidebars' );
 
 
+// Comments List
+function h5bs_comments( $comment, $args, $depth ) {
+	$GLOBALS['comment'] = $comment;
+
+	if ( get_comment_type() == 'pingback' || get_comment_type() == 'trackback' ) : ?>
+		
+		<li class="pingback" id="comment-<?php comment_ID(); ?>">
+			<article <?php comment_class( 'group' ); ?>>
+				
+				<header class="comment-meta">
+					<h5><?php _e( 'Pingback:', 'h5bs' ); ?></h5>
+					<p><?php edit_comment_link(); ?></p>
+				</header>
+
+				<p><?php comment_author_link(); ?></p>
+			</article>
+		<?php // WordPress closes </li>
+
+	elseif ( get_comment_type() == 'comment' ) : ?>
+		<li id="comment-<?php comment_ID(); ?>">
+			<article <?php comment_class( 'group' ); ?>>
+				
+				<header class="comment-meta">
+					<h5><?php comment_author_link(); ?></h5>
+					<p class="comment-date">on <?php comment_date(); ?> at <?php comment_time(); ?></p>
+					
+					<p class="reply">
+						<?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'h5bs' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+					</p>
+				</header>
+
+				<figure class="comment-avatar">
+					<?php
+					$avatar_size = 80;
+					echo get_avatar( $comment, $avatar_size );
+					?>
+				</figure>
+
+				<?php if ( '0' == $comment->comment_approved ) : ?>
+					<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'h5bs' ); ?></p>
+				<?php endif; ?>
+
+				<?php comment_text(); ?>
+				
+			</article>
+		<?php // WordPress closes </li>
+	endif;
+}
+
+
 /** https://github.com/blineberry/Improved-HTML5-WordPress-Captions **/
 // Removes inline styling from wp-caption and changes to HTML5 figure/figcaption
 add_filter( 'img_caption_shortcode', 'h5bs_img_caption_shortcode_filter', 10, 3 );
