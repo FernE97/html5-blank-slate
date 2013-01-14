@@ -13,7 +13,7 @@ get_header(); ?>
         <article id="post-<?php the_ID(); ?>" <?php post_class( 'group' ); ?> role="article">
             <header>
                 <h1><?php the_title(); ?></h1>
-                <time datetime="<?php the_time( 'Y-m-d' ) ?>" pubdate><?php the_time( 'F j, Y' ) ?></time>
+                <time datetime="<?php the_time( 'Y-m-d' ); ?>" pubdate><?php the_time( 'F j, Y' ); ?></time>
             </header>
 
             <?php the_content(); ?>
