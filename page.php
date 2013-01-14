@@ -1,9 +1,9 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default Page Template
-    =================================================
-*/
+/**
+ * Default Page Template
+ *
+ */
+
 get_header(); ?>
 
     <div class="content" role="main">

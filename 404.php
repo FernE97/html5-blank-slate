@@ -1,9 +1,9 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default 404 Template
-    =================================================
-*/
+/**
+ * Default 404 Template
+ *
+ */
+
 get_header(); ?>
 
     <div class="content" role="main">

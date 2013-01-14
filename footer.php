@@ -1,9 +1,8 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default Footer Template
-    =================================================
-*/
+/**
+ * Default Footer Template
+ *
+ */
 ?>
 
 </div><!-- end container -->

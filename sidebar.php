@@ -1,9 +1,8 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default Sidebar Template
-    =================================================
-*/ 
+/**
+ * Default Sidebar Template
+ *
+ */
 ?>
 
 <aside role="complementary">

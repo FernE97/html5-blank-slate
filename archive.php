@@ -1,9 +1,9 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default Archives Template
-    =================================================
-*/
+/**
+ * Default Archives Template
+ *
+ */
+
 get_header(); ?>
     
     <div class="content" role="main">

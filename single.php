@@ -1,9 +1,9 @@
 <?php
-/*
-    =================================================
-    HTML5 Blank Slate - Default Single Post Template
-    =================================================
-*/
+/**
+ * Default Single Post Template
+ *
+ */
+
 get_header(); ?>
 
     <div class="content" role="main">
