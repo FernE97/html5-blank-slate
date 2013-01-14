@@ -203,3 +203,7 @@ function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
 // Client Options Page
 require_once( 'lib/inc/client-options.php' );
 add_action( 'admin_menu', 'h5bs_client_options' );
+
+
+// Translation
+// require_once( 'lib/lang/translation.php' ); // uncomment if needed

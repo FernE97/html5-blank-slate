@@ -21,8 +21,8 @@ get_header(); ?>
         <?php endwhile; endif; ?>
         
         <div class="page-nav">
-            <div class="alignleft"><?php next_posts_link( '&laquo; Older Entries' ) ?></div>
-            <div class="alignright"><?php previous_posts_link( 'Newer Entries &raquo;' ) ?></div>
+            <div class="alignleft"><?php next_posts_link( __( '&laquo; Older Entries', 'h5bs' ) ); ?></div>
+            <div class="alignright"><?php previous_posts_link( __( 'Newer Entries &raquo;', 'h5bs' ) ); ?></div>
         </div>
 
     </div><!-- end content -->

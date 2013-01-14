@@ -9,7 +9,7 @@ get_header(); ?>
     <div class="content" role="main">
 
         <header>
-            <h1><?php single_cat_title( 'Archive for ' ); ?></h1>
+            <h1><?php single_cat_title( __( 'Archive for ', 'h5bs' ) ); ?></h1>
         </header>
 
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
@@ -25,8 +25,8 @@ get_header(); ?>
         <?php endwhile; ?>
         
         <div class="page-nav">
-            <div class="alignleft"><?php next_posts_link( '&laquo; Older Entries' ) ?></div>
-            <div class="alignright"><?php previous_posts_link( 'Newer Entries &raquo;' ) ?></div>
+            <div class="alignleft"><?php next_posts_link( __( '&laquo; Older Entries', 'h5bs' ) ); ?></div>
+            <div class="alignright"><?php previous_posts_link( __( 'Newer Entries &raquo;', 'h5bs' ) ); ?></div>
         </div>
         
         <?php endif; ?>
