@@ -3,9 +3,9 @@
 // Custom Menus
 function h5bs_register_menus() {
     register_nav_menus(array(
-        'primary'   => __('Primary Navigation'),
-        'secondary' => __('Secondary Navigation'),
-        'tertiary'  => __('Tertiary Navigation')
+        'primary'   => __( 'Primary Navigation', 'h5bs' ),
+        'secondary' => __( 'Secondary Navigation', 'h5bs' ),
+        'tertiary'  => __( 'Tertiary Navigation', 'h5bs' )
     ));
 }
 
