@@ -1,13 +1,13 @@
 /*
-	Theme Name: HTML5 Blank Slate
-	Theme URI: http://efdezigns.com/
-	Description: Incorporating HTML5 Boilerplate into WordPress
-	Author: Eric Fernandez
-	Author URI: http://efdezigns.com/
-	Version: 1.3
-	License: WTFPL
-	License URI: http://sam.zoy.org/wtfpl/
-	Tags: blank, html5, clean, html5 boilerplate, best practices
+    Theme Name: HTML5 Blank Slate
+    Theme URI: http://efdezigns.com/
+    Description: Incorporating HTML5 Boilerplate into WordPress
+    Author: Eric Fernandez
+    Author URI: http://efdezigns.com/
+    Version: 1.3
+    License: WTFPL
+    License URI: http://sam.zoy.org/wtfpl/
+    Tags: blank, html5, clean, html5 boilerplate, best practices
 */
 
 /*-- slightly modified html5 boilerplate styles --*/
@@ -119,60 +119,60 @@ td { vertical-align: top; }
 /*=WordPress Defaults
 ---------------------------------------*/
 .alignleft {
-	display: inline;
-	float: left;
-	margin-right: 1.5em;
+    display: inline;
+    float: left;
+    margin-right: 1.5em;
 }
 .alignright {
-	display: inline;
-	float: right;
-	margin-left: 1.5em;
+    display: inline;
+    float: right;
+    margin-left: 1.5em;
 }
 .aligncenter {
-	display: block;
-	clear: both;
-	margin-right: auto;
-	margin-left: auto;
+    display: block;
+    clear: both;
+    margin-right: auto;
+    margin-left: auto;
 }
 img.alignnone,
 img.alignleft,
 img.alignright,
 img.aligncenter {
-	margin-bottom: 1.5em;
+    margin-bottom: 1.5em;
 }
 .wp-caption {
-	margin-bottom: 1.5em;
-	padding: 8px;
-	max-width: 96%;
-	background: #efefef;
+    margin-bottom: 1.5em;
+    padding: 8px;
+    max-width: 96%;
+    background: #efefef;
 }
 .wp-caption img {
-	display: block;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
-	margin: 0 auto;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 .wp-caption-text {
-	position: relative;
-	margin-bottom: 0.6em;
-	padding: 10px 5px 5px;
-	color: #7a7a7a;
-	text-align: center;
-	font-style: italic;
-	font-size: 13px;
-	font-family: Georgia, serif;
+    position: relative;
+    margin-bottom: 0.6em;
+    padding: 10px 5px 5px;
+    color: #7a7a7a;
+    text-align: center;
+    font-style: italic;
+    font-size: 13px;
+    font-family: Georgia, serif;
 }
 img[class*="wp-image-"] {
-	padding: 5px;
-	border: 1px solid #ddd;
-	background: #fff;
+    padding: 5px;
+    border: 1px solid #ddd;
+    background: #fff;
 }
 
 /*=Media Queries
 ---------------------------------------*/
 @media only screen and (min-width: 35em) {
-	/* Style adjustments for viewports that meet the condition */
+    /* Style adjustments for viewports that meet the condition */
 }
 
 /*=Non-Semantic helper classes
@@ -192,16 +192,16 @@ img[class*="wp-image-"] {
 /*=Print Styles
 ---------------------------------------*/
 @media print {
-	* { background: transparent !important; box-shadow:none !important; color: black !important; text-shadow: none !important; -ms-filter: none !important; filter:none !important; } /* Black prints faster: h5bp.com/s */
-	a, a:visited { text-decoration: underline; }
-	a[href]:after { content: " (" attr(href) ")"; }
-	abbr[title]:after { content: " (" attr(title) ")"; }
-	.ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
-	pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
-	thead { display: table-header-group; } /* h5bp.com/t */
-	tr, img { page-break-inside: avoid; }
-	img { max-width: 100% !important; }
-	@page { margin: 0.5cm; }
-	p, h2, h3 { orphans: 3; widows: 3; }
-	h2, h3 { page-break-after: avoid; }
+    * { background: transparent !important; box-shadow:none !important; color: black !important; text-shadow: none !important; -ms-filter: none !important; filter:none !important; } /* Black prints faster: h5bp.com/s */
+    a, a:visited { text-decoration: underline; }
+    a[href]:after { content: " (" attr(href) ")"; }
+    abbr[title]:after { content: " (" attr(title) ")"; }
+    .ir a:after, a[href^="javascript:"]:after, a[href^="#"]:after { content: ""; }  /* Don't show links for images, or javascript/internal links */
+    pre, blockquote { border: 1px solid #999; page-break-inside: avoid; }
+    thead { display: table-header-group; } /* h5bp.com/t */
+    tr, img { page-break-inside: avoid; }
+    img { max-width: 100% !important; }
+    @page { margin: 0.5cm; }
+    p, h2, h3 { orphans: 3; widows: 3; }
+    h2, h3 { page-break-after: avoid; }
 }
