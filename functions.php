@@ -86,8 +86,6 @@ add_action( 'init', 'h5bs_remove_junk' );
 
 // Enqueue Global Scripts
 function h5bs_enqueue_scripts() {
-    wp_deregister_script( 'jquery' ); // Load Jquery from Google CDN instead
-    wp_register_script( 'jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js', array(), '1.8.0', true );
     wp_register_script( 'modernizr', get_template_directory_uri() . '/lib/js/modernizr.js', array(), '2.6.2', false );
     // wp_register_script( 'plugins', get_template_directory_uri() . '/lib/js/plugins.js', array( 'jquery' ), '1.0', true );
     wp_register_script( 'global-js', get_template_directory_uri() . '/lib/js/global.js', array( 'jquery' ), '1.0', true );
