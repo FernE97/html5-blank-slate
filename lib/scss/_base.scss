@@ -1,0 +1,34 @@
+/*=Base
+---------------------------------------------------------------------*/
+* {
+    @include box-sizing(border-box);
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: $link-color-hover;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom; // remove gap at bottom
+
+    .ie8 & {
+        width: auto; // IE8 needs to resize images correctly
+    }
+}
+
+hr {
+    display: block;
+    margin: 1em 0;
+    padding: 0;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+}

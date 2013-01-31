@@ -5,7 +5,7 @@
  */
 ?>
 
-<aside role="complementary">
+<aside class="sidebar" role="complementary">
 
     <?php
     if ( is_active_sidebar( 'sidebar1' ) ) :

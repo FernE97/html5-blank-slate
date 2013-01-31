@@ -20,7 +20,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root of the domain -->
     
     <!-- Versioning enabled for caching -->
-    <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=1.3">
+    <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=2.0">
     
     <?php // JavaScript added through functions.php to avoid conflicts ?>
     
@@ -36,7 +36,7 @@
 
 <body <?php body_class(); ?>>
 
-<div class="container">
+<div class="container-grid">
     <header class="site-header" role="banner">
         <p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
         

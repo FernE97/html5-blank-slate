@@ -1,0 +1,39 @@
+/*=Typography
+---------------------------------------------------------------------*/
+html {
+    font-size: 62.5%; // easier to size rem units
+}
+
+body {
+    @include font-size();
+    @include line-height();
+    color: $font-color;
+}
+
+h1, .h1 {
+    @include font-size(32);
+}
+
+h2, .h2 {
+    @include font-size(28);
+}
+
+h3, .h3 {
+    @include font-size(26);
+}
+
+h4, .h4 {
+    @include font-size(24);
+}
+
+h5, .h5 {
+    @include font-size(20);
+}
+
+h6, .h6 {
+    @include font-size(16);
+}
+
+pre, code {
+    font-family: $monospace;
+}

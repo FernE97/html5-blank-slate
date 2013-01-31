@@ -1,0 +1,72 @@
+// Fonts
+// ----------------------------------------------
+
+// font-size in rem with px fallback
+@mixin font-size($font-size: $base-font-size) {
+    font-size: #{$font-size}px;
+    font-size: #{$font-size / 10}rem;
+}
+
+// line-height - divide desired line-height by font-size
+@mixin line-height($line-height: $base-line-height, $font-size: $base-font-size) {
+    line-height: $line-height / $font-size;
+}
+
+@mixin margin-bottom($line-height: $base-line-height, $font-size: $base-font-size) {
+    margin-bottom: $line-height / $font-size + em;
+}
+
+// Vertical rhythm - combines font-size, line-height, and margin-bottom
+@mixin vertical-rhythm($line-height: $base-line-height, $font-size: $base-font-size, $margin-divide: 2) {
+    font-size: #{$font-size}px;
+    font-size: #{$font-size / 10}rem;
+    line-height: $line-height / $font-size;
+    margin-bottom: ($line-height / $font-size) / $margin-divide + em;
+}
+
+// Helpers
+// ----------------------------------------------
+
+// Clearfix
+@mixin clearfix {
+    *zoom: 1;
+
+    &:before,
+    &:after {
+        display: table;
+        content: " ";
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// Image replacement
+@mixin ir {
+    overflow: hidden;
+    border: 0;
+    background-color: transparent;
+    *text-indent: -9999px;
+
+    &:before {
+        display: block;
+        width: 0;
+        height: 150%;
+        content: "";
+    }
+}
+
+// IE7 inline-block
+@mixin inline-block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+// Center align block element
+@mixin center {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
