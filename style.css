@@ -186,7 +186,7 @@ kbd,
 pre,
 samp {
   font-family: monospace, serif;
-  _font-family: "courier new", monospace;
+  _font-family: 'courier new', monospace;
   font-size: 1em;
 }
 
@@ -321,7 +321,7 @@ form {
  * Define consistent border, margin, and padding.
  */
 fieldset {
-  border: 1px solid silver;
+  border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: 0.35em 0.625em 0.75em;
 }
@@ -491,11 +491,11 @@ table {
 }
 
 a {
-  color: #0000ee;
+  color: #00aaee;
   text-decoration: none;
 }
 a:hover, a:focus {
-  color: #eeee00;
+  color: #ee00aa;
 }
 
 img {
@@ -513,7 +513,7 @@ hr {
   padding: 0;
   height: 1px;
   border: 0;
-  border-top: 1px solid #cccccc;
+  border-top: 1px solid #ccc;
 }
 
 /*=Typography
@@ -784,7 +784,7 @@ img.aligncenter {
 
 img[class*="wp-image-"] {
   padding: 5px;
-  border: 1px solid #dddddd;
+  border: 1px solid #ddd;
   background: #fff;
 }
 
@@ -864,7 +864,7 @@ img[class*="wp-image-"] {
 @media print {
   * {
     background: transparent !important;
-    color: black !important;
+    color: #000 !important;
     /* Black prints faster: h5bp.com/s */
     box-shadow: none !important;
     text-shadow: none !important;
@@ -894,7 +894,7 @@ img[class*="wp-image-"] {
 
   pre,
   blockquote {
-    border: 1px solid #999999;
+    border: 1px solid #999;
     page-break-inside: avoid;
   }
 
