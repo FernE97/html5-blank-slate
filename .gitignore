@@ -20,3 +20,10 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
+
+# Cache
+.sass-cache/
+
+# WordPress
+sitemap.xml
+sitemap.xml.gz
