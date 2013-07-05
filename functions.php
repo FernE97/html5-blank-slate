@@ -24,7 +24,7 @@ function h5bs_primary_nav() {
         'link_before'     => '',                           // before each link
         'link_after'      => '',                           // after each link
         'depth'           => 0,                            // set to 1 to disable dropdowns
-        'fallback_cb'     => 'h5bs_primary_nav_fallback'   // fallback function
+        'fallback_cb'     => 'h5bs_nav_fallback'           // fallback function
     ));
 }
 
@@ -40,22 +40,11 @@ function h5bs_secondary_nav() {
         'link_before'     => '',                           // before each link
         'link_after'      => '',                           // after each link
         'depth'           => 0,                            // set to 1 to disable dropdowns
-        'fallback_cb'     => 'h5bs_secondary_nav_fallback' // fallback function
+        'fallback_cb'     => 'h5bs_nav_fallback'           // fallback function
     ));
 }
 
-function h5bs_primary_nav_fallback() {
-    wp_page_menu(array(
-        'menu_class'  => 'nav group',
-        'include'     => '',
-        'exclude'     => '',
-        'link_before' => '',
-        'link_after'  => '',
-        'show_home'   => true
-    ));
-}
-
-function h5bs_secondary_nav_fallback() {
+function h5bs_nav_fallback() {
     wp_page_menu(array(
         'menu_class'  => 'nav group',
         'include'     => '',
