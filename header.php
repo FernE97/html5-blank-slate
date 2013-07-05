@@ -12,16 +12,15 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="author" content="Eric Fernandez | www.efdezigns.com">
-    <!-- Enable if site is optimized for mobile devices -->
+    <?php // Uncomment if site is optimized for mobile devices ?>
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     
     <title><?php wp_title( '|', true, 'right' ); bloginfo( 'name' ); ?></title>
     
-    <!-- Place favicon.ico and apple-touch-icon.png in the root of the domain -->
+    <?php // Place favicon.ico and apple-touch-icon.png in the root of the domain ?>
+    <?php // JS & CSS added through functions.php to avoid conflicts ?>
     
-    <?php // JavaScript added through functions.php to avoid conflicts ?>
-    
-    <!-- Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) -->
+    <?php // Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) ?>
     <!--[if lt IE 9]>
         <script src="<?php echo get_template_directory_uri(); ?>/lib/js/selectivizr.js?v=1.0.2"></script>
     <![endif]-->
