@@ -75,9 +75,9 @@ add_action( 'init', 'h5bs_remove_junk' );
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    // wp_register_style( 'changeme', get_template_directory_uri() . '/lib/css/changeme.css', array(), '1.0' );
+    wp_register_style( 'h5bs-theme', get_bloginfo( 'stylesheet_url' ), false, '2.0.1' );
 
-    // wp_enqueue_style( 'changeme' );
+    wp_enqueue_style( 'h5bs-theme' ); // keep at bottom to overwrite other styles
 }
 
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );

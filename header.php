@@ -19,9 +19,6 @@
     
     <!-- Place favicon.ico and apple-touch-icon.png in the root of the domain -->
     
-    <!-- Versioning enabled for caching -->
-    <link rel="stylesheet" href="<?php bloginfo( 'stylesheet_url' ); ?>?v=2.0">
-    
     <?php // JavaScript added through functions.php to avoid conflicts ?>
     
     <!-- Enables advanced css selectors in IE, must be used with a JavaScript library (jQuery Enabled in functions.php) -->
