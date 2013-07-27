@@ -1,3 +1,8 @@
+# Cache
+.sass-cache/
+*.sassc
+*.scssc
+
 ## Mac OSX
 .DS_Store
 Icon
@@ -10,7 +15,6 @@ Icon
 .Spotlight-V100
 .Trashes
 
-
 ## Windows
 Thumbs.db
 ehthumbs.db
@@ -20,10 +24,6 @@ Desktop.ini
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
-
-
-# Cache
-.sass-cache/
 
 # WordPress
 sitemap.xml
