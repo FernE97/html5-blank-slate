@@ -11,17 +11,17 @@ html5 Blank Slate is a WordPress theme that is meant to start you off with just 
 
 ### Prerequisites
 
-#### git
+**git**
 ```
 brew install git
 ```
 
-#### NodeJS
+**NodeJS**
 ```
 brew install node
 ```
 
-### Ruby
+**Ruby**
 ```
 # RVM
 \curl -L https://get.rvm.io | bash -s stable
@@ -30,12 +30,12 @@ brew install node
 rvm use ruby --install --default
 ```
 
-#### Compass
+**Compass**
 ```
 gem install compass
 ```
 
-#### Bower
+**Bower**
 ```
 npm install -g bower
 ```
