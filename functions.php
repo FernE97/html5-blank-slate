@@ -85,8 +85,8 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/lib/js/modernizr.js', array(), '2.8.3', false );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/lib/js/global.js', array( 'jquery' ), '1.0', true );
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/modernizr.js', array(), '2.8.3', false );
+    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '1.0', true );
 
     wp_enqueue_script( 'modernizr' );
     wp_enqueue_script( 'global-js' );
@@ -196,9 +196,9 @@ function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
 
 
 // Client Options Page
-require_once( 'lib/inc/client-options.php' );
+require_once( 'includes/client-options.php' );
 add_action( 'admin_menu', 'h5bs_client_options' );
 
 
 // Translation
-// require_once( 'lib/lang/translation.php' ); // uncomment if needed
+// require_once( 'includes/lang/translation.php' ); // uncomment if needed

@@ -28,3 +28,6 @@ $RECYCLE.BIN/
 # WordPress
 sitemap.xml
 sitemap.xml.gz
+
+# Foundation - run bower update to get foundation files
+bower_components/*

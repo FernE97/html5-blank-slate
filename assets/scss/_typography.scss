@@ -1,0 +1,33 @@
+/*=Typography
+---------------------------------------------------------------------*/
+body {
+    color: $font-color;
+}
+
+h1, .h1 {
+    font-size: rem-calc(32);
+}
+
+h2, .h2 {
+    font-size: rem-calc(28);
+}
+
+h3, .h3 {
+    font-size: rem-calc(26);
+}
+
+h4, .h4 {
+    font-size: rem-calc(24);
+}
+
+h5, .h5 {
+    font-size: rem-calc(20);
+}
+
+h6, .h6 {
+    font-size: rem-calc(16);
+}
+
+pre, code {
+    font-family: $monospace;
+}

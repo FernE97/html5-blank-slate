@@ -4,7 +4,7 @@
     Description: html5 blank starter theme
     Author: Eric Fernandez
     Author URI: http://efdezigns.com/
-    Version: 2.0.1
+    Version: 2.5.0
     License: WTFPL
     License URI: http://sam.zoy.org/wtfpl/
     Tags: blank, html5, sass, responsive
@@ -12,9 +12,10 @@
 
 // 01. 3rd Party
 // ----------------------------------------------
-
-// compass
 @import "compass/css3";
+
+// foundation
+@import "foundation";
 
 // reset
 @import "vendor/normalize";
@@ -39,7 +40,6 @@
 
 // 04. Layout
 // ----------------------------------------------
-@import "grid";
 @import "layout";
 
 
