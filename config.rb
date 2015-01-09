@@ -28,9 +28,10 @@ preferred_syntax = :scss
 
 # Move style.css file to the root of the theme for WordPress
 require 'fileutils'
+
 on_stylesheet_saved do |file|
-if File.exists?(file) && File.basename(file) == "style.css"
-puts "Moving: #{file}"
-FileUtils.mv(file, File.dirname(file) + "/../../" + File.basename(file))
-end
+    if File.exists?(file) && File.basename(file) == "style.css"
+        puts "Moving: #{file}"
+        FileUtils.mv(file, File.dirname(file) + "/../../" + File.basename(file))
+    end
 end

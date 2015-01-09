@@ -12,5 +12,5 @@
         dynamic_sidebar( 'sidebar1' );
     endif;
     ?>
-    
+
 </aside>

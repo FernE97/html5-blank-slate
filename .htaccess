@@ -101,14 +101,14 @@ AddType text/vtt                            vtt
 
     # html, txt, css, js, json, xml, htc:
     AddOutputFilterByType DEFLATE text/html text/plain text/css application/json
-    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript 
+    AddOutputFilterByType DEFLATE text/javascript application/javascript application/x-javascript
     AddOutputFilterByType DEFLATE text/xml application/xml text/x-component
 
     # webfonts and svg:
     <FilesMatch "\.(ttf|otf|eot|svg)$" >
         SetOutputFilter DEFLATE
     </FilesMatch>
-    
+
 </IfModule>
 
 

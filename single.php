@@ -9,7 +9,7 @@ get_header(); ?>
     <div class="content" role="main">
 
         <?php while ( have_posts() ) : the_post(); ?>
-        
+
         <article id="post-<?php the_ID(); ?>" <?php post_class( 'group' ); ?> role="article">
             <header>
                 <h1><?php the_title(); ?></h1>
@@ -20,11 +20,11 @@ get_header(); ?>
         </article>
 
         <?php comments_template( '', true ); ?>
-        
+
         <?php endwhile; ?>
-        
+
     </div><!-- end content -->
-    
+
     <?php // get_sidebar(); ?>
 
 <?php get_footer(); ?>

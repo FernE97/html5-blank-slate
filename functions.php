@@ -13,7 +13,7 @@ add_action( 'init', 'h5bs_register_menus' );
 
 
 function h5bs_primary_nav() {
-    wp_nav_menu(array( 
+    wp_nav_menu(array(
         'container'       => false,                        // remove nav container
         'menu'            => 'Primary Nav',                // nav name
         'menu_id'         => 'nav-main',                   // custom id
@@ -29,7 +29,7 @@ function h5bs_primary_nav() {
 }
 
 function h5bs_secondary_nav() {
-    wp_nav_menu(array( 
+    wp_nav_menu(array(
         'container'       => false,                        // remove nav container
         'menu'            => 'Secondary Nav',              // nav name
         'menu_id'         => 'nav-sub',                    // custom id
@@ -85,7 +85,7 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/lib/js/modernizr.js', array(), '2.6.2', false );
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/lib/js/modernizr.js', array(), '2.8.3', false );
     wp_register_script( 'global-js', get_template_directory_uri() . '/lib/js/global.js', array( 'jquery' ), '1.0', true );
 
     wp_enqueue_script( 'modernizr' );
@@ -107,7 +107,7 @@ function h5bs_register_sidebars() {
         'after_title'   => '</h4>',
     ));
 
-    /* 
+    /*
     uncomment to add additional sidebar
 
     register_sidebar(array(
@@ -130,10 +130,10 @@ function h5bs_comments( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
 
     if ( get_comment_type() == 'pingback' || get_comment_type() == 'trackback' ) : ?>
-        
+
         <li class="pingback" id="comment-<?php comment_ID(); ?>">
             <article <?php comment_class( 'group' ); ?>>
-                
+
                 <header class="comment-meta">
                     <h5><?php _e( 'Pingback:', 'h5bs' ); ?></h5>
                     <p><?php edit_comment_link(); ?></p>
@@ -146,11 +146,11 @@ function h5bs_comments( $comment, $args, $depth ) {
     elseif ( get_comment_type() == 'comment' ) : ?>
         <li id="comment-<?php comment_ID(); ?>">
             <article <?php comment_class( 'group' ); ?>>
-                
+
                 <header class="comment-meta">
                     <h5><?php comment_author_link(); ?></h5>
                     <p class="comment-date">on <?php comment_date(); ?> at <?php comment_time(); ?></p>
-                    
+
                     <p class="reply">
                         <?php comment_reply_link( array_merge( $args, array( 'reply_text' => __( 'Reply', 'h5bs' ), 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
                     </p>
@@ -168,7 +168,7 @@ function h5bs_comments( $comment, $args, $depth ) {
                 <?php endif; ?>
 
                 <?php comment_text(); ?>
-                
+
             </article>
         <?php // WordPress closes </li>
     endif;
@@ -186,7 +186,7 @@ function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
         'width'   => '',
         'caption' => ''
     ), $attr));
-    
+
     if ( 1 > (int) $width || empty($caption) )
         return $val;
 

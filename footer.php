@@ -15,14 +15,6 @@
     <p class="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://yoursitename.com/" <?php if ( ! is_front_page() ) echo 'rel="nofollow"'; ?>>Your Site Name</a></p>
 </footer>
 
-<?php // JavaScript added through functions.php to avoid conflicts ?>
-
-<!-- Prompt IE 6 & 7 users to install Chrome Frame -->
-<!--[if lt IE 8 ]>
-    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
-<![endif]-->
-
 <?php wp_footer(); ?>
 
 <?php if ( ! current_user_can( 'edit_pages' ) ) : // don't track admins or editors ?>
@@ -33,7 +25,7 @@
     e=o.createElement(i);r=o.getElementsByTagName(i)[0];
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
+    ga('create','UA-XXXXX-X','auto');ga('send','pageview');
 </script>
 <?php endif; ?>
 
