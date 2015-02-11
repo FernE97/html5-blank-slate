@@ -1,5 +1,27 @@
 <?php
 
+// Enqueue Styles
+function h5bs_enqueue_styles() {
+    wp_register_style( 'h5bs-theme', get_bloginfo( 'stylesheet_url' ), false, '2.0.1' );
+
+    wp_enqueue_style( 'h5bs-theme' ); // keep at bottom to overwrite other styles
+}
+
+add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
+
+
+// Enqueue Scripts
+function h5bs_enqueue_scripts() {
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/modernizr.js', array(), '2.8.3', false );
+    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '1.0', true );
+
+    wp_enqueue_script( 'modernizr' );
+    wp_enqueue_script( 'global-js' );
+}
+
+add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );
+
+
 // Custom Menus
 function h5bs_register_menus() {
     register_nav_menus(array(
@@ -60,6 +82,19 @@ function h5bs_nav_fallback() {
 add_theme_support( 'post-thumbnails' );
 
 
+// html5 search form
+add_theme_support( 'html5', array( 'search-form' ) );
+
+
+// Add class to next/prev page links
+add_filter('next_posts_link_attributes', 'posts_link_attributes');
+add_filter('previous_posts_link_attributes', 'posts_link_attributes');
+
+function posts_link_attributes() {
+    return 'class="button tiny radius"';
+}
+
+
 // Remove junk from head
 function h5bs_remove_junk() {
     // Really Simple Discovery
@@ -71,28 +106,6 @@ function h5bs_remove_junk() {
 }
 
 add_action( 'init', 'h5bs_remove_junk' );
-
-
-// Enqueue Styles
-function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_bloginfo( 'stylesheet_url' ), false, '2.0.1' );
-
-    wp_enqueue_style( 'h5bs-theme' ); // keep at bottom to overwrite other styles
-}
-
-add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
-
-
-// Enqueue Scripts
-function h5bs_enqueue_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/modernizr.js', array(), '2.8.3', false );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '1.0', true );
-
-    wp_enqueue_script( 'modernizr' );
-    wp_enqueue_script( 'global-js' );
-}
-
-add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );
 
 
 // Sidebars & Widgetizes Areas
