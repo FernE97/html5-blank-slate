@@ -12,10 +12,12 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/assets/js/modernizr.js', array(), '2.8.3', false );
+    wp_register_script( 'modernizr', get_template_directory_uri() . '/bower_components/foundation/js/vendor/modernizr.js', array(), '2.8.3', false );
+    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js', array(), '5.5.0', true );
     wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '1.0', true );
 
     wp_enqueue_script( 'modernizr' );
+    wp_enqueue_script( 'foundation' );
     wp_enqueue_script( 'global-js' );
 }
 
@@ -27,7 +29,7 @@ function h5bs_register_menus() {
     register_nav_menus(array(
         'primary'   => __( 'Primary Navigation', 'h5bs' ),
         'secondary' => __( 'Secondary Navigation', 'h5bs' ),
-        'tertiary'  => __( 'Tertiary Navigation', 'h5bs' )
+        'mobile'    => __( 'Mobile Navigation', 'h5bs' )
     ));
 }
 
@@ -39,7 +41,7 @@ function h5bs_primary_nav() {
         'container'       => false,                        // remove nav container
         'menu'            => 'Primary Nav',                // nav name
         'menu_id'         => 'nav-main',                   // custom id
-        'menu_class'      => 'nav group',                  // custom class
+        'menu_class'      => 'nav-main nav group',         // custom class
         'theme_location'  => 'primary',                    // where it's located in the theme
         'before'          => '',                           // before the menu
         'after'           => '',                           // after the menu
@@ -55,8 +57,24 @@ function h5bs_secondary_nav() {
         'container'       => false,                        // remove nav container
         'menu'            => 'Secondary Nav',              // nav name
         'menu_id'         => 'nav-sub',                    // custom id
-        'menu_class'      => 'nav group',                  // custom class
+        'menu_class'      => 'nav-sub nav group',          // custom class
         'theme_location'  => 'secondary',                  // where it's located in the theme
+        'before'          => '',                           // before the menu
+        'after'           => '',                           // after the menu
+        'link_before'     => '',                           // before each link
+        'link_after'      => '',                           // after each link
+        'depth'           => 0,                            // set to 1 to disable dropdowns
+        'fallback_cb'     => 'h5bs_nav_fallback'           // fallback function
+    ));
+}
+
+function h5bs_mobile_nav() {
+    wp_nav_menu(array(
+        'container'       => false,                        // remove nav container
+        'menu'            => 'Mobile Nav',                 // nav name
+        'menu_id'         => 'nav-mobile',                 // custom id
+        'menu_class'      => 'nav-mobile nav group',       // custom class
+        'theme_location'  => 'mobile',                     // where it's located in the theme
         'before'          => '',                           // before the menu
         'after'           => '',                           // after the menu
         'link_before'     => '',                           // before each link
@@ -119,20 +137,6 @@ function h5bs_register_sidebars() {
         'before_title'  => '<h4 class="widgettitle">',
         'after_title'   => '</h4>',
     ));
-
-    /*
-    uncomment to add additional sidebar
-
-    register_sidebar(array(
-        'id'            => 'sidebar2',
-        'name'          => 'Sidebar 2',
-        'description'   => 'The second (secondary) sidebar.',
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h4 class="widgettitle">',
-        'after_title'   => '</h4>',
-    ));
-    */
 }
 
 add_action( 'widgets_init', 'h5bs_register_sidebars' );
