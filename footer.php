@@ -5,14 +5,12 @@
  */
 ?>
 
-</div><!-- end container -->
-
 <footer class="site-footer" role="contentinfo">
     <nav role="navigation">
         <?php h5bs_secondary_nav(); ?>
     </nav>
 
-    <p class="copyright">&copy;<?php echo date( 'Y' ); ?> <a href="http://yoursitename.com/" <?php if ( ! is_front_page() ) echo 'rel="nofollow"'; ?>>Your Site Name</a></p>
+    <p class="copyright">&copy; <?php echo date( 'Y' ); ?> <a href="<?php echo home_url( '/' ); ?>" <?php if ( ! is_front_page() ) echo 'rel="nofollow"'; ?>><?php get_bloginfo( 'name' ); ?></a></p>
 </footer>
 
 <?php wp_footer(); ?>

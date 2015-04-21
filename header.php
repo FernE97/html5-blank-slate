@@ -8,7 +8,6 @@
 <html <?php language_attributes(); ?> class="no-js">
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
-    <meta name="author" content="Eric Fernandez | ericfernandez.net">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title><?php wp_title( '|', true, 'right' ); bloginfo( 'name' ); ?></title>
@@ -22,11 +21,10 @@
 
 <body <?php body_class(); ?>>
 
-<div class="container-grid">
-    <header class="site-header" role="banner">
-        <p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
+<header class="site-header" role="banner">
+    <p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 
-        <nav role="navigation">
-            <?php h5bs_primary_nav(); ?>
-        </nav>
-    </header>
+    <nav role="navigation">
+        <?php h5bs_primary_nav(); ?>
+    </nav>
+</header>

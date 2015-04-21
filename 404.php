@@ -6,14 +6,14 @@
 
 get_header(); ?>
 
-    <div class="content" role="main">
+<div class="content" role="main">
 
-        <article id="post-404-error" <?php post_class( 'group' ); ?>>
-            <h2><?php _e( 'Page could not be found', 'h5bs' ); ?></h2>
-        </article>
+    <article id="post-404-error" <?php post_class( 'group' ); ?>>
+        <h2><?php _e( 'Page could not be found', 'h5bs' ); ?></h2>
+    </article>
 
-    </div><!-- end content -->
+</div><!-- end content -->
 
-    <?php // get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 
 <?php get_footer(); ?>

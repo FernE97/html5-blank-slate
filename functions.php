@@ -2,9 +2,11 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_bloginfo( 'stylesheet_url' ), false, '2.0.1' );
+    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.0.0' );
+    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/assets/css/custom.css', false, '3.0.0' );
 
-    wp_enqueue_style( 'h5bs-theme' ); // keep at bottom to overwrite other styles
+    wp_enqueue_style( 'h5bs-theme' );
+    wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
 }
 
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
@@ -13,7 +15,7 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
     wp_register_script( 'modernizr', get_template_directory_uri() . '/bower_components/foundation/js/vendor/modernizr.js', array(), '2.8.3', false );
-    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js', array(), '5.5.0', true );
+    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js', array(), '5.5.1', true );
     wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '1.0', true );
 
     wp_enqueue_script( 'modernizr' );
@@ -105,8 +107,8 @@ add_theme_support( 'html5', array( 'search-form' ) );
 
 
 // Add class to next/prev page links
-add_filter('next_posts_link_attributes', 'posts_link_attributes');
-add_filter('previous_posts_link_attributes', 'posts_link_attributes');
+add_filter( 'next_posts_link_attributes', 'posts_link_attributes' );
+add_filter( 'previous_posts_link_attributes', 'posts_link_attributes' );
 
 function posts_link_attributes() {
     return 'class="button tiny radius"';

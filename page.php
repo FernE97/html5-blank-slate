@@ -6,19 +6,19 @@
 
 get_header(); ?>
 
-    <div class="content" role="main">
+<div class="content" role="main">
 
-        <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+    <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
 
-        <article <?php post_class( 'group' ); ?> role="article">
-            <h1><?php the_title(); ?></h1>
-            <?php the_content(); ?>
-        </article>
+    <article <?php post_class( 'group' ); ?> role="article">
+        <h1><?php the_title(); ?></h1>
+        <?php the_content(); ?>
+    </article>
 
-        <?php endwhile; endif; ?>
+    <?php endwhile; endif; ?>
 
-    </div><!-- end content -->
+</div><!-- end content -->
 
-    <?php // get_sidebar(); ?>
+<?php // get_sidebar(); ?>
 
 <?php get_footer(); ?>

@@ -1,28 +1,13 @@
 /*=Base
 ---------------------------------------------------------------------*/
-*,
-*:before,
-*:after {
-    box-sizing: border-box;
-}
-
 a {
     color: $link-color;
     text-decoration: none;
+    transition: color 0.3s ease;
 
     &:hover,
     &:focus {
         color: $link-color-hover;
-    }
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    vertical-align: bottom; // remove gap at bottom
-
-    .ie8 & {
-        width: auto; // IE8 needs to resize images correctly
     }
 }
 

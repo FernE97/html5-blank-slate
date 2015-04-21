@@ -1,2 +1,8 @@
 /*=Layout
 ---------------------------------------------------------------------*/
+.container {
+    @extend .clearfix;
+    @extend .row;
+    padding-left: $column-gutter / 2;
+    padding-right: $column-gutter / 2;
+}

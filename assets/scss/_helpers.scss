@@ -1,8 +1,7 @@
 /*=Helper Classes
 ---------------------------------------------------------------------*/
-.clearfix,
 .group {
-    @include clearfix();
+    @extend .clearfix;
 }
 
 // image replacement
@@ -10,13 +9,12 @@
     @include ir();
 }
 
-// Hide from both screenreaders and browsers: h5bp.com/u
+// hide from both screenreaders and browsers: h5bp.com/u
 .hidden {
-    display: none !important;
-    visibility: hidden;
+    @extend .hide;
 }
 
-// Hide only visually, but have it available for screenreaders: h5bp.com/v
+// hide only visually, but have it available for screenreaders: h5bp.com/v
 .visuallyhidden {
     position: absolute;
     overflow: hidden;
@@ -28,7 +26,7 @@
     border: 0;
 }
 
-// Allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
+// allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
 .visuallyhidden.focusable:active,
 .visuallyhidden.focusable:focus {
     position: static;
@@ -37,9 +35,4 @@
     margin: 0;
     width: auto;
     height: auto;
-}
-
-// Hide visually and from screenreaders, but maintain layout
-.invisible {
-    visibility: hidden;
 }
