@@ -3,7 +3,7 @@
 function h5bs_client_options() {
 
     if ( count($_POST) > 0 && isset($_POST['h5bs_client_settings']) ) {
-        $options = array ( 'logo_url', 'logo_alt_text', 'google_analytics', 'facebook_url', 'twitter_url', 'linkedin_url', 'youtube_url', 'email', 'phone', 'phone_2', 'fax', 'address', 'address_2', 'city', 'state', 'zip_code' );
+        $options = array ( 'logo_url', 'logo_alt_text', 'google_analytics', 'twitter_url', 'facebook_url', 'google_url', 'instagram_url', 'pinterest_url', 'linkedin_url', 'youtube_url', 'email', 'phone', 'phone_2', 'fax', 'address', 'address_2', 'city', 'state', 'zip_code' );
 
         foreach ( $options as $opt ) {
             delete_option ( 'client_'.$opt, $_POST[$opt] );
@@ -44,16 +44,28 @@ function h5bs_client_settings() { ?>
             <h3>Social Links</h3>
             <table class="form-table">
                 <tr>
-                    <th><label for="facebook_url">Facebook URL</label></th>
-                    <td><input type="text" name="facebook_url" id="facebook_url" value="<?php echo get_option( 'client_facebook_url' ); ?>" class="regular-text" /></td>
-                </tr>
-                <tr>
                     <th><label for="twitter_url">Twitter URL</label></th>
                     <td><input type="text" name="twitter_url" id="twitter_url" value="<?php echo get_option( 'client_twitter_url' ); ?>" class="regular-text" /></td>
                 </tr>
                 <tr>
+                    <th><label for="facebook_url">Facebook URL</label></th>
+                    <td><input type="text" name="facebook_url" id="facebook_url" value="<?php echo get_option( 'client_facebook_url' ); ?>" class="regular-text" /></td>
+                </tr>
+                <tr>
+                    <th><label for="google_url">Google+ URL</label></th>
+                    <td><input type="text" name="google_url" id="google_url" value="<?php echo get_option( 'client_google_url' ); ?>" class="regular-text" /></td>
+                </tr>
+                <tr>
                     <th><label for="linkedin_url">LinkedIn URL</label></th>
                     <td><input type="text" name="linkedin_url" id="linkedin_url" value="<?php echo get_option( 'client_linkedin_url' ); ?>" class="regular-text" /></td>
+                </tr>
+                <tr>
+                    <th><label for="instagram_url">Instagram URL</label></th>
+                    <td><input type="text" name="instagram_url" id="instagram_url" value="<?php echo get_option( 'client_instagram_url' ); ?>" class="regular-text" /></td>
+                </tr>
+                <tr>
+                    <th><label for="pinterest_url">Pinterest URL</label></th>
+                    <td><input type="text" name="pinterest_url" id="pinterest_url" value="<?php echo get_option( 'client_pinterest_url' ); ?>" class="regular-text" /></td>
                 </tr>
                 <tr>
                     <th><label for="youtube_url">YouTube URL</label></th>
