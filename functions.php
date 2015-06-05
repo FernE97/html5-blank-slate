@@ -31,6 +31,7 @@ function h5bs_register_menus() {
     register_nav_menus(array(
         'primary'   => __( 'Primary Navigation', 'h5bs' ),
         'secondary' => __( 'Secondary Navigation', 'h5bs' ),
+        'footer'    => __( 'Footer Navigation', 'h5bs' ),
         'mobile'    => __( 'Mobile Navigation', 'h5bs' )
     ));
 }
@@ -61,6 +62,22 @@ function h5bs_secondary_nav() {
         'menu_id'         => 'nav-sub',                    // custom id
         'menu_class'      => 'nav-sub nav group',          // custom class
         'theme_location'  => 'secondary',                  // where it's located in the theme
+        'before'          => '',                           // before the menu
+        'after'           => '',                           // after the menu
+        'link_before'     => '',                           // before each link
+        'link_after'      => '',                           // after each link
+        'depth'           => 0,                            // set to 1 to disable dropdowns
+        'fallback_cb'     => 'h5bs_nav_fallback'           // fallback function
+    ));
+}
+
+function h5bs_footer_nav() {
+    wp_nav_menu(array(
+        'container'       => false,                        // remove nav container
+        'menu'            => 'Footer Nav',                 // nav name
+        'menu_id'         => 'nav-footer',                 // custom id
+        'menu_class'      => 'nav-footer nav group',       // custom class
+        'theme_location'  => 'footer',                     // where it's located in the theme
         'before'          => '',                           // before the menu
         'after'           => '',                           // after the menu
         'link_before'     => '',                           // before each link

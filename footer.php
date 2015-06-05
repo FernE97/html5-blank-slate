@@ -6,8 +6,8 @@
 ?>
 
 <footer class="site-footer" role="contentinfo">
-    <nav role="navigation">
-        <?php h5bs_secondary_nav(); ?>
+    <nav class="nav-footer-wrap" role="navigation">
+        <?php h5bs_footer_nav(); ?>
     </nav>
 
     <ul class="social-icons">

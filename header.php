@@ -24,7 +24,7 @@
 <header class="site-header" role="banner">
     <p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>
 
-    <nav role="navigation">
+    <nav class="nav-main-wrap" role="navigation">
         <?php h5bs_primary_nav(); ?>
     </nav>
 </header>
