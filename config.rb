@@ -5,7 +5,7 @@ add_import_path 'bower_components/foundation/scss'
 # require 'autoprefixer-rails'
 
 # Set this to the root of your project when deployed:
-http_path = '/'
+http_path = '/wp-content/themes/html5-blank-slate'
 css_dir = 'assets/css'
 sass_dir = 'assets/scss'
 images_dir = 'assets/images'

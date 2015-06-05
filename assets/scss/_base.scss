@@ -1,14 +1,8 @@
 /*=Base
 ---------------------------------------------------------------------*/
 a {
-    color: $link-color;
     text-decoration: none;
     transition: color 0.3s ease;
-
-    &:hover,
-    &:focus {
-        color: $link-color-hover;
-    }
 }
 
 hr {
