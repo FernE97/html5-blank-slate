@@ -2,8 +2,14 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.0.1' );
-    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/assets/css/custom.css', false, '3.0.1' );
+    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.0.2' );
+    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/assets/css/custom.css', false, '3.0.2' );
+    wp_register_style( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.css', false, '1.5.5' );
+    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css', false, '4.3.0' );
+
+    // Optional
+    // wp_enqueue_style( 'slick-carousel' );
+    // wp_enqueue_style( 'font-awesome' );
 
     wp_enqueue_style( 'h5bs-theme' );
     wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
@@ -16,10 +22,15 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 function h5bs_enqueue_scripts() {
     wp_register_script( 'modernizr', get_template_directory_uri() . '/bower_components/foundation/js/vendor/modernizr.js', array(), '2.8.3', false );
     wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js', array(), '5.5.2', true );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.0.1', true );
+    wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.5', true );
+    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.0.2', true );
 
     wp_enqueue_script( 'modernizr' );
     wp_enqueue_script( 'foundation' );
+
+    // Optional
+    // wp_enqueue_script( 'slick-carousel' );
+
     wp_enqueue_script( 'global-js' );
 }
 
