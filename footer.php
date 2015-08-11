@@ -34,7 +34,7 @@
         <?php } ?>
     </ul>
 
-    <p class="copyright">&copy; <?php echo date( 'Y' ); ?> <a href="<?php echo home_url( '/' ); ?>" <?php if ( ! is_front_page() ) echo 'rel="nofollow"'; ?>><?php echo get_bloginfo( 'name' ); ?></a></p>
+    <p class="copyright">&copy; <?php echo date( 'Y' ); ?> <?php echo get_bloginfo( 'name' ); ?></p>
 </footer>
 
 <?php wp_footer(); ?>
