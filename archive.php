@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<div class="content" role="main">
+<div class="content-wrap archive-content" role="main">
 
     <header>
         <h1><?php single_cat_title( __( 'Archive for ', 'h5bs' ) ); ?></h1>
