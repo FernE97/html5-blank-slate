@@ -35,5 +35,5 @@ node_modules/*
 npm-debug.log
 
 # Compiled CSS
-# assets/css/*
+assets/css/*
 *.css.map
