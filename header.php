@@ -10,7 +10,7 @@
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title><?php wp_title( '|', true, 'right' ); bloginfo( 'name' ); ?></title>
+    <title><?php wp_title( '|', true, 'right' ); ?></title>
 
     <?php // Place favicon.ico and apple-touch-icon.png in the root of the domain ?>
 

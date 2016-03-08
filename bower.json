@@ -1,6 +1,6 @@
 {
     "name": "html5-blank-slate",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "private": "true",
     "dependencies": {
         "foundation-sites": "6.2.0",
