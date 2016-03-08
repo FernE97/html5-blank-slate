@@ -3,6 +3,6 @@
 .container {
     @extend .clearfix;
     @extend .row;
-    padding-left: $column-gutter / 2;
-    padding-right: $column-gutter / 2;
+    padding-left: map-get($grid-column-gutter, medium) / 2;
+    padding-right: map-get($grid-column-gutter, medium) / 2;
 }
