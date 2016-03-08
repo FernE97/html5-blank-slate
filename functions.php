@@ -2,10 +2,10 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.0.4' );
-    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/assets/css/custom.css', false, '3.0.4' );
-    wp_register_style( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.css', false, '1.5.8' );
-    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css', false, '4.4.0' );
+    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.5.0' );
+    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.5.0' );
+    wp_register_style( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.css', false, '1.5.9' );
+    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', false, '4.5.0' );
 
     // Optional
     // wp_enqueue_style( 'slick-carousel' );
@@ -20,13 +20,13 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'modernizr', get_template_directory_uri() . '/bower_components/foundation/js/vendor/modernizr.js', array(), '2.8.3', false );
-    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation/js/foundation.min.js', array(), '5.5.2', true );
-    wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.8', true );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.0.4', true );
+    wp_register_script( 'foundation.core', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.core.js', array( 'jquery' ), '6.2.0', true );
+    wp_register_script( 'foundation.util.mediaQuery', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.util.mediaQuery.js', array( 'foundation.core' ), '6.2.0', true );
+    wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.9', true );
+    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.5.0', true );
 
-    wp_enqueue_script( 'modernizr' );
-    wp_enqueue_script( 'foundation' );
+    wp_enqueue_script( 'foundation.core' );
+    wp_enqueue_script( 'foundation.util.mediaQuery' );
 
     // Optional
     // wp_enqueue_script( 'slick-carousel' );
