@@ -1,0 +1,43 @@
+/*==========================================
+    Helpers
+==========================================*/
+.group {
+    @extend .clearfix;
+}
+
+// image replacement
+.ir {
+    @include ir();
+}
+
+// hide from both screenreaders and browsers: h5bp.com/u
+.hidden {
+    @extend .hide;
+}
+
+// hide only visually, but have it available for screenreaders: h5bp.com/v
+.visuallyhidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    margin: -1px;
+    padding: 0;
+    width: 1px;
+    height: 1px;
+    border: 0;
+}
+
+// allow the element to be focusable when navigated to via the keyboard: h5bp.com/p
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    position: static;
+    overflow: visible;
+    clip: auto;
+    margin: 0;
+    width: auto;
+    height: auto;
+}
+
+.test * {
+    border: 1px solid red;
+}

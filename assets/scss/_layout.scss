@@ -1,8 +1,0 @@
-/*=Layout
----------------------------------------------------------------------*/
-.container {
-    @extend .clearfix;
-    @extend .row;
-    padding-left: map-get($grid-column-gutter, medium) / 2;
-    padding-right: map-get($grid-column-gutter, medium) / 2;
-}

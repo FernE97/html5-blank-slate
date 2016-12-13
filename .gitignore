@@ -1,5 +1,5 @@
 # Cache
-.sass-cache/
+.sass-cache
 *.sassc
 *.scssc
 
@@ -29,11 +29,17 @@ $RECYCLE.BIN/
 sitemap.xml
 sitemap.xml.gz
 
-# Foundation - run bower update to get foundation files
-bower_components/*
-node_modules/*
+# Bower & Node
+bower_components
+assets/components
+node_modules
 npm-debug.log
+.bower-cache
+.bower-registry
+.bower-tmp
+yarn.lock
 
-# Compiled CSS
-assets/css/*
+# Compiled CSS/JS
+assets/stylesheets/theme.css
+assets/javascripts/main.js
 *.css.map

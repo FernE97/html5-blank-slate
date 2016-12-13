@@ -2,14 +2,12 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.6.0' );
-    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.6.0' );
-    wp_register_style( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.css', false, '1.5.9' );
-    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', false, '4.5.0' );
+    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/stylesheets/theme.css', false, '3.7.0' );
+    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.7.0' );
 
-    // Optional
-    // wp_enqueue_style( 'slick-carousel' );
-    wp_enqueue_style( 'font-awesome' );
+    // Font Awesome 4.7.0
+    // wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.7.0' );
+    // wp_enqueue_style( 'font-awesome' );
 
     wp_enqueue_style( 'h5bs-theme' );
     wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
@@ -20,22 +18,37 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'foundation.core', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.core.js', array( 'jquery' ), '6.2.0', true );
-    wp_register_script( 'foundation.util.mediaQuery', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.util.mediaQuery.js', array( 'foundation.core' ), '6.2.0', true );
-    wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.9', true );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.6.0', true );
-
-    wp_enqueue_script( 'foundation.core' );
-    wp_enqueue_script( 'foundation.util.mediaQuery' );
-
-    // Optional
-    // wp_enqueue_script( 'slick-carousel' );
-
-    wp_enqueue_script( 'global-js' );
+    wp_register_script( 'main', get_template_directory_uri() . '/assets/javascripts/main.js', array( 'jquery' ), '3.7.0', true );
+    wp_enqueue_script( 'main' );
 }
 
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );
 
+// ACF Options
+if ( function_exists( 'acf_add_options_page' ) ) {
+    acf_add_options_page(array(
+        'page_title'  => 'Theme General Settings',
+        'menu_title'  => 'Theme Settings',
+        'menu_slug'   => 'theme-general-settings',
+        'capability'  => 'edit_posts',
+        'redirect'    => false
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'  => 'Theme Header Settings',
+        'menu_title'  => 'Header',
+        'parent_slug' => 'theme-general-settings',
+    ));
+
+    acf_add_options_sub_page(array(
+        'page_title'  => 'Theme Footer Settings',
+        'menu_title'  => 'Footer',
+        'parent_slug' => 'theme-general-settings',
+    ));
+}
+
+// Hide ACF menu
+// add_filter( 'acf/settings/show_admin', '__return_false' );
 
 // Custom Menus
 function h5bs_register_menus() {
@@ -55,7 +68,7 @@ function h5bs_primary_nav() {
         'container'       => false,                        // remove nav container
         'menu'            => 'Primary Nav',                // nav name
         'menu_id'         => 'nav-main',                   // custom id
-        'menu_class'      => 'nav-main nav group',         // custom class
+        'menu_class'      => 'menu nav-main nav group',         // custom class
         'theme_location'  => 'primary',                    // where it's located in the theme
         'before'          => '',                           // before the menu
         'after'           => '',                           // after the menu
@@ -116,7 +129,7 @@ function h5bs_mobile_nav() {
 
 function h5bs_nav_fallback() {
     wp_page_menu(array(
-        'menu_class'  => 'nav group',
+        'menu_class'  => 'menu nav group',
         'include'     => '',
         'exclude'     => '',
         'link_before' => '',
@@ -256,11 +269,14 @@ function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
     . do_shortcode( $content ) . '<figcaption class="wp-caption-text">' . $caption . '</figcaption></figure>';
 }
 
-
-// Client Options Page
-require_once( 'includes/client-options.php' );
-add_action( 'admin_menu', 'h5bs_client_options' );
-
-
-// Translation
-// require_once( 'includes/lang/translation.php' ); // uncomment if needed
+// BrowserSync script
+// comment this out before shipping
+function browser_sync() {
+    echo "
+    <!-- BrowserSync -->
+    <script id=\"__bs_script__\">//<![CDATA[
+        document.write(\"<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.2'><\/script>\".replace(\"HOST\", location.hostname));
+    //]]></script>
+    ";
+}
+add_action( 'wp_footer', 'browser_sync' );

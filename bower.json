@@ -1,9 +1,9 @@
 {
     "name": "html5-blank-slate",
-    "version": "3.6.0",
+    "version": "3.7.0",
     "private": "true",
     "dependencies": {
-        "foundation-sites": "6.2.0",
+        "foundation-sites": "6.2.4",
         "slick-carousel": "~1.5.9"
     }
 }
