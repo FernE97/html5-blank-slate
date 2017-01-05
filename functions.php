@@ -6,8 +6,8 @@ function h5bs_enqueue_styles() {
     wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.7.0' );
 
     // Font Awesome 4.7.0
-    // wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.7.0' );
-    // wp_enqueue_style( 'font-awesome' );
+    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', false, '4.7.0' );
+    wp_enqueue_style( 'font-awesome' );
 
     wp_enqueue_style( 'h5bs-theme' );
     wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
@@ -270,7 +270,6 @@ function h5bs_img_caption_shortcode_filter($val, $attr, $content = null) {
 }
 
 // BrowserSync script
-// comment this out before shipping
 function browser_sync() {
     echo "
     <!-- BrowserSync -->
@@ -279,4 +278,5 @@ function browser_sync() {
     //]]></script>
     ";
 }
+// FIXME: comment this out before shipping
 add_action( 'wp_footer', 'browser_sync' );

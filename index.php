@@ -8,6 +8,8 @@ get_header(); ?>
 
 <div class="content-wrap index-content" role="main">
 
+<?php get_template_part( 'icons-social' ); ?>
+
     <?php
     if ( have_posts() ) :
         while ( have_posts() ) : the_post();
