@@ -41,9 +41,11 @@ foreach( $nav as $link ) {
                                 <?php foreach ( $sub_level_pages as $sub_link ): ?>
                                     <?php $sub_id = $sub_link->menu_item_parent; ?>
                                     <?php if( $parent_id == $sub_id ): ?>
-                                        <a href="<?php echo get_permalink( $sub_id ); ?>">
-                                            <li><?php echo $sub_link->title; ?></li>
-                                        </a>
+                                        <li>
+                                            <a href="<?php echo get_permalink( $sub_id ); ?>">
+                                                <?php echo $sub_link->title; ?>
+                                            </a>
+                                        </li>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             </ul>

@@ -139,8 +139,26 @@ function h5bs_nav_fallback() {
 }
 
 
-// Image Thumbnails
+// Theme Support
 add_theme_support( 'post-thumbnails' );
+
+add_theme_support( 'title-tag' );
+
+add_theme_support( 'post-formats', array(
+    'aside',
+    'image',
+    'video',
+    'quote',
+    'link',
+    'gallery',
+    'audio',
+) );
+
+add_theme_support( 'custom-logo', array(
+    'width'       => 250,
+    'height'      => 250,
+    'flex-width'  => true,
+) );
 
 
 // html5 search form
@@ -280,3 +298,9 @@ function browser_sync() {
 }
 // FIXME: comment this out before shipping
 add_action( 'wp_footer', 'browser_sync' );
+
+function dump( $var ) {
+    echo "<pre>";
+    print_r( $var );
+    echo "</pre>";
+}
