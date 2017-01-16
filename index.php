@@ -16,6 +16,8 @@ get_header(); ?>
             get_template_part( 'parts/post', 'index' );
         endwhile;
 
+        the_posts_pagination();
+
         get_template_part( 'parts/post', 'nav' );
     endif;
     ?>
