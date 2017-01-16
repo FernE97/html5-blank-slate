@@ -1,41 +1,59 @@
-<div class="top-bar">
-  <div class="top-bar-left">
-    <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></li>
-      <li>
-        <a href="#">One</a>
-        <ul class="menu vertical">
-          <li><a href="#">One</a></li>
-          <li><a href="#">Two</a></li>
-          <li><a href="#">Three</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Two</a></li>
-      <li><a href="#">Three</a></li>
-    </ul>
-  </div>
-  <div class="top-bar-right">
-    <ul class="menu">
-      <li><input type="search" placeholder="Search"></li>
-      <li><button type="button" class="button">Search</button></li>
-    </ul>
-  </div>
-</div>
+<?php
+/**
+* Nav Template Part
+*
+*/
+$nav = wp_get_nav_menu_items( 'primary-menu' );
+$top_level_pages = array();
+$sub_level_pages = array();
+$top_level_pages_with_children = array();
 
-<?php $nav = wp_get_nav_menu_items( 'primary-menu' ); ?>
+/* Collect links for top and sub level and store */
+foreach( $nav as $link ) {
+    if( $link->menu_item_parent == 0 ) {
+        $top_level_pages[] = $link;
+    } else {
+        $sub_level_pages[] = $link;
+        // store the ids that have child items
+        $top_level_pages_with_children[] = $link->menu_item_parent;
+    }
+}
 
+?>
 
 <?php if ( $nav ): ?>
-    <ul class="menu">
-        <?php foreach ( $nav as $nav_item ): ?>
-        <li>
-            <a href="#">
-                <?php echo $nav_item->title; ?>
-                <?php if( $nav_item->menu_item_parent > 0 ): ?>
-
-                <?php endif; ?>
-            </a>
-        </li>
-        <?php endforeach; ?>
-    </ul>
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="menu-text">
+                    <a href="<?php echo home_url( '/' ); ?>">
+                        <?php bloginfo( 'name' ); ?>
+                    </a>
+                </li>
+                <?php foreach( $top_level_pages as $link ): ?>
+                    <?php $parent_id = $link->ID; ?>
+                    <li>
+                        <a href="<?php echo get_permalink( $link->ID ); ?>">
+                            <?php echo $link->title; ?>
+                        </a>
+                        <?php if(in_array($link->ID, $top_level_pages_with_children)): ?>
+                            <ul class="menu vertical">
+                                <?php foreach ( $sub_level_pages as $sub_link ): ?>
+                                    <?php $sub_id = $sub_link->menu_item_parent; ?>
+                                    <?php if( $parent_id == $sub_id ): ?>
+                                        <a href="<?php echo get_permalink( $sub_id ); ?>">
+                                            <li><?php echo $sub_link->title; ?></li>
+                                        </a>
+                                    <?php endif; ?>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="top-bar-right">
+            <?php get_template_part( 'parts/searchform' ); ?>
+        </div>
+    </div><!-- .top-bar -->
 <?php endif; ?>
