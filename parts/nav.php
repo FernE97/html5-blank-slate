@@ -3,7 +3,7 @@
 * Nav Template Part
 *
 */
-$nav = wp_get_nav_menu_items( 'primary-menu' );
+$nav = wp_get_nav_menu_items( 'primary' );
 $top_level_pages = array();
 $sub_level_pages = array();
 $top_level_pages_with_children = array();
@@ -33,7 +33,7 @@ foreach( $nav as $link ) {
                 <?php foreach( $top_level_pages as $link ): ?>
                     <?php $parent_id = $link->ID; ?>
                     <li>
-                        <a href="<?php echo get_permalink( $link->ID ); ?>">
+                        <a href="<?php echo get_permalink( $link->object_id ); ?>">
                             <?php echo $link->title; ?>
                         </a>
                         <?php if(in_array($link->ID, $top_level_pages_with_children)): ?>
