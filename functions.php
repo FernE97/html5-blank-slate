@@ -50,6 +50,27 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 // Hide ACF menu
 // add_filter( 'acf/settings/show_admin', '__return_false' );
 
+
+/* Custom instance of the Walker_Nav_Menu
+ * for the purpose of adding in Foundation 6 top-bar
+ * class .vertical and .menu
+ *
+ * This only needs to be instantiated for the primary nav
+ */
+class h5bs_Nav_Menu extends Walker_Nav_menu {
+    function start_lvl( &$output, $depth = 0, $args = array() ) {
+  		if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+  			$t = '';
+  			$n = '';
+  		} else {
+  			$t = "\t";
+  			$n = "\n";
+  		}
+  		$indent = str_repeat( $t, $depth );
+  		$output .= "{$n}{$indent}<ul class=\"sub-menu vertical menu\">{$n}";
+  	}
+}
+
 // Custom Menus
 function h5bs_register_menus() {
     register_nav_menus(array(
@@ -59,16 +80,15 @@ function h5bs_register_menus() {
         'mobile'    => __( 'Mobile Navigation', 'h5bs' )
     ));
 }
-
 add_action( 'init', 'h5bs_register_menus' );
-
 
 function h5bs_primary_nav() {
     wp_nav_menu(array(
+        'walker'          => new h5bs_Nav_Menu(),          // register h5bs custom walker
         'container'       => false,                        // remove nav container
         'menu'            => 'Primary Nav',                // nav name
         'menu_id'         => 'nav-main',                   // custom id
-        'menu_class'      => 'menu nav-main nav group',         // custom class
+        'menu_class'      => 'dropdown menu nav-main nav group',         // custom class
         'theme_location'  => 'primary',                    // where it's located in the theme
         'before'          => '',                           // before the menu
         'after'           => '',                           // after the menu
