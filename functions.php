@@ -12,16 +12,13 @@ function h5bs_enqueue_styles() {
     wp_enqueue_style( 'h5bs-theme' );
     wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
 }
-
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
-
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
     wp_register_script( 'main', get_template_directory_uri() . '/assets/javascripts/main.js', array( 'jquery' ), '3.7.0', true );
     wp_enqueue_script( 'main' );
 }
-
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );
 
 // ACF Options
@@ -49,7 +46,6 @@ if ( function_exists( 'acf_add_options_page' ) ) {
 
 // Hide ACF menu
 // add_filter( 'acf/settings/show_admin', '__return_false' );
-
 
 /* Custom instance of the Walker_Nav_Menu
  * for the purpose of adding in Foundation 6 top-bar
@@ -161,9 +157,7 @@ function h5bs_nav_fallback() {
 
 // Theme Support
 add_theme_support( 'post-thumbnails' );
-
 add_theme_support( 'title-tag' );
-
 add_theme_support( 'post-formats', array(
     'aside',
     'image',
@@ -173,17 +167,12 @@ add_theme_support( 'post-formats', array(
     'gallery',
     'audio',
 ) );
-
 add_theme_support( 'custom-logo', array(
     'width'       => 250,
     'height'      => 250,
     'flex-width'  => true,
 ) );
-
-
-// html5 search form
 add_theme_support( 'html5', array( 'search-form' ) );
-
 
 // Add class to next/prev page links
 add_filter( 'next_posts_link_attributes', 'posts_link_attributes' );
@@ -193,7 +182,6 @@ function posts_link_attributes() {
     return 'class="button tiny radius"';
 }
 
-
 // Excerpts
 function custom_excerpt_length( $length ) {
     return 48;
@@ -201,13 +189,12 @@ function custom_excerpt_length( $length ) {
 
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
-
 function new_excerpt_more( $more ) {
-    return '...';
+    $link = get_the_permalink();
+    return "<br>" . "<a href=\"{$link}\" class=\"button small secondary\">" . 'Read More' . "</a>";
 }
 
 add_filter( 'excerpt_more', 'new_excerpt_more' );
-
 
 // Remove junk from head
 function h5bs_remove_junk() {
@@ -218,9 +205,7 @@ function h5bs_remove_junk() {
     // WP Version
     remove_action( 'wp_head', 'wp_generator' );
 }
-
 add_action( 'init', 'h5bs_remove_junk' );
-
 
 // Sidebars & Widgetizes Areas
 function h5bs_register_sidebars() {
@@ -234,9 +219,7 @@ function h5bs_register_sidebars() {
         'after_title'   => '</h4>',
     ));
 }
-
 add_action( 'widgets_init', 'h5bs_register_sidebars' );
-
 
 // Comments List
 function h5bs_comments( $comment, $args, $depth ) {
@@ -286,7 +269,6 @@ function h5bs_comments( $comment, $args, $depth ) {
         <?php // WordPress closes </li>
     endif;
 }
-
 
 /** https://github.com/blineberry/Improved-HTML5-WordPress-Captions **/
 // Removes inline styling from wp-caption and changes to HTML5 figure/figcaption
