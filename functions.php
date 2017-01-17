@@ -312,3 +312,6 @@ function dump( $var ) {
     print_r( $var );
     echo "</pre>";
 }
+
+// As defaults change, add them to our includes here
+include_once( 'includes/advanced-custom-fields-defaults.php' );
