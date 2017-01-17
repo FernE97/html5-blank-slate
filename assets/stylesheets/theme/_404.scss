@@ -3,3 +3,24 @@
 ==========================================*/
 .error404 {
 }
+
+#post-404-error {
+    text-align: center;
+    padding-top: 3em;
+    padding-bottom: 3em;
+    h1 {
+        font-weight: bold;
+    }
+    strong {
+        background: #eee;
+        border: 1px solid #ddd;
+        padding: 5px;
+        color: #444;
+        border-radius: 5px;
+    }
+    .message {
+        padding-bottom: 2em;
+        padding-top: 1em;
+        margin: 0;
+    }
+}
