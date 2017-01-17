@@ -9,5 +9,4 @@ html5 Blank Slate is a WordPress theme that is meant to start you off with just 
     gulp
 
 ## Compiling everything
-
     gulp compile

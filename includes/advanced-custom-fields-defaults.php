@@ -11,7 +11,7 @@ acf_add_local_field_group(array (
 			'label' => 'Social Media',
 			'name' => 'social_media',
 			'type' => 'repeater',
-			'instructions' => '',
+			'instructions' => 'Get dash separated icon names via <a href="http://fontawesome.io/icons/" target="_blank">Font Awesome</a> and paste theme here:',
 			'required' => 0,
 			'conditional_logic' => 0,
 			'wrapper' => array (
