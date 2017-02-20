@@ -41,5 +41,6 @@ yarn.lock
 
 # Compiled CSS/JS
 assets/stylesheets/theme.css
+assets/stylesheets/theme.min.css
 assets/javascripts/main.js
 *.css.map
