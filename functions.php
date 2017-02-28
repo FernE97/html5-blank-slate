@@ -5,23 +5,20 @@
 
 */
 
-/* Enqueue Scripts and Styles */
+/* Enqueueing of Scripts and Styles */
 require( 'includes/enqueue.php' );
 
-/* Advanced Custom Fields and Settings */
-require( 'includes/acf-settings.php' );
-
-/* Default custom fields for Theme Settings */
+/* Defaults for ACF: wp-admin > Theme Settings */
 require( 'includes/acf-defaults.php' );
 
-/* h5bs Walker Navs */
+/* Walker Navigation */
 require( 'includes/walker-nav.php' );
 
 /* WordPress Theme Support */
 require( 'includes/theme-support.php' );
 
-/* BrowserSync automatic injection */
+/* BrowserSync auto inject */
 require( 'includes/browsersync.php' );
 
-/* Helpers */
+/* PHP Helpers Functions */
 require( 'includes/helpers.php' );
