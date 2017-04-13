@@ -1,14 +1,10 @@
 {
-  "name": "hopsie-starter",
+  "name": "HTML5 Blank Slate",
   "version": "1.0.0",
   "description": "Starting point for WordPress custom builds",
   "main": "server.js",
   "scripts": {
     "test": "start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "f"
   },
   "author": "Hopsie",
   "license": "MIT",
@@ -25,9 +21,7 @@
     "gulp-sass-glob": "^1.0.6",
     "gulp-sourcemaps": "^1.9.1",
     "gulp-tar": "^1.9.0",
-    "gulp-uglify": "^2.0.0"
-  },
-  "devDependencies": {
+    "gulp-uglify": "^2.0.0",
     "gulp-sass-glob": "^1.0.6",
     "gulp-uglify": "^2.0.0"
   }

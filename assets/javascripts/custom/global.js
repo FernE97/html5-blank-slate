@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
-    'use strict';
+  'use strict';
 
-    // Foundation Init
-    $(document).foundation();
+  // Foundation Init
+  $(document).foundation();
 
-    // Sanity check
-    console.log("Global.js loaded!");
+  // Sanity check
+  console.log("Global.js loaded!");
 
 }(jQuery));
