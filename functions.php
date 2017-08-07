@@ -20,13 +20,11 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'foundation.core', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.core.js', array( 'jquery' ), '6.2.0', true );
-    wp_register_script( 'foundation.util.mediaQuery', get_template_directory_uri() . '/bower_components/foundation-sites/js/foundation.util.mediaQuery.js', array( 'foundation.core' ), '6.2.0', true );
+    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation-sites/dist/foundation.min.js', array( 'jquery' ), '6.2.0', true );
     wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.9', true );
     wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.6.0', true );
 
-    wp_enqueue_script( 'foundation.core' );
-    wp_enqueue_script( 'foundation.util.mediaQuery' );
+    wp_enqueue_script( 'foundation' );
 
     // Optional
     // wp_enqueue_script( 'slick-carousel' );
