@@ -1,2 +1,75 @@
 // Forms
 // ----------------------------------------------
+
+$grid-padding: 10;
+
+// Grid for Ninja Forms
+// ------------------------------------
+@mixin col-base {
+    position: relative;
+    float: left;
+    padding-right: rem-calc($grid-padding);
+    padding-left: rem-calc($grid-padding);
+    width: 100%;
+}
+
+.col-wrap {
+    @include col-base();
+}
+
+@for $n from 1 through 12 {
+    .small-#{$n}-wrap,
+    .medium-#{$n}-wrap,
+    .large-#{$n}-wrap {
+        @extend .col-wrap;
+    }
+}
+
+@media #{$small-up} {
+    @for $n from 1 through 12 {
+        .small-#{$n}-wrap {
+            width: percentage($n / 12);
+        }
+    }
+}
+
+@media #{$medium-up} {
+    @for $n from 1 through 12 {
+        .medium-#{$n}-wrap {
+            width: percentage($n / 12);
+        }
+    }
+}
+
+@media #{$large-up} {
+    @for $n from 1 through 12 {
+        .large-#{$n}-wrap {
+            width: percentage($n / 12);
+        }
+    }
+}
+
+// Ninja Forms Layout
+// ------------------------------------
+
+.ninja-forms-cont {
+    margin-right: rem-calc(-$grid-padding);
+    margin-left: rem-calc(-$grid-padding);
+}
+
+.ninja-forms-field,
+.field-wrap,
+.ninja-forms-required-items {
+    padding-right: rem-calc($grid-padding);
+    padding-left: rem-calc($grid-padding);
+}
+
+.clear-fields {
+    clear: both;
+    margin: 0;
+    height: 0;
+    border: none;
+}
+
+// Custom Ninja Forms Styles
+// ------------------------------------
