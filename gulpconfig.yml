@@ -1,0 +1,30 @@
+js:
+  dest: ./assets/js
+  vendor:
+    paths: 
+      - ./node_modules/foundation-sites/dist/foundation.js
+    filename: vendor.bundle.js
+  commons:
+    modules: []
+    filename: commons.bundle.js
+  bundle:
+    entries: ./src/js/bundle.js
+    filename: bundle.js
+
+css:
+  dest: ./assets/css
+  sass:
+    src: ./src/scss/theme.scss
+    includePaths:
+      - ./node_modules
+  autoprefixer:
+    browsers:
+      - last 2 versions
+    cascade: false
+
+browsersync:
+  proxy: localhost
+  notify: false
+  open: false
+  snippetOptions:
+    ignorePaths: "wp-admin/**"

@@ -25,7 +25,8 @@ $grid-padding: 10;
     }
 }
 
-@media #{$small-up} {
+
+@include breakpoint(small) {
     @for $n from 1 through 12 {
         .small-#{$n}-wrap {
             width: percentage($n / 12);
@@ -33,7 +34,7 @@ $grid-padding: 10;
     }
 }
 
-@media #{$medium-up} {
+@include breakpoint(medium) {
     @for $n from 1 through 12 {
         .medium-#{$n}-wrap {
             width: percentage($n / 12);
@@ -41,7 +42,7 @@ $grid-padding: 10;
     }
 }
 
-@media #{$large-up} {
+@include breakpoint(large) {
     @for $n from 1 through 12 {
         .large-#{$n}-wrap {
             width: percentage($n / 12);

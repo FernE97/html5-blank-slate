@@ -2,17 +2,9 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_register_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.6.0' );
-    wp_register_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.6.0' );
-    wp_register_style( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.css', false, '1.5.9' );
-    wp_register_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', false, '4.5.0' );
-
-    // Optional
-    // wp_enqueue_style( 'slick-carousel' );
-    wp_enqueue_style( 'font-awesome' );
-
-    wp_enqueue_style( 'h5bs-theme' );
-    wp_enqueue_style( 'h5bs-custom' ); // keep at bottom to overwrite other styles
+    wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', false, '4.5.0' );
+    wp_enqueue_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.6.0' );
+    wp_enqueue_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.6.0' );
 }
 
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
@@ -20,16 +12,9 @@ add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_styles' );
 
 // Enqueue Scripts
 function h5bs_enqueue_scripts() {
-    wp_register_script( 'foundation', get_template_directory_uri() . '/bower_components/foundation-sites/dist/foundation.min.js', array( 'jquery' ), '6.2.0', true );
-    wp_register_script( 'slick-carousel', get_template_directory_uri() . '/bower_components/slick-carousel/slick/slick.min.js', array( 'jquery' ), '1.5.9', true );
-    wp_register_script( 'global-js', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '3.6.0', true );
-
-    wp_enqueue_script( 'foundation' );
-
-    // Optional
-    // wp_enqueue_script( 'slick-carousel' );
-
-    wp_enqueue_script( 'global-js' );
+    wp_enqueue_script('vendor-js', get_template_directory_uri() . '/assets/js/vendor.bundle.js', array('jquery'), '3.6.0', true);
+    // wp_enqueue_script('commons-js', get_template_directory_uri() . '/assets/js/commons.bundle.js', array(), '3.6.0', true);
+    wp_enqueue_script('bundle-js', get_template_directory_uri()  . '/assets/js/bundle.js', array('jquery'), '3.6.0', true);
 }
 
 add_action( 'wp_enqueue_scripts', 'h5bs_enqueue_scripts' );

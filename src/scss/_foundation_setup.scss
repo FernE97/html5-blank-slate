@@ -1,7 +1,7 @@
 @charset 'utf-8';
 
 @import 'foundation_settings';
-@import 'foundation';
+@import 'foundation-sites/scss/foundation';
 
 @include foundation-global-styles;
 @include foundation-grid;
