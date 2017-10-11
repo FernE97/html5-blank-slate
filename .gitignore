@@ -37,3 +37,7 @@ npm-debug.log
 # Compiled CSS
 assets/css/*
 *.css.map
+
+# Compiled JS
+assets/js/*
+*.js.map

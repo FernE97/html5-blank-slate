@@ -1,13 +1,13 @@
 .nav-main-wrap {
     display: none;
 
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
         display: block;
     }
 }
 
 .nav-mobile-wrap {
-    @media #{$medium-up} {
+    @include breakpoint(medium) {
         display: none;
     }
 }
