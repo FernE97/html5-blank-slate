@@ -2,7 +2,7 @@ js:
   dest: ./assets/js
   vendor:
     paths: 
-      - ./node_modules/foundation-sites/dist/foundation.js
+      - ./node_modules/foundation-sites/dist/js/foundation.js
     filename: vendor.bundle.js
   commons:
     modules: []
@@ -17,6 +17,7 @@ css:
     src: ./src/scss/theme.scss
     includePaths:
       - ./node_modules
+      - ./node_modules/foundation-sites/scss
   autoprefixer:
     browsers:
       - last 2 versions
