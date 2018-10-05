@@ -2,7 +2,7 @@
   "name": "h5bs",
   "private": "true",
   "dependencies": {
-    "foundation-sites": "6.2.0",
+    "foundation-sites": "^6.5.0-rc.3",
     "motion-ui": "^1.2.3"
   },
   "devDependencies": {

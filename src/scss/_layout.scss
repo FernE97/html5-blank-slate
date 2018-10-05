@@ -1,8 +1,14 @@
 /*=Layout
 ---------------------------------------------------------------------*/
+
+// Container class
+// container.container--large
 .container {
-    @extend .clearfix;
-    @extend .row;
-    padding-left: map-get($grid-column-gutter, medium) / 2;
-    padding-right: map-get($grid-column-gutter, medium) / 2;
+	@include xy-grid-container;
+
+	@each $breakpoint-name, $breakpoint in $breakpoints {
+		&--#{$breakpoint-name} {max-width: $breakpoint}
+	}
+	// @include m(full) {max-width: 100%};
+	&--full {@include max-width-100;}
 }
