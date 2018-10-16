@@ -2,7 +2,7 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-    wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css', false, '4.5.0' );
+    wp_enqueue_style( 'font-awesome', '//cdn.jsdelivr.net/npm/foundation-sites@6.5.0-rc.4/dist/css/foundation.min.css" integrity="sha256-VEEaOnBKVRoYPn4AID/tY/XKVxKEqXstoo/xZ6nemak= sha384-D46t32f421/hB30qwnim2pIcisNN5GU9+6m2Mfnd3dKpTSFidZLa08/1StEiCFId sha512-WkgzH8VKemDfwrp18r+wgbx+oHXOkfd2kJs7ocAXdGDgonXDXh88E90IRtRZRXtO0IHprxYHYlY14h+wyTsUDA==' );
     wp_enqueue_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '3.6.0' );
     wp_enqueue_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '3.6.0' );
 }
