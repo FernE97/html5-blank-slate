@@ -18,4 +18,6 @@
 //
 //     var _ = require('underscore');
 
+import '@babel/polyfill';
+
 import './global';
