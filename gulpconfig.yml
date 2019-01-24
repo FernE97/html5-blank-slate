@@ -18,7 +18,6 @@ css:
     includePaths:
       - ./node_modules
       - ./node_modules/foundation-sites/scss
-      - ./node_modules/glider-js/glider.min.css
   autoprefixer:
     browsers:
       - last 2 versions
