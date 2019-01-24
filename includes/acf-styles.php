@@ -15,24 +15,26 @@
 
 <?php
 /**
- * $count keeps track of each layout instance,
+ * $count keeps track of each layout instance per page,
  * so that there can be more than one of each layout type,
  * each with different settings/values/content
  */
  ?>
-<?php if ( have_rows( 'flex' ) ): $count = 1; ?>
-<?php while ( have_rows( 'flex' ) ): the_row(); ?>
+
+<?php foreach (get_pages() as $key => $data): // Generate styles for each page ?>
+<?php if ( have_rows( 'flex', $data->ID ) ): $count = 1; ?>
+<?php while ( have_rows( 'flex', $data->ID ) ): the_row(); ?>
 
 <?php //****************  Banner section ****************/ ?>
   <?php if ( get_row_layout() == 'banner' ): ?>
 
     <?php if(get_sub_field('bg_image')) : ?>
-      .banner<?= $count; ?>:before {
+    .page-id-<?= $data->ID; ?> .banner<?= $count; ?>:before {
         background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
       }
     <?php endif; ?>
 
-    .banner<?= $count; ?>:after {
+    .page-id-<?= $data->ID; ?> .banner<?= $count; ?>:after {
       background-color: <?= get_sub_field( 'bg_color' ); ?>;
       <?php if ( get_sub_field( 'bg_image' )): // If there is a background image, make a colored overlay ?>
         opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
@@ -40,7 +42,7 @@
     }
 
     <?php if (get_sub_field( 'text_bg_color' )): ?>
-      .banner<?= $count; ?> .banner__content:before {
+    .page-id-<?= $data->ID; ?> .banner<?= $count; ?> .banner__content:before {
         opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
         background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
       }
@@ -49,12 +51,12 @@
 <?php //**************** Standard content section ****************/ ?>
 <?php elseif ( get_row_layout() == 'standard_content' ): ?>
 <?php if(get_sub_field('bg_image')) : ?>
-  .standard<?= $count; ?>:before {
+.page-id-<?= $data->ID; ?> .standard<?= $count; ?>:before {
     background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
   }
 <?php endif; ?>
 
-  .standard<?= $count; ?>:after {
+.page-id-<?= $data->ID; ?> .standard<?= $count; ?>:after {
     <?php if ( get_sub_field( 'bg_image' )): ?>
       opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
     <?php endif; ?>
@@ -62,7 +64,7 @@
   }
 
   <?php if (get_sub_field( 'text_bg_color' )): ?>
-    .standard<?= $count; ?> .standard__content:before {
+  .page-id-<?= $data->ID; ?> .standard<?= $count; ?> .standard__content:before {
       opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
       background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
     }
@@ -75,19 +77,19 @@
       <?php while ( have_rows( 'left' ) ): the_row(); ?>
 
       <?php if(get_sub_field('bg_image')) : ?>
-        .split<?= $count; ?> .splitLeft:before {
+      .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitLeft:before {
           background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
         }
       <?php endif; ?>
 
         <?php if (get_sub_field( 'text_bg_color' )): // Text overlay ?>
-          .split<?= $count; ?> .splitLeft__content:before {
+          .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitLeft__content:before {
             opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
             background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
           }
         <?php endif; ?>
 
-        .split<?= $count; ?> .splitLeft:after {
+        .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitLeft:after {
           <?php if ( get_sub_field( 'bg_image' )): ?>
             opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
           <?php endif; ?>
@@ -99,12 +101,12 @@
   <?php if ( have_rows( 'right' ) ): ?>
         <?php while ( have_rows( 'right' ) ): the_row(); ?>
         <?php if(get_sub_field('bg_image')) : ?>
-          .split<?= $count; ?> .splitRight:before {
+        .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitRight:before {
             background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
           }
         <?php endif; ?>
 
-          .split<?= $count; ?> .splitRight:after {
+        .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitRight:after {
           <?php if ( get_sub_field( 'bg_image' )): ?>
             opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
           <?php endif; ?>
@@ -112,7 +114,7 @@
           }
 
         <?php if (get_sub_field( 'text_bg_color' )): ?>
-          .split<?= $count; ?> .splitRight__content:before {
+        .page-id-<?= $data->ID; ?> .split<?= $count; ?> .splitRight__content:before {
             opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
             background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
           }
@@ -127,14 +129,14 @@
     $max = get_sub_field('number_of_posts');
   ?>
     <?php if (get_sub_field('bg_color')) : ?>
-      .postGrid<?=$count;?>:after {
+    .page-id-<?= $data->ID; ?> .postGrid<?=$count;?>:after {
         background-color: <?= get_sub_field('bg_color'); ?>;
       }
     <?php endif; ?>
 
 
     <?php if (count($query->posts)): $query_count = 1; ?>
-      .postGrid<?=$count; ?> .postGrid__item:hover {
+    .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item:hover {
           background-color: <?php the_sub_field( 'hover_bg_color' ); ?>;
           color: <?php the_sub_field( 'hover_text_color' ); ?>;
           background-image: none;
@@ -142,9 +144,11 @@
 
       <?php foreach ($query->posts as $nested_post):
         if($query_count <= $max || $max == '0'): ?>
-          .postGrid<?=$count; ?> .postGrid__item<?=$query_count; ?> {
-            background-image: url('<?= get_the_post_thumbnail_url($nested_post->ID); ?>');
+          <?php if(get_the_post_thumbnail_url($nested_post->ID)) : ?>
+          .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item<?=$query_count; ?> {
+            background-image: url("<?= get_the_post_thumbnail_url($nested_post->ID); ?>");
           }
+          <?php endif; ?>
         <?php endif; ?>
       <?php $query_count++; endforeach; ?>
     <?php endif; // No more posts ?>
@@ -152,12 +156,12 @@
 
     <?php elseif ( get_row_layout() == 'slider' ): ?>
       <?php if(get_sub_field('bg_image')) : ?>
-        .slider<?=$count;?>:before {
+      .page-id-<?= $data->ID; ?> .slider<?=$count;?>:before {
           background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
         }
       <?php endif;?>
 
-        .slider<?= $count; ?>:after {
+      .page-id-<?= $data->ID; ?> .slider<?= $count; ?>:after {
           <?php if ( get_sub_field( 'bg_image' )): ?>
             opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
           <?php endif; ?>
@@ -166,7 +170,7 @@
 
         <?php if ( have_rows( 'slide' ) ) : $slide_count = 1; ?>
           <?php while ( have_rows( 'slide' ) ) : the_row(); ?>
-        .slider<?=$count;?> .glide__slide<?=$slide_count;?> {
+          .page-id-<?= $data->ID; ?> .slider<?=$count;?> .glide__slide<?=$slide_count;?> {
           background-image: url('<?= get_sub_field('image')['url']; ?>');
         }
       <?php $slide_count++; endwhile;?>
@@ -174,11 +178,11 @@
 
     <?php elseif ( get_row_layout() == 'donate' ) : ?>
     <?php if(get_sub_field('bg_image')) : ?>
-        .donate<?=$count;?>:before {
+    .page-id-<?= $data->ID; ?> .donate<?=$count;?>:before {
           background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
         }
       <?php endif; ?>
-        .donate<?= $count; ?>:after {
+      .page-id-<?= $data->ID; ?> .donate<?= $count; ?>:after {
           <?php if ( get_sub_field( 'bg_image' )): ?>
             opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
           <?php endif; ?>
@@ -186,7 +190,7 @@
         }
 
         <?php if (get_sub_field( 'text_bg_color' )): ?>
-          .donate<?= $count; ?> .donate__content:before {
+        .page-id-<?= $data->ID; ?>  .donate<?= $count; ?> .donate__content:before {
             opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
             background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
           }
@@ -196,3 +200,4 @@
 <?php endif; // End of layouts ?>
 <?php $count++; endwhile; // End of while flex rows ?>
 <?php endif; // End of if flex rows ?>
+        <?php endforeach; ?>
