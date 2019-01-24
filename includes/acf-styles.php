@@ -137,8 +137,8 @@
 
     <?php if (count($query->posts)): $query_count = 1; ?>
       .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item:hover {
-        background-color: <?php the_sub_field( 'hover_bg_color' ); ?>  !important;
-        color: <?php the_sub_field( 'hover_text_color' ); ?>  !important;
+        background-color: <?php the_sub_field( 'post_hover_bg_color' ); ?>  !important;
+        color: <?php the_sub_field( 'post_hover_text_color' ); ?>  !important;
         background-image: none !important;
       }
     <?php endif; // No more posts ?>
