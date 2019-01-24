@@ -23,7 +23,10 @@ $query  = new WP_Query($args);
       // https://support.advancedcustomfields.com/forums/topic/content-after-custom-loop-inside-flexible-content/#post-61513
       foreach ($query->posts as $nested_post):
         if($query_count <= $max || $max == "0"): ?>
-          <div class="postGrid__item postGrid__item<?= $query_count; ?> cell small-12 medium-6 large-4 xxlarge-3">
+          <div class="postGrid__item postGrid__item<?= $query_count; ?> cell small-12 medium-6 large-4 xxlarge-3"
+            <?php if(get_the_post_thumbnail_url($nested_post->ID)): ?>
+              style="background-image: url('<?= get_the_post_thumbnail_url($nested_post->ID); ?>');"
+            <?php endif; ?>>
             <h2><?php echo get_the_title($nested_post->ID);?></h2>
           </div>
         <?php endif; $query_count++; ?>

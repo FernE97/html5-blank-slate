@@ -22,11 +22,11 @@
  ?>
 
 <?php foreach (get_pages() as $key => $data): // Generate styles for each page ?>
-<?php if ( have_rows( 'flex', $data->ID ) ): $count = 1; ?>
-<?php while ( have_rows( 'flex', $data->ID ) ): the_row(); ?>
+  <?php if ( have_rows( 'flex', $data->ID ) ): $count = 1; ?>
+    <?php while ( have_rows( 'flex', $data->ID ) ): the_row(); ?>
 
-<?php //****************  Banner section ****************/ ?>
-  <?php if ( get_row_layout() == 'banner' ): ?>
+    <?php //****************  Banner section ****************/ ?>
+      <?php if ( get_row_layout() == 'banner' ): ?>
 
     <?php if(get_sub_field('bg_image')) : ?>
     .page-id-<?= $data->ID; ?> .banner<?= $count; ?>:before {
@@ -50,13 +50,13 @@
 
 <?php //**************** Standard content section ****************/ ?>
 <?php elseif ( get_row_layout() == 'standard_content' ): ?>
-<?php if(get_sub_field('bg_image')) : ?>
-.page-id-<?= $data->ID; ?> .standard<?= $count; ?>:before {
-    background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
-  }
-<?php endif; ?>
+  <?php if(get_sub_field('bg_image')) : ?>
+  .page-id-<?= $data->ID; ?> .standard<?= $count; ?>:before {
+      background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
+    }
+  <?php endif; ?>
 
-.page-id-<?= $data->ID; ?> .standard<?= $count; ?>:after {
+  .page-id-<?= $data->ID; ?> .standard<?= $count; ?>:after {
     <?php if ( get_sub_field( 'bg_image' )): ?>
       opacity: <?= get_sub_field( 'bg_opacity' )/100; ?>;
     <?php endif; ?>
@@ -136,21 +136,11 @@
 
 
     <?php if (count($query->posts)): $query_count = 1; ?>
-    .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item:hover {
-          background-color: <?php the_sub_field( 'hover_bg_color' ); ?>;
-          color: <?php the_sub_field( 'hover_text_color' ); ?>;
-          background-image: none;
-        }
-
-      <?php foreach ($query->posts as $nested_post):
-        if($query_count <= $max || $max == '0'): ?>
-          <?php if(get_the_post_thumbnail_url($nested_post->ID)) : ?>
-          .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item<?=$query_count; ?> {
-            background-image: url("<?= get_the_post_thumbnail_url($nested_post->ID); ?>");
-          }
-          <?php endif; ?>
-        <?php endif; ?>
-      <?php $query_count++; endforeach; ?>
+      .page-id-<?= $data->ID; ?> .postGrid<?=$count; ?> .postGrid__item:hover {
+        background-color: <?php the_sub_field( 'hover_bg_color' ); ?>  !important;
+        color: <?php the_sub_field( 'hover_text_color' ); ?>  !important;
+        background-image: none !important;
+      }
     <?php endif; // No more posts ?>
 
 
@@ -196,8 +186,7 @@
           }
         <?php endif; ?>
 
-
 <?php endif; // End of layouts ?>
 <?php $count++; endwhile; // End of while flex rows ?>
 <?php endif; // End of if flex rows ?>
-        <?php endforeach; ?>
+<?php endforeach; ?>
