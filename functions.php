@@ -1,5 +1,4 @@
 <?php
-
 // Enqueue Styles
 function h5bs_enqueue_styles() {
     wp_enqueue_style( 'font-awesome', 'https://use.fontawesome.com/releases/v5.4.2/css/all.css"' );
@@ -247,3 +246,52 @@ add_action( 'admin_menu', 'h5bs_client_options' );
 
 // Translation
 // require_once( 'includes/lang/translation.php' ); // uncomment if needed
+
+if( function_exists('acf_add_options_page') ) {
+	acf_add_options_page("ACF Options");
+}
+
+// Run this code on 'after_theme_setup', when plugins have already been loaded.
+add_action('after_setup_theme', 'acf_extensions');
+function acf_extensions() {
+  // Check to see if the plugin has already been loaded.
+	if (!class_exists('acf_field_post_type_selector_plugin')) {
+    include_once(dirname(__FILE__) . '/includes/acf-configs/acf-extensions/acf-post-type-selector/acf-post-type-selector.php');
+  }
+
+  if (!class_exists('acf_plugin_audio_video_player')) {
+    include_once(dirname(__FILE__) . '/includes/acf-configs/acf-extensions/acf-audio-video-player/acf-audio-video-player.php');
+  }
+}
+
+// Generate CSS using values from ACF fields
+// Each time a page is updated in WP Admin, this updates the CSS
+function generate_acf_css() {
+  // Capture all output into buffer
+  ob_start();
+  // Grab the acf-styles.php file
+  require(get_stylesheet_directory() . '/includes/acf-styles.php');
+  // Store output in a variable, then flush the buffer
+  $css = ob_get_clean();
+  // Minify output
+  $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
+  $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
+  // Save as a css file
+  file_put_contents(get_stylesheet_directory() . '/assets/css/acf-styles.css', $css, LOCK_EX);
+}
+// Parse the output and write the CSS file on post save
+// https://www.advancedcustomfields.com/resources/acf-save_post/
+add_action( 'acf/save_post', 'generate_acf_css', 99999 );
+// Enqueue the created stylesheet
+wp_enqueue_style( 'acf-styles', get_template_directory_uri() . '/assets/css/acf-styles.css' );
+
+
+// By default, if you make an acf-json folder in your theme folder,
+// each time you change a field it will export the JSON for the group.
+// To limit clutter of base theme folder, you can change the location of those saves
+add_filter('acf/settings/save_json', 'custom_acf_json_save_point');
+function custom_acf_json_save_point( $path ) {
+    // update path
+    $path = dirname(__FILE__) . '/includes/acf-configs/acf-json';
+    return $path;
+}

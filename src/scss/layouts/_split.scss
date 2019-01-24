@@ -1,0 +1,13 @@
+// ACF Flexible Content
+// "Split" Layout
+
+.splitLeft, .splitRight {
+  &__content {
+    width: 100%;
+  }
+
+  &__image {
+    height: auto;
+    margin: 0 auto;
+  }
+}

@@ -2,6 +2,11 @@
 # yarn lockfile v1
 
 
+"@glidejs/glide@^3.2.4":
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/@glidejs/glide/-/glide-3.2.4.tgz#2ea91d1b6c209983511026b93080f93b83e5e1c4"
+  integrity sha512-ylTX+3NB2XW/y5CCda9xRkO+q+016u6YL8X/zlNGkfDRAx/lm/UtFoXL1EBm+zUDYIAldeoLbloM2vJpH4YwZA==
+
 "@gulp-sourcemaps/map-sources@1.X":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@gulp-sourcemaps/map-sources/-/map-sources-1.0.0.tgz#890ae7c5d8c877f6d384860215ace9d7ec945bda"
@@ -2391,6 +2396,11 @@ getpass@^0.1.1:
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
   dependencies:
     assert-plus "^1.0.0"
+
+glider-js@^1.6.4:
+  version "1.6.4"
+  resolved "https://registry.yarnpkg.com/glider-js/-/glider-js-1.6.4.tgz#671bbfb6dbe6d67ecda1c2b980df720c2fec6363"
+  integrity sha512-m9MmQJMDCdxlxwjrY85VqJp/s7xE1gOEStRkScb/pAPOu5YU5VtQ5cNGjyLyIIWJtpgPYfTgp+J1LI+iP/uW6w==
 
 glob-base@^0.3.0:
   version "0.3.0"

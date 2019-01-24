@@ -15,7 +15,6 @@
     <?php // Place favicon.ico and apple-touch-icon.png in the root of the domain ?>
 
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
-
     <?php wp_head(); ?>
 </head>
 

@@ -1,0 +1,61 @@
+// ACF Flexible Content
+// "Slider" Layout
+
+// Required Core Glide.js Stylesheet
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.core";
+
+// Optional Theme Glide.js Stylesheet
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+
+.slider {
+  padding-bottom: 3rem;
+
+  .glide {
+
+    &__track,
+    &__slides {
+      padding: 2rem 0;
+    }
+
+    &__controls {
+      position: relative;
+    }
+
+    &__slide {
+      background-size: cover;
+      background-repeat: no-repeat;
+      position: relative;
+
+      >a {
+        width: 100%;
+        min-height: 100%;
+        display: block;
+      }
+
+      &--circle {
+
+        &,
+        &:before {
+          border-radius: 50%;
+          background-position: center center;
+        }
+      }
+    }
+
+    &__arrow--left {
+      left: 30%;
+
+      @include breakpoint(medium) {
+        left: 40%;
+      }
+    }
+
+    &__arrow--right {
+      right: 30%;
+
+      @include breakpoint(medium) {
+        right: 40%;
+      }
+    }
+  }
+}

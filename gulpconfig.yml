@@ -1,7 +1,7 @@
 js:
   dest: ./assets/js
   vendor:
-    paths: 
+    paths:
       - ./node_modules/foundation-sites/dist/js/foundation.js
     filename: vendor.bundle.js
   commons:
@@ -18,6 +18,7 @@ css:
     includePaths:
       - ./node_modules
       - ./node_modules/foundation-sites/scss
+      - ./node_modules/glider-js/glider.min.css
   autoprefixer:
     browsers:
       - last 2 versions

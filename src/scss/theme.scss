@@ -57,3 +57,17 @@
 
 // helper classes
 @import 'helpers';
+
+
+// ACF Flexible Content Page
+// ----------------------------------------------
+// Note:
+// Styles generated from ACF values are located in "/includes/acf-styles.php" and output to "/assets/css/acf-styles.css"
+// Below are styles that don't rely on any ACF values
+@import 'layouts/page';
+@import 'layouts/banner';
+@import 'layouts/standard';
+@import 'layouts/split';
+@import 'layouts/grid';
+@import 'layouts/slider';
+@import 'layouts/donate';

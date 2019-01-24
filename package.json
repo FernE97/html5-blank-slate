@@ -2,10 +2,12 @@
   "name": "h5bs",
   "private": "true",
   "dependencies": {
+    "@glidejs/glide": "^3.2.4",
     "foundation-sites": "^6.5.0-rc.3",
-    "what-input": "^4.1.0",
+    "glider-js": "^1.6.4",
+    "jquery": "^2.2.0",
     "motion-ui": "^1.2.3",
-    "jquery": "^2.2.0"
+    "what-input": "^4.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
