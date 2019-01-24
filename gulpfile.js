@@ -17,8 +17,7 @@ var gulp = require('gulp'),
   source = require('vinyl-source-stream'),
   sourcemaps = require('gulp-sourcemaps'),
   uglify = require('gulp-uglify'),
-  yaml = require('js-yaml'),
-  filter = require('gulp-filter');
+  yaml = require('js-yaml');
 
 var config = yaml.safeLoad(fs.readFileSync('./gulpconfig.yml', 'utf8'));
 
