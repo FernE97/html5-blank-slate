@@ -295,3 +295,15 @@ function custom_acf_json_save_point( $path ) {
     $path = dirname(__FILE__) . '/includes/acf-configs/acf-json';
     return $path;
 }
+
+// Sets the acf-json loading point to the custom save point
+// You'll have the option to sync the field group: https://i.imgur.com/8pmkDhK.png
+add_filter('acf/settings/load_json', 'custom_acf_json_load_point');
+function custom_acf_json_load_point( $paths ) {
+
+  // remove original path
+  unset($paths[0]);
+  // append path
+  $paths[] = dirname(__FILE__) . '/includes/acf-configs/acf-json';
+  return $paths;
+}
