@@ -1,4 +1,5 @@
 <?php
+
 // Enqueue Styles
 function h5bs_enqueue_styles() {
     wp_enqueue_style( 'font-awesome', 'https://use.fontawesome.com/releases/v5.4.2/css/all.css"' );
@@ -256,13 +257,9 @@ add_action('after_setup_theme', 'acf_extensions');
 function acf_extensions() {
   // Check to see if the plugin has already been loaded.
 	if (!class_exists('acf_field_post_type_selector_plugin')) {
-    include_once(dirname(__FILE__) . '/includes/acf-configs/acf-extensions/acf-post-type-selector/acf-post-type-selector.php');
+    include_once(get_template_directory() .  '/includes/acf-configs/acf-extensions/acf-post-type-selector/acf-post-type-selector.php');
   }
-
-  if (!class_exists('acf_plugin_audio_video_player')) {
-    include_once(dirname(__FILE__) . '/includes/acf-configs/acf-extensions/acf-audio-video-player/acf-audio-video-player.php');
-  }
-}
+ }
 
 // Generate CSS using values from ACF fields
 // Each time a page is updated in WP Admin, this updates the CSS
@@ -282,8 +279,6 @@ function generate_acf_css() {
 // Parse the output and write the CSS file on post save
 // https://www.advancedcustomfields.com/resources/acf-save_post/
 add_action( 'acf/save_post', 'generate_acf_css', 99999 );
-// Enqueue the created stylesheet
-wp_enqueue_style( 'acf-styles', get_template_directory_uri() . '/assets/css/acf-styles.css' );
 
 
 // By default, if you make an acf-json folder in your theme folder,
@@ -297,7 +292,7 @@ function custom_acf_json_save_point( $path ) {
 }
 
 // Sets the acf-json loading point to the custom save point
-// You'll have the option to sync the field group: https://i.imgur.com/8pmkDhK.png
+// You'll have the option to sync the field group: https://i.imgur.com/5QgAnFE.png --> https://i.imgur.com/7kQUZN4.png
 add_filter('acf/settings/load_json', 'custom_acf_json_load_point');
 function custom_acf_json_load_point( $paths ) {
 
@@ -306,4 +301,10 @@ function custom_acf_json_load_point( $paths ) {
   // append path
   $paths[] = dirname(__FILE__) . '/includes/acf-configs/acf-json';
   return $paths;
+}
+
+// Enqueue the created stylesheet
+add_action( 'wp_enqueue_scripts', 'enqueue_acf_styles' );
+function enqueue_acf_styles() {
+  wp_enqueue_style( 'acf-styles', get_template_directory_uri() . '/assets/css/acf-styles.css' );
 }
