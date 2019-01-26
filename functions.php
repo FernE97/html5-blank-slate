@@ -248,9 +248,6 @@ add_action( 'admin_menu', 'h5bs_client_options' );
 // Translation
 // require_once( 'includes/lang/translation.php' ); // uncomment if needed
 
-if( function_exists('acf_add_options_page') ) {
-	acf_add_options_page("ACF Options");
-}
 
 // Run this code on 'after_theme_setup', when plugins have already been loaded.
 add_action('after_setup_theme', 'acf_extensions');
@@ -308,3 +305,11 @@ add_action( 'wp_enqueue_scripts', 'enqueue_acf_styles' );
 function enqueue_acf_styles() {
   wp_enqueue_style( 'acf-styles', get_template_directory_uri() . '/assets/css/acf-styles.css' );
 }
+
+// ACF JavaScript API seems very powerful, could be useful in the future
+// https://www.advancedcustomfields.com/resources/javascript-api/
+
+// add_action('acf/input/admin_enqueue_scripts', 'acf_js_enqueue');
+// function acf_js_enqueue() {
+//   wp_enqueue_script('acf-js', get_template_directory_uri() . '/assets/js/acf-scripts.js', 'acf-input', false, true);
+// }
