@@ -1,0 +1,104 @@
+{
+    "key": "group_5c4f7114b8ca6",
+    "title": "Theme Settings",
+    "fields": [
+        {
+            "key": "field_5c4fae84ca92e",
+            "label": "",
+            "name": "global",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": "global_settings"
+            },
+            "layout": "row",
+            "sub_fields": [
+                {
+                    "key": "field_5c4faaf154f0a",
+                    "label": "Toggle Color Scheme",
+                    "name": "color_scheme_toggle",
+                    "type": "true_false",
+                    "instructions": "Enable if you want to limit the choice of colors to a specific color scheme.",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "message": "",
+                    "default_value": 1,
+                    "ui": 1,
+                    "ui_on_text": "Enabled",
+                    "ui_off_text": "Disabled"
+                },
+                {
+                    "key": "field_5c4f711ef61f1",
+                    "label": "Color Scheme",
+                    "name": "color_scheme",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": [
+                        [
+                            {
+                                "field": "field_5c4faaf154f0a",
+                                "operator": "==",
+                                "value": "1"
+                            }
+                        ]
+                    ],
+                    "wrapper": {
+                        "width": "30",
+                        "class": "",
+                        "id": "color_scheme"
+                    },
+                    "collapsed": "field_5c4f712cf61f2",
+                    "min": 0,
+                    "max": 0,
+                    "layout": "block",
+                    "button_label": "Add Color",
+                    "sub_fields": [
+                        {
+                            "key": "field_5c4f712cf61f2",
+                            "label": "",
+                            "name": "color",
+                            "type": "color_picker",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "20",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "#FFFFFF"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-global-options"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "seamless",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1548726892
+}
