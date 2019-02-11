@@ -718,8 +718,8 @@
                                 },
                                 {
                                     "key": "field_5c422abade7b9",
-                                    "label": "Image",
-                                    "name": "image",
+                                    "label": "Foreground Image",
+                                    "name": "fg_image",
                                     "type": "image",
                                     "instructions": "",
                                     "required": 0,
@@ -1040,8 +1040,8 @@
                                 },
                                 {
                                     "key": "field_5c422a9bde7b8",
-                                    "label": "Image",
-                                    "name": "image",
+                                    "label": "Foreground Image",
+                                    "name": "fg_image",
                                     "type": "image",
                                     "instructions": "",
                                     "required": 0,
@@ -2054,5 +2054,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1549905961
+    "modified": 1549914772
 }
