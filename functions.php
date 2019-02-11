@@ -318,3 +318,10 @@ function acf_wysiwyg() { ?>
 	</script>
 <?php }
 add_action('acf/input/admin_footer', 'acf_wysiwyg');
+
+
+// Removes the WYSIWYG <p> tags that are automatically added
+function acf_wysiwyg_remove_wpautop() {
+  remove_filter('acf_the_content', 'wpautop' );
+}
+add_action('acf/init', 'acf_wysiwyg_remove_wpautop', 15);
