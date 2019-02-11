@@ -1,8 +1,8 @@
 <?php $shape = get_sub_field("shape"); ?>
 <section class="section<?=$count;?> slider<?=$count;?> slider">
-  <div class="slider__content slider__content--center">
+  <div class="section<?=$count;?>__content section<?=$count;?>__content--center slider__content slider__content--center">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
-      <div class="slider__text slider__text">
+      <div class="section<?=$count;?>__text slider__text slider__text">
         <?php if(get_sub_field( "header" ) ): ?><h1><?= get_sub_field( "header" ); ?></h1><?php endif; ?>
         <?php if(get_sub_field( "tagline" ) ): ?><h2><?= get_sub_field( "tagline" ); ?></h2><?php endif; ?>
         <?php if(get_sub_field( "body" ) ): ?><p><?= get_sub_field( "body" ); ?></p><?php endif; ?>
