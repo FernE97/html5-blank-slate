@@ -1,5 +1,5 @@
 <?php $alignment = get_sub_field( "alignment" ); ?>
-<header class="banner banner<?=$count;?> grid-x">
+<header class="section<?=$count;?> banner banner<?=$count;?> grid-x">
   <div class="banner__content banner__content--<?= $alignment; ?> cell small-12 large-6">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="banner__text">

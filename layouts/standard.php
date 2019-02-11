@@ -1,5 +1,5 @@
 <?php $alignment = get_sub_field( 'alignment' ); ?>
-<section class="standard standard<?=$count;?>">
+<section class="section<?=$count;?> standard<?=$count;?> standard">
   <div class="standard__content standard__content--<?= $alignment; ?>">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="standard__text">
@@ -12,7 +12,7 @@
   <?php if ( have_rows( 'buttons' ) ): $btn_count = 0; ?>
 <div class="standard__buttons standard__buttons--<?= $alignment; ?> grid-x grid-margin-x <?= $alignment == 'center' ? 'align-center' : ''; ?>">
     <?php while ( have_rows( 'buttons' ) ): the_row(); ?>
-      <a href="<?php the_sub_field( 'link' ); ?>" class="button standard__button standard<?=$count;?>__button<?=$btn_count;?>"><?php the_sub_field( 'text' ); ?></a>
+      <a href="<?php the_sub_field( 'link' ); ?>" class="button standard__button standard<?=$count;?>__button<?=$btn_count;?> section<?=$count;?>__button<?=$btn_count;?>"><?php the_sub_field( 'text' ); ?></a>
     <?php $btn_count++; endwhile; ?>
     </div>
     <?php else: ?>

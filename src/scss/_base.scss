@@ -17,3 +17,7 @@ hr {
     border: 0;
     border-top: 1px solid #ccc;
 }
+
+html, body, :root {
+  overflow-x: hidden; // Hide overflow caused by glider
+}

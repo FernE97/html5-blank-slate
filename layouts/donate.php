@@ -1,5 +1,5 @@
 <?php $alignment = get_sub_field( 'alignment' ); ?>
-<section class="donate donate<?=$count;?>">
+<section class="section<?=$count;?> donate<?=$count;?> donate">
   <div class="donate__content grid-x grid-margin-x">
     <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="donate__text cell small-12 medium-6">
@@ -27,7 +27,7 @@
             <div class="donateForm__currency">USD</div>
           </div>
           <div class="grid-x align-center">
-            <a href="<?= get_sub_field('donation_link'); ?>" class="button donateForm__button donateForm<?= $count; ?>__button js--button-donate cell small-12">Donate</a>
+            <a href="<?= get_sub_field('donation_link'); ?>" class="button donateForm__button donateForm<?= $count; ?>__button donateForm<?= $count; ?>__button<?=$btn_count;?> js--button-donate cell small-12">Donate</a>
           </div>
         </div>
       </form>

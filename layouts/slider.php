@@ -1,5 +1,5 @@
 <?php $shape = get_sub_field("shape"); ?>
-<section class="slider slider<?=$count;?>">
+<section class="section<?=$count;?> slider<?=$count;?> slider">
   <div class="slider__content slider__content--center">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="slider__text slider__text">

@@ -8,7 +8,7 @@ $args = [
 $query  = new WP_Query($args);
 ?>
 <?php if (count($query->posts)): $query_count = 1; ?>
-<section class="postGrid postGrid<?=$count;?> grid-container fluid">
+<section class="section<?=$count;?> postGrid<?=$count;?> postGrid grid-container fluid">
 <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="postGrid__text postGrid__text--<?= get_sub_field('text_alignment'); ?>">
         <?php if(get_sub_field( "header" ) ): ?><h1><?= get_sub_field( "header" ); ?></h1><?php endif; ?>

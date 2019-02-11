@@ -1,4 +1,4 @@
-<section class="split split<?=$count;?> grid-x">
+<section class="section<?=$count;?> split<?=$count;?> split grid-x">
   <?php if ( have_rows( "left" ) ): ?>
   <div class="splitLeft splitLeft<?=$count;?> cell small-6">
     <?php while ( have_rows( "left" ) ): the_row(); ?>
