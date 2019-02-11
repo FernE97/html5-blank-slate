@@ -325,3 +325,30 @@ function acf_wysiwyg_remove_wpautop() {
   remove_filter('acf_the_content', 'wpautop' );
 }
 add_action('acf/init', 'acf_wysiwyg_remove_wpautop', 15);
+
+// Makes a very lightweight WYSIWIG, basically an enhanced text area field
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'acf_wysiwig_toolbars'  );
+function acf_wysiwig_toolbars( $toolbars )
+{
+  // https://www.advancedcustomfields.com/resources/customize-the-wysiwyg-toolbars/
+
+	// Add a new toolbar called "Very Basic"
+	// - this toolbar has only 1 row of buttons
+	$toolbars['Very Basic' ] = array();
+  $toolbars['Very Basic' ][1] = array('bold', 'italic', 'underline', 'link', 'bullist');
+
+  // Some of the available buttons are:
+  // bold, italic, underline, bullist, link
+
+	// Edit the "Full" toolbar and remove 'code'
+	if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
+	{
+	    unset( $toolbars['Full' ][2][$key] );
+	}
+
+	// remove the 'Basic' toolbar completely
+	//unset( $toolbars['Basic'] );
+
+	// return $toolbars
+  return $toolbars;
+}

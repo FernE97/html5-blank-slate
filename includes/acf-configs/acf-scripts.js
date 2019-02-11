@@ -11,6 +11,25 @@ HTMLDocument.prototype.ready = function () {
   });
 };
 
+function addAttribute(param, attribute, attributeValue) {
+  // If it is a node, such as a variable set to document.getElementById('id');
+  if (param.nodeType === Node.ELEMENT_NODE) {
+    param.setAttribute(attribute, attributeValue);
+  }
+  // If param already is an array
+  else if (Array.isArray(param)) {
+    param.map(function (val) {
+      val.setAttribute(attribute, attributeValue)
+    })
+  }
+  // If a string was passed, make an array out of it
+  else if (typeof param === 'string') {
+    [...document.querySelectorAll(param)].map(function (val) {
+      val.setAttribute(attribute, attributeValue)
+    })
+  }
+};
+
 // watchAwaitSelector() near bottom uses MutationObserver to detect DOM changes,
 // which is very useful for working with elements/resources that load late (such as the color picker fields)
 const awaitSelector = (selector, rootNode, fallbackDelay) => new Promise((resolve, reject) => {
@@ -102,6 +121,18 @@ function stylesheet(sheetID, code) {
 */
 
 document.ready().then(function () {
+
+  // When WYSIWYG is initialized
+  acf.add_action('wysiwyg_tinymce_init', function(){
+    // Replaces and reduces the inline height and min height, but still allows it to be resized by the user
+    addAttribute('.acf-field-wysiwyg .mce-edit-area iframe', 'style', 'height: 75px; min-height: 50px; width: 100%;');
+
+    // Hide the "Visual/Text tabs since only the Visual one will be used"
+    stylesheet('wysiwyg_customstyles', '.wp-editor-tabs {display: none !important;}.acf-field-wysiwyg{min-height: 0 !important;}');
+  });
+
+
+
 
   // global_settings is an ACF group passed using wp_localize_script() in functions.php
   var colorScheme = global_settings['color_scheme']; // Color picker repeater

@@ -20,7 +20,7 @@
                     "key": "5c41ec554c732",
                     "name": "banner",
                     "label": "Banner",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5c41ed59d4a13",
@@ -53,7 +53,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -72,7 +72,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -91,7 +91,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -344,7 +344,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -363,7 +363,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -382,7 +382,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -650,7 +650,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -669,7 +669,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -688,7 +688,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -972,7 +972,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -991,7 +991,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -1010,7 +1010,7 @@
                                     },
                                     "default_value": "",
                                     "tabs": "all",
-                                    "toolbar": "basic",
+                                    "toolbar": "very_basic",
                                     "media_upload": 0,
                                     "delay": 0
                                 },
@@ -1256,7 +1256,7 @@
                     "key": "layout_5c423b851d65f",
                     "name": "post_type_grid",
                     "label": "Post Type Grid",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5c48f626c39d8",
@@ -1273,7 +1273,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1292,7 +1292,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1311,7 +1311,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1493,7 +1493,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1512,7 +1512,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1531,7 +1531,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1729,7 +1729,7 @@
                     "key": "layout_5c4891c0c0ebd",
                     "name": "donate",
                     "label": "Donate",
-                    "display": "block",
+                    "display": "row",
                     "sub_fields": [
                         {
                             "key": "field_5c4891c0c0ebf",
@@ -1746,7 +1746,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1765,7 +1765,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1784,7 +1784,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -1803,7 +1803,7 @@
                             },
                             "default_value": "",
                             "tabs": "all",
-                            "toolbar": "basic",
+                            "toolbar": "very_basic",
                             "media_upload": 0,
                             "delay": 0
                         },
@@ -2054,5 +2054,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1549914772
+    "modified": 1549928914
 }
