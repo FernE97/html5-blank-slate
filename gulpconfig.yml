@@ -21,8 +21,6 @@ css:
   autoprefixer:
     browsers:
       - last 2 versions
-      - not dead
-      # https://browserl.ist/?q=last+2+versions%2C+not+dead
     cascade: false
 
 browsersync:
