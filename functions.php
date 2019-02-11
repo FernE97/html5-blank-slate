@@ -305,3 +305,16 @@ function acf_js_enqueue() {
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page("Global Options");
 }
+
+// Lower ACF WYSIWYG editor height
+function acf_wysiwyg() { ?>
+	<script type="text/javascript">
+		(function($) {
+			acf.add_action('wysiwyg_tinymce_init', function( ed, id, mceInit, $field ){
+				$(".acf-field-wysiwyg .mce-edit-area iframe").removeAttr("style");
+        $(".acf-field-wysiwyg .mce-edit-area iframe").attr("style", "height: 75px; min-height: 50px; width: 100%;");
+			});
+		})(jQuery);
+	</script>
+<?php }
+add_action('acf/input/admin_footer', 'acf_wysiwyg');
