@@ -11,11 +11,11 @@
       </div>
     <?php endif; ?>
     <?php if ( get_sub_field("image")):?><img class="section<?=$count;?>__leftImage splitLeft__image" src="<?= get_sub_field("image")["url"]; ?>"><?php endif;?>
-    <?php if ( have_rows( "left_buttons" ) ): ?>
+    <?php if ( have_rows( "left_buttons" ) ): $btn_count = 1; ?>
     <div class="section<?=$count;?>__leftButtons splitLeft__buttons splitLeft__buttons--<?= $alignment; ?> cell">
     <?php while ( have_rows( "left_buttons" ) ): the_row(); ?>
       <a href="<?php the_sub_field( "link" ); ?>" class="section<?=$count;?>__leftButton section<?=$count;?>__leftButton<?=$btn_count;?> button splitLeft__button splitLeft<?=$count;?>__button<?=$btn_count;?>"><?php the_sub_field( "text" ); ?></a>
-    <?php endwhile; ?>
+    <?php $btn_count++; endwhile; ?>
     </div>
     <?php else: ?>
       <?php // no buttons found ?>
@@ -36,11 +36,11 @@
       </div>
     <?php endif; ?>
   <?php if ( get_sub_field("image")):?><img class="section<?=$count;?>__rightImage splitRight__image" src="<?= get_sub_field("image")["url"]; ?>"><?php endif;?>
-  <?php if ( have_rows( "right_buttons" ) ): ?>
+  <?php if ( have_rows( "right_buttons" ) ): $btn_count = 1; ?>
   <div class="section<?=$count;?>__rightButtons splitRight__buttons splitRight__buttons--<?= $alignment; ?> cell">
   <?php while ( have_rows( "right_buttons" ) ): the_row(); ?>
     <a href="<?php the_sub_field( "link" ); ?>" class="section<?=$count;?>__rightButton section<?=$count;?>__rightButton<?=$btn_count;?> button splitRight__button splitRight<?=$count;?>__button<?=$btn_count;?>"><?php the_sub_field( "text" ); ?></a>
-  <?php endwhile; ?>
+  <?php $btn_count++; endwhile; ?>
   </div>
   <?php else: ?>
     <?php // no buttons found ?>

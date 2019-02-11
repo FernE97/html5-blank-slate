@@ -9,7 +9,7 @@
       </div>
     <?php endif; ?>
 
-  <?php if ( have_rows( 'buttons' ) ): $btn_count = 0; ?>
+  <?php if ( have_rows( 'buttons' ) ): $btn_count = 1; ?>
 <div class="section<?=$count;?>__buttons section<?=$count;?>__buttons--<?= $alignment; ?> standard__buttons standard__buttons--<?= $alignment; ?> grid-x grid-margin-x <?= $alignment == 'center' ? 'align-center' : ''; ?>">
     <?php while ( have_rows( 'buttons' ) ): the_row(); ?>
       <a href="<?php the_sub_field( 'link' ); ?>" class="section<?=$count;?>__button section<?=$count;?>__button<?=$btn_count;?> button standard__button standard<?=$count;?>__button standard<?=$count;?>__button<?=$btn_count;?>"><?php the_sub_field( 'text' ); ?></a>
