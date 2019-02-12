@@ -121,6 +121,9 @@ function stylesheet(sheetID, code) {
 */
 
 document.ready().then(function () {
+  // Range slider custom styling (the default ACF slider was not visible, but the input box was)
+  stylesheet('slider_fix', '[type=range]{margin:0;padding:0;width:12.5em;height:.25em;background:0 0;font:1em/1 arial,sans-serif}[type=range],[type=range]::-webkit-slider-thumb{-webkit-appearance:none}[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-moz-range-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-ms-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-webkit-slider-thumb{margin-top:-.625em;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-moz-range-thumb{box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-thumb{margin-top:0;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-tooltip{display:none}');
+
 
   // When WYSIWYG is initialized
   acf.add_action('wysiwyg_tinymce_init', function(){
