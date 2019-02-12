@@ -2,7 +2,7 @@
 <section class="section<?=$count;?> donate<?=$count;?> donate">
   <div class="section<?=$count;?>__content donate__content grid-x grid-margin-x">
     <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
-      <div class="donate__text cell small-12 medium-6">
+      <div class="section<?=$count;?>__text donate__text cell small-12 medium-6">
         <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
         <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
         <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
