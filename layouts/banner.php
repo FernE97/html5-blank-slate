@@ -9,7 +9,7 @@
       </div>
     <?php endif; ?>
     <?php if ( have_rows( "buttons" ) ) : $btn_count = 1; ?>
-      <div class="section<?=$count;?>__buttons section<?=$count;?>__buttons--<?= $alignment; ?> banner__buttons banner__buttons--<?= $alignment; ?> grid-x grid-margin-x align-center">
+      <div class="section<?=$count;?>__buttons section<?=$count;?>__buttons--<?= $alignment; ?> banner__buttons banner__buttons--<?= $alignment; ?> grid-x grid-margin-x align-<?= $alignment; ?>">
       <?php while ( have_rows( "buttons" ) ) : the_row(); ?>
         <a href="<?= get_sub_field( "link" ); ?>" class="section<?=$count;?>__button section<?=$count;?>__button<?=$btn_count;?> button banner__button banner<?=$count;?>__button<?=$btn_count;?> cell small-8 medium-3"><?= get_sub_field( "text" ); ?></a>
       <?php $btn_count++; endwhile; ?>
