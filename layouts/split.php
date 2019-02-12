@@ -1,7 +1,7 @@
 <section class="section<?=$count;?> split<?=$count;?> split grid-x">
-  <?php if (have_rows("left")): $alignment = get_sub_field( "alignment" ); ?>
+  <?php if (have_rows("left")): ?>
   <div class="section<?=$count;?>__left splitLeft splitLeft<?=$count;?> cell small-6">
-    <?php while (have_rows("left")): the_row();?>
+    <?php while (have_rows("left")): the_row(); $alignment = get_sub_field( "alignment" ); ?>
 	    <div class="section<?=$count;?>__leftContent splitLeft__content section<?=$count;?>__leftContent--<?=$alignment;?> splitLeft__content--<?=$alignment;?> grid-y grid-margin-y">
 	    <?php if (get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")): ?>
 	      <div class="section<?=$count;?>__leftText splitLeft__text cell">
@@ -24,9 +24,9 @@
     <?php endwhile;?>
   </div>
   <?php endif; // End of left content ?>
-  <?php if (have_rows("right")): $alignment = get_sub_field( "alignment" ); ?>
+  <?php if (have_rows("right")): ?>
   <div class="section<?=$count;?>__right splitRight splitRight<?=$count;?> cell small-6">
-    <?php while (have_rows("right")): the_row();?>
+    <?php while (have_rows("right")): the_row(); $alignment = get_sub_field( "alignment" ); ?>
 	    <div class="section<?=$count;?>__rightContent section<?=$count;?>__rightContent--<?=$alignment;?> splitRight__content splitRight__content--<?=$alignment;?> grid-y grid-margin-y">
 	    <?php if (get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")): ?>
 	      <div class="section<?=$count;?>__rightText splitRight__text cell">
