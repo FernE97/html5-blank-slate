@@ -3,9 +3,9 @@
   <div class="section<?=$count;?>__content section<?=$count;?>__content--<?= $alignment; ?> standard__content standard__content--<?= $alignment; ?>">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="section<?=$count;?>__text standard__text">
-        <?php if(get_sub_field( "header" ) ): ?><h1><?= get_sub_field( "header" ); ?></h1><?php endif; ?>
-        <?php if(get_sub_field( "tagline" ) ): ?><h2><?= get_sub_field( "tagline" ); ?></h2><?php endif; ?>
-        <?php if(get_sub_field( "body" ) ): ?><p><?= get_sub_field( "body" ); ?></p><?php endif; ?>
+        <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
+        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
+        <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif; ?>
 

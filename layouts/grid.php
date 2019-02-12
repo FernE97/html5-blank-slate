@@ -11,9 +11,9 @@ $query  = new WP_Query($args);
 <section class="section<?=$count;?> postGrid<?=$count;?> postGrid grid-container fluid">
 <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="section<?=$count;?>__text postGrid__text postGrid__text--<?= get_sub_field('text_alignment'); ?>">
-        <?php if(get_sub_field( "header" ) ): ?><h1><?= get_sub_field( "header" ); ?></h1><?php endif; ?>
-        <?php if(get_sub_field( "tagline" ) ): ?><h2><?= get_sub_field( "tagline" ); ?></h2><?php endif; ?>
-        <?php if(get_sub_field( "body" ) ): ?><p><?= get_sub_field( "body" ); ?></p><?php endif; ?>
+        <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
+        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
+        <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif; ?>
   <div class="section<?=$count;?>__gridWrapper postGrid__wrapper grid-x grid-margin-x">

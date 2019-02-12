@@ -1,13 +1,13 @@
 <section class="section<?=$count;?> split<?=$count;?> split grid-x">
-  <?php if (have_rows("left")): ?>
+  <?php if (have_rows("left")): $alignment = get_sub_field( "alignment" ); ?>
   <div class="section<?=$count;?>__left splitLeft splitLeft<?=$count;?> cell small-6">
     <?php while (have_rows("left")): the_row();?>
 	    <div class="section<?=$count;?>__leftContent splitLeft__content section<?=$count;?>__leftContent--<?=$alignment;?> splitLeft__content--<?=$alignment;?> grid-y grid-margin-y">
 	    <?php if (get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")): ?>
 	      <div class="section<?=$count;?>__leftText splitLeft__text cell">
-	        <?php if (get_sub_field("header")): ?><h1><?=get_sub_field("header");?></h1><?php endif;?>
-        <?php if (get_sub_field("tagline")): ?><h2><?=get_sub_field("tagline");?></h2><?php endif;?>
-        <?php if (get_sub_field("body")): ?><p><?=get_sub_field("body");?></p><?php endif;?>
+        <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
+        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
+        <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif;?>
     <?php if (get_sub_field("fg_image")): ?><img class="section<?=$count;?>__leftImage splitLeft__image" src="<?=get_sub_field("fg_image")["url"];?>"><?php endif;?>
@@ -24,15 +24,15 @@
     <?php endwhile;?>
   </div>
   <?php endif; // End of left content ?>
-  <?php if (have_rows("right")): ?>
+  <?php if (have_rows("right")): $alignment = get_sub_field( "alignment" ); ?>
   <div class="section<?=$count;?>__right splitRight splitRight<?=$count;?> cell small-6">
     <?php while (have_rows("right")): the_row();?>
 	    <div class="section<?=$count;?>__rightContent section<?=$count;?>__rightContent--<?=$alignment;?> splitRight__content splitRight__content--<?=$alignment;?> grid-y grid-margin-y">
 	    <?php if (get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")): ?>
 	      <div class="section<?=$count;?>__rightText splitRight__text cell">
-	        <?php if (get_sub_field("header")): ?><h1><?=get_sub_field("header");?></h1><?php endif;?>
-        <?php if (get_sub_field("tagline")): ?><h2><?=get_sub_field("tagline");?></h2><?php endif;?>
-        <?php if (get_sub_field("body")): ?><p><?=get_sub_field("body");?></p><?php endif;?>
+        <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
+        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
+        <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif;?>
   <?php if (get_sub_field("fg_image")): ?><img class="section<?=$count;?>__rightImage splitRight__image" src="<?=get_sub_field("fg_image")["url"];?>"><?php endif;?>
