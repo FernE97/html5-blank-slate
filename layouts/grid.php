@@ -30,7 +30,7 @@ $query  = new WP_Query($args);
             <?php if(get_the_post_thumbnail_url($nested_post->ID)): ?>
               style="background-image: url('<?= get_the_post_thumbnail_url($nested_post->ID); ?>');"
             <?php endif; ?>>
-            <h2><?php echo get_the_title($nested_post->ID);?></h2>
+            <h4><?php echo get_the_title($nested_post->ID);?></h4>
 
             <?php
             /*
@@ -44,9 +44,15 @@ $query  = new WP_Query($args);
 
 
               <?php
-                if( get_post_type($nested_post->ID) == 'resources' ): include( locate_template('posts/resources.php') );
-                elseif (get_post_type ($nested_post->ID) == 'projects'): include( locate_template('posts/projects.php') );
-                else: include( locate_template('posts/default.php') );
+                if( get_post_type($nested_post->ID) == 'resources' ):
+                  include( locate_template('posts/resources.php') );
+
+                elseif (get_post_type ($nested_post->ID) == 'projects'):
+                  include( locate_template('posts/projects.php') );
+
+                else:
+                  include( locate_template('posts/default.php') );
+                endif;
               ?>
 
             */
