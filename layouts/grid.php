@@ -16,6 +16,7 @@ $query  = new WP_Query($args);
         <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif; ?>
+
   <div class="section<?=$count;?>__gridWrapper postGrid__wrapper grid-x grid-margin-x">
     <?php
       // Uses `foreach` loop instead of `while have_posts` because multiple nested queries
@@ -24,10 +25,33 @@ $query  = new WP_Query($args);
       foreach ($query->posts as $nested_post):
         if($query_count <= $max || $max == "0"): ?>
           <div class="section<?=$count;?>__gridItem section<?=$count;?>__gridItem<?= $query_count; ?> postGrid__item postGrid__item<?= $query_count; ?> cell small-12 medium-6 large-4 xxlarge-3"
+
+
             <?php if(get_the_post_thumbnail_url($nested_post->ID)): ?>
               style="background-image: url('<?= get_the_post_thumbnail_url($nested_post->ID); ?>');"
             <?php endif; ?>>
             <h2><?php echo get_the_title($nested_post->ID);?></h2>
+
+            <?php
+            /*
+
+              If you need to display custom fields instead of values from the default editor,
+              you can pass "$nested_post->ID" as the $post_id parameter in ACF functions like 'have_rows()' and 'get_field()'
+
+
+              If you have multiple post types each with their own custom fields,
+              it may be easier/manageable to check the post type then include its template if needed:
+
+
+              <?php
+                if( get_post_type($nested_post->ID) == 'resources' ): include( locate_template('posts/resources.php') );
+                elseif (get_post_type ($nested_post->ID) == 'projects'): include( locate_template('posts/projects.php') );
+                else: include( locate_template('posts/default.php') );
+              ?>
+
+            */
+            ?>
+
           </div>
         <?php endif; $query_count++; ?>
       <?php endforeach; ?>
