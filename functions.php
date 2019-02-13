@@ -306,20 +306,6 @@ if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page("Global Options");
 }
 
-// Lower ACF WYSIWYG editor height
-function acf_wysiwyg() { ?>
-	<script type="text/javascript">
-		(function($) {
-			acf.add_action('wysiwyg_tinymce_init', function( ed, id, mceInit, $field ){
-				$(".acf-field-wysiwyg .mce-edit-area iframe").removeAttr("style");
-        $(".acf-field-wysiwyg .mce-edit-area iframe").attr("style", "height: 75px; min-height: 50px; width: 100%;");
-			});
-		})(jQuery);
-	</script>
-<?php }
-add_action('acf/input/admin_footer', 'acf_wysiwyg');
-
-
 // Removes the WYSIWYG <p> tags that are automatically added
 function acf_wysiwyg_remove_wpautop() {
   remove_filter('acf_the_content', 'wpautop' );
@@ -352,3 +338,14 @@ function acf_wysiwig_toolbars( $toolbars )
 	// return $toolbars
   return $toolbars;
 }
+
+
+// [nbsp] shortcode
+// Without the code tab visible,
+// there isn't an easy way to add non-breaking spaces.
+// This adds a non-breaking space using a shortcode.
+function nbsp_shortcode( $atts, $content = null ) {
+  $content = '&nbsp';
+  return $content;
+}
+add_shortcode( 'nbsp', 'nbsp_shortcode' );

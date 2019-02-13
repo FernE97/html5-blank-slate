@@ -1,6 +1,5 @@
 // Fonts
 // ----------------------------------------------
-
 // Order of the includes matters, and it is: normal, bold, italic, bold+italic.
 @mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
     @font-face {
@@ -152,4 +151,145 @@ $modifierSeparator: '--';
 			@content;
 		}
 	}
+}
+
+
+// You can change the defaults here, which will be used if no updated parameters are passed
+// When using this mixin, you can change however many parameters as you want,
+// anything else will use the default values
+
+// Example: @include shadow($move: false, $color: #222222);
+// ...which will disable the movement on hover, and change the initial shadow color.
+@mixin shadow($move: true, $x: 0, $y: rem-calc(3), $blur: rem-calc(7), $color: rgba(0, 0, 0, .3), $transition: .2s, $distance: rem-calc(4), $newX: 0, $newY: rem-calc(7), $newBlur: rem-calc(11), $newColor: rgba(0, 0, 0, .3)) {
+  @if $move == true {
+    position: relative;
+    bottom: 0;
+  }
+
+  box-shadow: $x $y $blur $color;
+  transition: all $transition;
+
+  &:hover,
+  &:focus {
+    @if $move == true {
+      bottom: $distance;
+    }
+    box-shadow: $newX $newY $newBlur $newColor;
+  }
+}
+
+
+// ********* Helper functions for 'poly-fluid-sizing' mixin
+@function list-remove($list, $index) {
+  $newList: ();
+
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $newList: append($newList, nth($list, $i), 'space');
+    }
+  }
+
+  @return $newList;
+}
+
+@function list-sort($list) {
+  $sortedlist: ();
+
+  @while length($list) > 0 {
+    $value: nth($list, 1);
+
+    @each $item in $list {
+      @if $item < $value {
+        $value: $item;
+      }
+    }
+
+    $sortedlist: append($sortedlist, $value, 'space');
+
+    $list: list-remove($list, index($list, $value));
+  }
+
+  @return $sortedlist;
+}
+
+@function map-sort($map) {
+  $keys: list-sort(map-keys($map));
+  $sortedMap: ();
+
+  @each $key in $keys {
+    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+  }
+
+  @return $sortedMap;
+}
+
+@function linear-interpolation($map) {
+  $keys: map-keys($map);
+
+  @if length($keys) != 2 {
+    @error 'linear-interpolation() $map must be exactly 2 values';
+  }
+
+  // The slope
+  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1));
+
+  // The y-intercept
+  $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
+
+  // Determine if the sign should be positive or negative
+  $sign: '+';
+
+  @if $b < 0 {
+    $sign: '-';
+    $b: abs($b);
+  }
+
+  @return calc(#{$m * 100}vw #{$sign} #{$b});
+}
+
+/// poly-fluid-sizing
+/// Generate linear interpolated size values through multiple break points
+/// @param $property - A string CSS property name
+/// @param $map - A Sass map of viewport unit and size value pairs
+/// @example
+///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+///   You can use any unit type, but you can't mix them (invalid... 576px: 3rem)
+
+@mixin poly-fluid-sizing($property, $map) {
+  // Get the number of provided breakpoints
+  $length: length(map-keys($map));
+
+  // Error if the number of breakpoints is < 2
+  @if $length < 2 {
+    @error 'poly-fluid-sizing() $map requires at least values';
+  }
+
+  // Sort the map by viewport width (key)
+  $map: map-sort($map);
+  $keys: map-keys($map);
+
+  // Minimum size
+  #{$property}: map-get($map, nth($keys, 1));
+
+  // Interpolated size through breakpoints
+  @for $i from 1 through $length - 1 {
+    @media (min-width: nth($keys, $i)) {
+      $value1: map-get($map, nth($keys, $i));
+      $value2: map-get($map, nth($keys, $i + 1));
+
+      // If values are not equal, perform linear interpolation
+      @if $value1 != $value2 {
+        #{$property}: linear-interpolation((nth($keys, $i): $value1, nth($keys, $i + 1): $value2));
+      }
+
+      @else {
+        #{$property}: $value1;
+      }
+    }
+  }
+
+  // Maxmimum size
+  @media (min-width: nth($keys, $length)) {
+    #{$property}: map-get($map, nth($keys, $length));
+  }
 }

@@ -127,10 +127,11 @@ document.ready().then(function () {
 
   // When WYSIWYG is initialized
   acf.add_action('wysiwyg_tinymce_init', function(){
-    // Replaces and reduces the inline height and min height, but still allows it to be resized by the user
+    // Reduces the editor height, but still allows it to be resized by the user
     addAttribute('.acf-field-wysiwyg .mce-edit-area iframe', 'style', 'height: 75px; min-height: 50px; width: 100%;');
 
-    // Hide the "Visual/Text tabs since only the Visual one will be used"
+    // Hide the Visual/Text tabs since only the Visual one will be used
+    // Just comment this out to re-enable the two tabs
     stylesheet('wysiwyg_customstyles', '.wp-editor-tabs {display: none !important;}.acf-field-wysiwyg{min-height: 0 !important;}');
   });
 
