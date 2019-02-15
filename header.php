@@ -16,9 +16,16 @@
 
     <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
     <?php wp_head(); ?>
+
+
+    <?php
+      // Adobe Fonts:
+      // Acumin Pro Condensed, Noto Sans Display Medium
+    ?>
+    <link rel="stylesheet" href="https://use.typekit.net/wwr4itn.css">
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php $page_id = get_queried_object_id(); body_class("page${page_id}"); ?>>
 
 <header class="site-header" role="banner">
     <p class="logo"><a href="<?php echo home_url( '/' ); ?>"><?php bloginfo( 'name' ); ?></a></p>

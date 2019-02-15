@@ -1,18 +1,24 @@
 // Colors
+//$primary: ;
+//$secondary: ;
+//$tertiary: ;
+$small: rem-calc(0);
+$smallish: rem-calc(400);
+$medium: rem-calc(640);
+$mediumish: rem-calc(832);
+$large: rem-calc(1024);
+$xlarge: rem-calc(1200);
+$xxlarge: rem-calc(1440);
+
+$elementSeparator: '__';
+$modifierSeparator: '--';
+
 $font-color: #3a3a3a;
 $link-color: #0ae;
 $link-color-hover: adjust-hue($link-color, -240);
 
-$tiny: rem-calc(0);
-$small: rem-calc(400);
-$medium: rem-calc(640);
-$large: rem-calc(900);
-$xlarge: rem-calc(1200);
-$xxlarge: rem-calc(1440);
-
 // Font
 $monospace: consolas, monaco, menlo, monospace;
-
 
 
 //*************** Standard and custom transition timings */

@@ -14,30 +14,29 @@ jQuery(document).ready(function ($) {
 
 
   // -------------------- DONATION FORM ------------------- //
-  let donateLabel = document.querySelectorAll('.donateForm__radioLabel'),
-    i;
+  let donateLabel = document.querySelectorAll('.donate__radioLabel'), i;
 
   for (i = 0; i < donateLabel.length; ++i) {
     let el = donateLabel[i];
     el.addEventListener('click', function () {
       let formLabel;
-      if (document.querySelector('.donateForm__radioLabel--active')) {
-        formLabel = document.querySelector('.donateForm__radioLabel--active');
-        formLabel.classList.remove('donateForm__radioLabel--active');
+      if (document.querySelector('.donate__form .js--active')) {
+        formLabel = document.querySelector('.donate__form .js--active');
+        formLabel.classList.remove('js--active');
       }
-      el.classList.add('donateForm__radioLabel--active');
+      el.classList.add('js--active');
     })
   }
 
-  var buttonAmount = $('.donateForm__input'),
-    customAmount = $('.donateForm__input'),
+  var buttonAmount = $('.donate__input'),
+    customAmount = $('.donate__input'),
     buttonDonate = $('.js--button-donate'),
     frequencyButton = $('.js--frequency'),
     urlValue
 
   // Toggling amount
   buttonAmount.on('change', function () {
-    $('.donateForm__input').val();
+    $('.donate__input').val();
   });
 
   // Resetting amounts and setting the custom-amount
@@ -48,11 +47,11 @@ jQuery(document).ready(function ($) {
   buttonDonate.on('click', function (e) {
     e.preventDefault();
     var amountInput = customAmount.val(),
-      amountButton = $('.donateForm__input').val(),
+      amountButton = $('.donate__input').val(),
       frequency;
 
-    if ($('.donateForm__radioLabel--active').data('interval') == 'monthly') {
-      frequency = '&interval=' + $('.donateForm__radioLabel--active').data('interval')
+    if ($('.donate__form .js--active').data('interval') == 'monthly') {
+      frequency = '&interval=' + $('.donate__form .js--active').data('interval')
     } else {
       frequency = ''
     }
@@ -143,6 +142,36 @@ var keepSquare = function (selector, matchAttr) {
   }
 }
 
+
+
+window.onresize = function(){
+  equalHeight(true);
+}
+
+function equalHeight(resize) {
+  var elements = document.querySelectorAll(resize),
+      allHeights = [],
+      i = 0;
+  if(resize === true){
+    for(i = 0; i < elements.length; i++){
+      elements[i].style.height = 'auto';
+    }
+  }
+  for(i = 0; i < elements.length; i++){
+    var elementHeight = elements[i].clientHeight;
+    allHeights.push(elementHeight);
+  }
+  for(i = 0; i < elements.length; i++){
+    elements[i].style.height = Math.max.apply( Math, allHeights) + 'px';
+    // Optional: Add show class to prevent FOUC
+    if(resize === false){
+      elements[i].className = elements[i].className + " show";
+    }
+  }
+}
+
+
+
 // Document load/ready promise, calls 'ready' method when completed
 HTMLDocument.prototype.ready = function () {
   return new Promise(function (resolve, reject) {
@@ -157,8 +186,43 @@ HTMLDocument.prototype.ready = function () {
 };
 
 
+
+var resizePostItems = function(postItem) {
+  postItem.map(function (item) {
+    let max = 0;
+    item.map(function (el) {
+      // Remove current inline style so that it won't keep reusing the largest size set previously
+      el.style.height = '';
+      if (el.offsetHeight > max) {
+        max = el.offsetHeight;
+      }
+    });
+
+    if (max > 0) {
+      item.map(function (el) {
+        el.style.height = max+'px';
+      });
+    }
+  });
+}
+
 // Custom global scripts
 document.ready().then(function () {
+
+  // var postItems = [...document.querySelectorAll('.postGrid__item')];
+  var postItemHeading = [...document.querySelectorAll('.postGrid__itemHeading')];
+  var postItemText = [...document.querySelectorAll('.postGrid__itemText')];
+  var postItemButton = [...document.querySelectorAll('.postGrid__itemButton')];
+  var postItem = [postItemHeading, postItemText, postItemButton];
+
+  window.addEventListener('load', function() {
+    resizePostItems(postItem)
+  });
+
+  window.addEventListener('resize', function() {
+    resizePostItems(postItem)
+  });
+
   var glide = document.querySelectorAll('.glide');
   if (glide.length > 0) {
     for (let i = 0; i < glide.length; i++) {

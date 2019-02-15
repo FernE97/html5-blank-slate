@@ -1,11 +1,11 @@
 <?php $shape = get_sub_field("shape"); ?>
-<section class="section<?=$count;?> slider<?=$count;?> slider">
-  <div class="section<?=$count;?>__content section<?=$count;?>__content--center slider__content slider__content--center">
+<section class="section<?=$count;?> slider sliderLayout layout">
+  <div class="slider__content section<?=$count;?>__content content --center">
   <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
-      <div class="section<?=$count;?>__text slider__text slider__text">
-        <?php if(get_sub_field( "header" ) ): ?><h2 class="section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
-        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
-        <?php if(get_sub_field( "body" ) ): ?><p class="section<?=$count;?>__bodyText bodyText"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
+      <div class="slider__textContent section<?=$count;?>__textContent textContent">
+      <?php if(get_sub_field( "header" ) ): ?><h2 class="slider__heading section<?=$count;?>__heading heading"><?= get_sub_field( "header" ); ?></h2><?php endif; ?>
+        <?php if(get_sub_field( "tagline" ) ): ?><h3 class="slider__subheading section<?=$count;?>__subheading subheading"><?= get_sub_field( "tagline" ); ?></h3><?php endif; ?>
+        <?php if(get_sub_field( "body" ) ): ?><p class="slider__text section<?=$count;?>__text text"><?= get_sub_field( "body" ); ?></p><?php endif; ?>
       </div>
     <?php endif; ?>
   </div>
@@ -19,15 +19,15 @@
       <div class="glide__track" data-glide-el="track">
         <div class="glide__slides">
             <?php while ( have_rows( "slide" ) ) : the_row(); ?>
-              <div class="glide__slide <?= $shape; ?>glide__slide<?=$slide_count;?>">
+              <div class="glide__slide section<?=$count;?>__slide <?= $shape; ?>glide__slide<?=$slide_count;?>">
                 <a href="<?= get_sub_field("link"); ?>"></a>
               </div>
             <?php $slide_count++; endwhile; ?>
         </div>
       </div>
       <div class="glide__controls" data-glide-el="controls">
-        <button data-glide-dir="<" role="button" aria-label="Previous" class="glide__arrow glide__prev glide__arrow--left">&#8678;</button>
-        <button data-glide-dir=">" role="button" aria-label="Next" class="glide__arrow glide__next glide__arrow--right">&#8680;</button>
+        <button data-glide-dir="<" role="button" aria-label="Previous" class="glide__arrow section<?=$count;?>__arrow glide__prev section<?=$count;?>__prev glide__arrow--left">&#8678;</button>
+        <button data-glide-dir=">" role="button" aria-label="Next" class="glide__arrow section<?=$count;?>__arrow glide__next section<?=$count;?>__next glide__arrow--right">&#8680;</button>
       </div>
     </div>
 

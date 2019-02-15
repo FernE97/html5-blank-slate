@@ -69,17 +69,19 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #1779ba,
-  secondary: #767676,
+  primary: #1BCCB2,
+  secondary: #70C1C1,
+  tertiary: #16A38E,
   success: #3adb76,
   warning: #ffae00,
-  alert: #cc4b37,
+  alert: #cc4b37
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
 $black: hsla(0, 0%, 9%, 1);
 $white: hsla(0, 0%, 97%, 1);
+$whitest: hsla(0, 0%, 100%, 1);
 $body-background: $white;
 $body-font-color: $black;
 $body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -105,14 +107,17 @@ $print-transparent-backgrounds: true;
 // --------------
 
 $breakpoints: (
-  small: 0,
+  small: 0px,
+  smallish: 400px,
   medium: 640px,
+  mediumish: 832px,
   large: 1024px,
   xlarge: 1200px,
   xxlarge: 1440px,
 );
+
 $print-breakpoint: large;
-$breakpoint-classes: (small medium large xlarge xxlarge);
+$breakpoint-classes: (small smallish medium mediumish large xlarge xxlarge);
 
 // 3. The Grid
 // -----------
@@ -121,7 +126,7 @@ $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
   small: 20px,
-  medium: 30px,
+  medium: 30px
 );
 $grid-column-align-edge: true;
 $grid-column-alias: 'columns';
@@ -280,14 +285,14 @@ $breadcrumbs-item-separator-color: $medium-gray;
 
 $button-font-family: inherit;
 $button-padding: 0.85em 1em;
-$button-margin: 0 0 $global-margin 0;
+$button-margin: $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
 $button-background-hover: scale-color($button-background, $lightness: -15%);
 $button-color: $white;
 $button-color-alt: $black;
 $button-radius: $global-radius;
-$button-hollow-border-width: 1px;
+$button-hollow-border-width: 2px;
 $button-sizes: (
   tiny: 0.6rem,
   small: 0.75rem,

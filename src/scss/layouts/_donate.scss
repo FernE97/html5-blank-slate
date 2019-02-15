@@ -1,112 +1,150 @@
 // ACF Flexible Content
 // "Donate" Layout
 .donate {
+  //******************** Section content
   &__content {
+    @include poly-fluid-sizing('padding-top', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
+    @include poly-fluid-sizing('padding-bottom', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
     display: flex;
     justify-content: space-evenly;
     align-items: center;
     width: 100%;
   }
 
+  &__textContent {
+    align-self: flex-start;
+  }
+
+  // Form wrapper
   &__formWrap {
     width: 100%;
     display: flex;
     align-items: center;
+
     // Form is on left
-    &--left { order: -1; }
+    &.--left {
+      order: -1;
+    }
+
     // Form is on right
-    &--right { order: 1; }
-  }
-
-  &__text {
-    width: 90%;
-
-    @include breakpoint(large) {
-      width: 70%;
+    &.--right {
+      order: 1;
     }
   }
-}
 
-.donateForm {
-  width: 100%;
-  margin: 0 auto;
-  border: 2px solid hsla(0, 0%, 12%, 1);
-  box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-  background-color: $white;
-  color: $black;
-  text-align: center;
 
-  @include breakpoint(medium) {
-    width: 80%;
+
+  //******************** Form element
+  &__form {
+    width: 100%;
+    margin: 0 auto;
+    background-color: transparent;
+    text-align: center;
+
+    @include breakpoint(large) {
+      width: 60%;
+    }
   }
 
-  &__selectInterval {
+  // Top of form, once/monthly tabs
+  &__interval {
     display: flex;
     justify-content: space-evenly;
-    border-bottom: 2px solid hsla(0, 0%, 12%, 1);
-  }
-
-  &__onceLabel {
-    border-right: 2px solid hsla(0, 0%, 12%, 1);
+    //border-bottom: 2px solid hsla(0, 0%, 12%, 1);
+    border: 3px solid $primary;
+    border-radius: 1000px;
+    //@include shadow($move: false, $blur: rem-calc(2), $newBlur: rem-calc(4));
   }
 
   &__radioLabel {
     width: 50%;
     text-align: center;
-    padding: .75rem 0;
-    font-weight: 400;
+    padding: rem-calc(2) 0;
     letter-spacing: 1px;
     font-size: 1.2rem;
-    background-color: hsla(0, 0%, 93%, 1);
-    color: $black;
+    background-color: $whitest;
+    color: $primary;
+    font-weight: bold;
 
-
-    &--active {
-      background-color: hsla(0, 0%, 27%, 1);
+    &.js--active {
+      background-color: $primary;
       color: #ffffff;
     }
   }
 
-  &__content {
+  &__onceLabel {
+    border-radius: 1000px 0 0 1000px;
+  }
+
+  &__monthlyLabel {
+    border-radius: 0 1000px 1000px 0;
+  }
+
+  // Bottom part of form, including input field and submit button
+  &__formContent {
+    border: 3px solid $primary;
+    border-radius: 10px;
     padding: 2rem 1rem;
+    @include shadow($move: false);
+    margin-top: rem-calc(20);
 
     * {
       line-height: unset;
     }
   }
 
-  &__heading {
+  // Text at the top of the form
+  &__formHeading {
     line-height: unset;
     padding-bottom: 2rem;
+    color: $darkOnLightHeadingColor;
   }
 
   &__inputWrap {
     position: relative;
   }
 
+  // Input field element
+  &__input {
+    border: 2px solid $inputBorder;
+    background-color: $lightGreen;
+    border-radius: 1000px;
+    padding: 2.5rem 2rem 2.5rem 3.25rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: $primary;
+    font-family: $font_heading;
+    @include shadow($move: false, $blur: rem-calc(5), $newBlur: rem-calc(7), $newY: rem-calc(5));
+
+    &:focus {
+      border: 1px solid $inputBorder;
+      background-color: $lightGreen;
+    }
+  }
+
   &__currencySymbol, &__currency {
     position: absolute;
     top: 50%;
-    transform: perspective(1px) translateY(-50%);
+    transform: perspective(1px) translateY(-42%);
+    color: $darkOnLightHeadingColor;
+    font-size: 1.5rem;
+    font-family: 'Source Sans Pro';
+    z-index: 1;
   }
 
   &__currencySymbol {
-    left: 10px;
+    left: rem-calc(30);
   }
 
   &__currency {
-    right: 10px;
+    right: rem-calc(30);
   }
 
-  &__input {
-    border: 1px solid hsla(0, 0%, 12%, 1);
-    padding: 2rem;
-    font-size: 2rem;
-    font-weight: bold;
-  }
-
+  // Submit button
   &__button {
-    padding: 1.25rem !important;
+    margin-top: 0;
+    padding: 1.5rem !important;
     background-color: $primary-color;
+    border-radius: 1000px;
   }
 }

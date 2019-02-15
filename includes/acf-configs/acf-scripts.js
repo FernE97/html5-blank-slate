@@ -11,27 +11,52 @@ HTMLDocument.prototype.ready = function () {
   });
 };
 
-function addAttribute(param, attribute, attributeValue) {
+// @param: selector, node, node list, or array of elements
+// @attribute: the attribute to add to matching @param elements
+// @attributeValue: the value to assign to the attribute
+// @appendStyles: boolean, only applied if adding a style attribute. This is just for QoL, and defaults to true since the latest @attributeValue should override any existing, identical properties. If set to false, any existing 'style' attribute will be replaced, the same behavior as other attributes
+function addAttribute(param, attribute, attributeValue, appendStyles) {
+  if (attribute != 'style' || appendStyles == false) {
+    appendStyles = false;
+  } else {
+    appendStyles = true;
+    var newStyles = attributeValue;
+  }
+
   // If it is a node, such as a variable set to document.getElementById('id');
   if (param.nodeType === Node.ELEMENT_NODE) {
+    if (appendStyles) {
+      attributeValue = param.getAttribute('style')+newStyles;
+    }
     param.setAttribute(attribute, attributeValue);
   }
+
   // If param already is an array
   else if (Array.isArray(param)) {
     param.map(function (val) {
+      if (appendStyles) {
+        attributeValue = val.getAttribute('style')+newStyles;
+      }
       val.setAttribute(attribute, attributeValue)
-    })
+    });
   }
+
   // If a string was passed, make an array out of it
   else if (typeof param === 'string') {
     [...document.querySelectorAll(param)].map(function (val) {
+      if (appendStyles) {
+        attributeValue = val.getAttribute('style')+newStyles;
+      }
       val.setAttribute(attribute, attributeValue)
-    })
+    });
   }
 };
 
+
+
 // watchAwaitSelector() near bottom uses MutationObserver to detect DOM changes,
 // which is very useful for working with elements/resources that load late (such as the color picker fields)
+// and has significantly better performance than the older method of using setTimeout and/or setInterval
 const awaitSelector = (selector, rootNode, fallbackDelay) => new Promise((resolve, reject) => {
   try {
     const root = rootNode || document
@@ -91,6 +116,7 @@ const awaitSelector = (selector, rootNode, fallbackDelay) => new Promise((resolv
   }
 })
 
+// Callback function | selectors to watch for | where to watch from, usually 'document' | delay in MS if they don't support MutationObserver
 const watchAwaitSelector = (callback, selector, rootNode, fallbackDelay) => {
   (function awaiter(continueWatching = true) {
     if (continueWatching === false) return
@@ -121,22 +147,14 @@ function stylesheet(sheetID, code) {
 */
 
 document.ready().then(function () {
-  // Range slider custom styling (the default ACF slider was not visible, but the input box was)
-  stylesheet('slider_fix', '[type=range]{margin:0;padding:0;width:12.5em;height:.25em;background:0 0;font:1em/1 arial,sans-serif}[type=range],[type=range]::-webkit-slider-thumb{-webkit-appearance:none}[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-moz-range-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-ms-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-webkit-slider-thumb{margin-top:-.625em;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-moz-range-thumb{box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-thumb{margin-top:0;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-tooltip{display:none}');
 
+  watchAwaitSelector(function() {
+    // Replaces and reduces the inline height and min height, but still allows it to be resized by the user
+   addAttribute('.acf-editor-wrap iframe', 'style', 'min-height: 0px; height: 100px;', true);
 
-  // When WYSIWYG is initialized
-  acf.add_action('wysiwyg_tinymce_init', function(){
-    // Reduces the editor height, but still allows it to be resized by the user
-    addAttribute('.acf-field-wysiwyg .mce-edit-area iframe', 'style', 'height: 75px; min-height: 50px; width: 100%;');
-
-    // Hide the Visual/Text tabs since only the Visual one will be used
-    // Just comment this out to re-enable the two tabs
-    stylesheet('wysiwyg_customstyles', '.wp-editor-tabs {display: none !important;}.acf-field-wysiwyg{min-height: 0 !important;}');
-  });
-
-
-
+    // Hides the "Visual/Text" tabs, comment out to keep the tabs visible
+    // addAttribute('.wp-editor-tabs', 'style', 'display: none !important;', true);
+  }, '.acf-editor-wrap iframe', document, 1500);
 
   // global_settings is an ACF group passed using wp_localize_script() in functions.php
   var colorScheme = global_settings['color_scheme']; // Color picker repeater
@@ -160,6 +178,7 @@ document.ready().then(function () {
         return args;
       });
 
+      // Color Picker styling
       watchAwaitSelector(function () {
         var picker = document.querySelectorAll('.iris-picker-inner');
         var inputWrap = document.querySelectorAll('.wp-picker-input-wrap');
@@ -183,4 +202,8 @@ document.ready().then(function () {
       stylesheet('colorpicker_customstyles', '.iris-palette {width: 50px !important; height: 50px !important; margin: .5px !important; padding: 0 !important; border-radius: 0 !important;} .wp-picker-active .iris-picker{display: flex !important;flex-wrap:wrap !important;align-content:flex-start !important; justify-content: center !important;width:255px !important;height:initial !important;padding:0 !important;} .iris-palette-container {width: 100%; position: relative !important; bottom: 0 !important; left: 0 !important; display: flex !important; flex-wrap: wrap !important;}');
     }
   }
+
+
+  // Range slider custom styling (the default ACF slider was not visible, but the input box was)
+  stylesheet('slider_fix', '[type=range]{margin:0;padding:0;width:12.5em;height:.25em;background:0 0;font:1em/1 arial,sans-serif}[type=range],[type=range]::-webkit-slider-thumb{-webkit-appearance:none}[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-moz-range-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-ms-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-webkit-slider-thumb{margin-top:-.625em;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-moz-range-thumb{box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-thumb{margin-top:0;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-tooltip{display:none}');
 });

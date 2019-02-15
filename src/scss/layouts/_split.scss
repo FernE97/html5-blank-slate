@@ -2,12 +2,45 @@
 // "Split" Layout
 
 .splitLeft, .splitRight {
+  // Move left/right into one column
+  width: 100%;
+
   &__content {
     width: 100%;
   }
 
   &__image {
+    display: none;
+    border-radius: 10px;
+    @include shadow($move: false);
     height: auto;
     margin: 0 auto;
+  }
+
+  &__textContent {
+    margin-bottom: 0;
+  }
+
+  &__buttons {
+    margin-top: 0;
+  }
+
+  &__heading {
+    color: $darkOnLightHeadingColor;
+  }
+
+  &__text {
+    color: $darkOnLighttextColor;
+  }
+
+  &__button {
+    @include shadow($blur: rem-calc(4), $newBlur: rem-calc(6));
+  }
+
+  @include breakpoint(medium) {
+
+    &__image {
+      display: block;
+    }
   }
 }

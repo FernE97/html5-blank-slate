@@ -1,18 +1,43 @@
 // General styling, mostly handling the background images, background overlays, and text overlays
-.banner, .standard, .splitLeft, .splitRight, .slider, .donate, .postGrid {
+.layout {
   position: relative;
   padding: rem-calc(15);
+  @include poly-fluid-sizing('padding', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
+}
+
+.text {
+  @include poly-fluid-sizing('font-size', ($small: .75rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem));
+}
+
+// Non-banner headings. Taglines/subheadings are h3
+.heading {
+  @include poly-fluid-sizing('font-size', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
+  @include poly-fluid-sizing('line-height', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
+  margin-bottom: rem-calc(30);
+}
+
+// Banner heading. Taglines/subheadings are h2
+.banner {
+  &__heading {
+    @include poly-fluid-sizing('font-size', ($small: 2rem, $medium: 3rem, $large: 5rem, $xlarge: 7rem));
+  }
+
+
+}
+
+.layout, .splitLeft, .splitRight {
   background-size: cover;
   background-position: center center;
 
   // Background images/overlays
-  &:before, &:after {
+  &:before,
+  &:after {
     position: absolute;
     content: " ";
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: block;
     background-size: cover;
   }
@@ -28,59 +53,54 @@
     // Appear over the background image as a colored overlay
     z-index: -2;
   }
+}
 
-  // Content
-  &__content {
-    padding: rem-calc(20);
-    color: $black;
-    position: relative;
+// Content
+.content {
+  position: relative;
 
-    // Text background overlay
-    &:before {
-      content: "";
-      display: block;
-      position: absolute;
-      min-width: 100%;
-      height: 98%;
-      // Topmost of the backgrounds/overlays
-      z-index: -1;
-      left: 0;
-    }
-
-    &--left {
-      margin-right: auto;
-      margin-left: 0;
-    }
-
-    &--center {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    &--right {
-      margin-left: auto;
-      margin-right: 0;
-    }
-  }
-
-  &__buttons {
-    margin-top: rem-calc(25);
-  }
-
-  @include breakpoint(medium) {
-    padding: rem-calc(30);
-  }
-
-  @include breakpoint(large) {
-    padding: rem-calc(50);
-
-    &__content {
-      width: 50%;
-    }
+  // Text background overlay
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    min-width: 100%;
+    height: 98%;
+    // Topmost of the backgrounds/overlays
+    z-index: -1;
+    left: 0;
   }
 }
 
-.button, .glide__arrow {
-box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+.buttons {
+  .button {
+    @include poly-fluid-sizing('font-size', ($small: .5rem, $medium: .7rem, $large: 1rem, $xlarge: 1rem));
+    @include poly-fluid-sizing('line-height', ($small: .5rem, $medium: .7rem, $large: 1rem, $xlarge: 1rem));
+    border-radius: 1000px !important;
+    padding: 1.8rem 3rem 1.5rem 3rem;
+    margin-left: 0;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+ }
+
+.--left {
+  margin-right: auto;
+  margin-left: 0;
 }
+
+.--center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.--right {
+  margin-left: auto;
+  margin-right: 0;
+}
+
+// .button, .glide__arrow {
+// box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+// }

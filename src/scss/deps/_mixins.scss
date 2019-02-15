@@ -1,51 +1,63 @@
-// Fonts
-// ----------------------------------------------
 // Order of the includes matters, and it is: normal, bold, italic, bold+italic.
-@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false ) {
-    @font-face {
-        font-family: quote($font-family);
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal, $asset-pipeline: false) {
+  @font-face {
+    font-family: quote($font-family);
 
-        @if $asset-pipeline == true {
-            src: font-url('#{$file-path}.eot');
-            src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
-                 font-url('#{$file-path}.woff') format('woff'),
-                 font-url('#{$file-path}.ttf') format('truetype'),
-                 font-url('#{$file-path}.svg##{$font-family}') format('svg');
-        } @else {
-            src: url('#{$file-path}.eot');
-            src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
-                 url('#{$file-path}.woff') format('woff'),
-                 url('#{$file-path}.ttf') format('truetype'),
-                 url('#{$file-path}.svg##{$font-family}') format('svg');
-        }
-        font-weight: $weight;
-        font-style: $style;
+    @if $asset-pipeline==true {
+      src: font-url('#{$file-path}.eot');
+      src: font-url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+      font-url('#{$file-path}.woff') format('woff'),
+      font-url('#{$file-path}.ttf') format('truetype'),
+      font-url('#{$file-path}.svg##{$font-family}') format('svg');
     }
+
+    @else {
+      src: url('#{$file-path}.eot');
+      src: url('#{$file-path}.eot?#iefix') format('embedded-opentype'),
+      url('#{$file-path}.woff') format('woff'),
+      url('#{$file-path}.ttf') format('truetype'),
+      url('#{$file-path}.svg##{$font-family}') format('svg');
+    }
+
+    font-weight: $weight;
+    font-style: $style;
+  }
 }
 
 // Input placeholder
 @mixin placeholder {
-    &::-webkit-input-placeholder {@content;}
-    &:-moz-placeholder           {@content;}
-    &::-moz-placeholder          {@content;}
-    &:-ms-input-placeholder      {@content;}
+  &::-webkit-input-placeholder {
+    @content;
+  }
+
+  &:-moz-placeholder {
+    @content;
+  }
+
+  &::-moz-placeholder {
+    @content;
+  }
+
+  &:-ms-input-placeholder {
+    @content;
+  }
 }
 
 // line-height - divide desired line-height by font-size
 @mixin line-height($line-height: $base-line-height, $font-size: $base-font-size) {
-    line-height: $line-height / $font-size;
+  line-height: $line-height / $font-size;
 }
 
 @mixin margin-bottom($line-height: $base-line-height, $font-size: $base-font-size) {
-    margin-bottom: $line-height / $font-size + em;
+  margin-bottom: $line-height / $font-size + em;
 }
 
 // Vertical rhythm - combines font-size, line-height, and margin-bottom
 @mixin vertical-rhythm($line-height: $base-line-height, $font-size: $base-font-size, $margin-divide: 2) {
-    font-size: #{$font-size}px;
-    font-size: #{$font-size / 10}rem;
-    line-height: $line-height / $font-size;
-    margin-bottom: ($line-height / $font-size) / $margin-divide + em;
+  font-size: #{$font-size}px;
+  font-size: #{$font-size / 10}rem;
+  line-height: $line-height / $font-size;
+  margin-bottom: ($line-height / $font-size) / $margin-divide + em;
 }
 
 // Helpers
@@ -53,133 +65,108 @@
 
 // Image replacement
 @mixin ir {
-    overflow: hidden;
-    border: 0;
-    background-color: transparent;
-    *text-indent: -9999px;
+  overflow: hidden;
+  border: 0;
+  background-color: transparent;
+  *text-indent: -9999px;
 
-    &:before {
-        display: block;
-        width: 0;
-        height: 150%;
-        content: "";
-    }
+  &:before {
+    display: block;
+    width: 0;
+    height: 150%;
+    content: "";
+  }
 }
 
 // Center align block element
 @mixin center {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 @mixin text-overflow {
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 @mixin circle {
-    display: inline-block;
-    overflow: hidden;
-    border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
 }
 
 @mixin vertical-align {
-    position: relative;
-    top: 50%;
-    // Adding perspective prevents elements looking blurry
-    // if placed on a "half pixel"
-    transform: perspective(1px) translateY(-50%);
+  position: relative;
+  top: 50%;
 }
 
 
-$elementSeparator: '__';
-$modifierSeparator: '--';
 
-@function containsModifier($selector) {
-	$selector: selectorToString($selector);
-	@if str-index($selector, $modifierSeparator) {
-		@return true;
-	} @else {
-		@return false;
-	}
-}
-
-@function selectorToString($selector) {
-	$selector: inspect($selector); //cast to string
-	$selector: str-slice($selector, 2, -2); //remove brackets
-	@return $selector;
-}
-
-@function getBlock($selector) {
-	$selector: selectorToString($selector);
-	$modifierStart: str-index($selector, $modifierSeparator) - 1;
-	@return str-slice($selector, 0, $modifierStart);
-}
-
-@mixin b($block) {
-	.#{$block} {
-		@content;
-	}
-}
-
-@mixin e($element) {
-	$selector: &;
-	@if containsModifier($selector) {
-		$block: getBlock($selector);
-		@at-root {
-			#{$selector} {
-				#{$block+$elementSeparator+$element} {
-					@content;
-				}
-			}
-		}
-	} @else {
-		@at-root {
-			#{$selector+$elementSeparator+$element} {
-				@content;
-			}
-		}
-	}
-}
-
-@mixin m($modifier) {
-	@at-root {
-		#{&}#{$modifierSeparator+$modifier} {
-			@content;
-		}
-	}
-}
+@mixin shadow($move: true, $hoverOnly: false, $borderRadius: 0, $x: 0, $y: rem-calc(3), $blur: rem-calc(10), $color: rgba(0, 0, 0, .3), $properties: all, $time: .2s, $timeFunction: ease, $distance: rem-calc(4), $newX: 0, $newY: rem-calc(7), $newBlur: rem-calc(15), $newColor: rgba(0, 0, 0, .3)) {
+  // If using the variable:value pair syntax, you can pass them in any order
+  // You can pass as many as you want, anything you don't include will use the default value
 
 
-// You can change the defaults here, which will be used if no updated parameters are passed
-// When using this mixin, you can change however many parameters as you want,
-// anything else will use the default values
+  // You can specify multiple specific properties using $properties: 'prop1, prop2, prop3', which is useful for transition properties
+  // Quotes are needed to pass multiple values for one parameter
 
-// Example: @include shadow($move: false, $color: #222222);
-// ...which will disable the movement on hover, and change the initial shadow color.
-@mixin shadow($move: true, $x: 0, $y: rem-calc(3), $blur: rem-calc(7), $color: rgba(0, 0, 0, .3), $transition: .2s, $distance: rem-calc(4), $newX: 0, $newY: rem-calc(7), $newBlur: rem-calc(11), $newColor: rgba(0, 0, 0, .3)) {
+  // Uses transition on psuedo-element opacity for better performance,
+  // since opacity transitions don't trigger paint redraws,
+  // while box-shadow transitions constantly trigger paint redraws
+
+  position: relative;
   @if $move == true {
-    position: relative;
     bottom: 0;
   }
 
-  box-shadow: $x $y $blur $color;
-  transition: all $transition;
+  @if $hoverOnly == false {
+    box-shadow: $x $y $blur $color;
+  }
 
-  &:hover,
-  &:focus {
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    box-shadow: $newX $newY $newBlur $newColor;
+    transition: opacity $time #{$timeFunction};
+    border-radius: $borderRadius;
+  }
+
+  &:hover, &:focus {
+    transition-property: #{$properties}; // Interpolation removes any quotes that were passed with the parameter
+    transition-duration: $time;
+    transition-timing-function: #{$timeFunction};
+
     @if $move == true {
       bottom: $distance;
+      z-index: 1;
     }
-    box-shadow: $newX $newY $newBlur $newColor;
+
+    &::after {
+      opacity: 1;
+    }
   }
 }
 
 
-// ********* Helper functions for 'poly-fluid-sizing' mixin
+// You can assign the parent/block selector to a variable --> $b: #{&};
+// .top { $b: #{&}; }
+// Then no matter how many times you nest selectors you can still get the output of .parent__selector:
+// .......... @include root(layer3, #{$b}) { ... Outputs .top__layer3 }
+@mixin root($selector, $root) {
+  @at-root #{$root+$elementSeparator+$selector} {
+    @content;
+  }
+}
+
 @function list-remove($list, $index) {
   $newList: ();
 
@@ -253,7 +240,7 @@ $modifierSeparator: '--';
 /// @param $map - A Sass map of viewport unit and size value pairs
 /// @example
 ///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
-///   You can use any unit type, but you can't mix them (invalid... 576px: 3rem)
+///   You can use any unit type, but you can't mix them (576px: 3rem)
 
 @mixin poly-fluid-sizing($property, $map) {
   // Get the number of provided breakpoints
