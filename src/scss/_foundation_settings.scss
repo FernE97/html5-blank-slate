@@ -69,19 +69,17 @@ $global-font-size: 100%;
 $global-width: rem-calc(1200);
 $global-lineheight: 1.5;
 $foundation-palette: (
-  primary: #1BCCB2,
-  secondary: #70C1C1,
-  tertiary: #16A38E,
+  primary: #1779ba,
+  secondary: #767676,
   success: #3adb76,
   warning: #ffae00,
-  alert: #cc4b37
+  alert: #cc4b37,
 );
 $light-gray: #e6e6e6;
 $medium-gray: #cacaca;
 $dark-gray: #8a8a8a;
-$black: hsla(0, 0%, 9%, 1);
-$white: hsla(0, 0%, 97%, 1);
-$whitest: hsla(0, 0%, 100%, 1);
+$black: #0a0a0a;
+$white: #fefefe;
 $body-background: $white;
 $body-font-color: $black;
 $body-font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -97,11 +95,12 @@ $global-menu-nested-margin: 1rem;
 $global-text-direction: ltr;
 $global-flexbox: true;
 $global-prototype-breakpoints: false;
-$global-button-cursor: pointer;
+$global-button-cursor: auto;
 $global-color-pick-contrast-tolerance: 0;
 $print-transparent-backgrounds: true;
 
 @include add-foundation-colors;
+$print-hrefs: true;
 
 // 2. Breakpoints
 // --------------
@@ -115,7 +114,6 @@ $breakpoints: (
   xlarge: 1200px,
   xxlarge: 1440px,
 );
-
 $print-breakpoint: large;
 $breakpoint-classes: (small smallish medium mediumish large xlarge xxlarge);
 
@@ -126,7 +124,8 @@ $grid-row-width: $global-width;
 $grid-column-count: 12;
 $grid-column-gutter: (
   small: 20px,
-  medium: 30px
+  medium: 30px,
+  xlarge: 45px
 );
 $grid-column-align-edge: true;
 $grid-column-alias: 'columns';
@@ -285,13 +284,13 @@ $breadcrumbs-item-separator-color: $medium-gray;
 
 $button-font-family: inherit;
 $button-padding: 0.85em 1em;
-$button-margin: $global-margin 0;
+$button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
 $button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background-hover: scale-color($button-background, $lightness: -20%);
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: $global-radius;
+$button-radius: 1000px;
 $button-hollow-border-width: 2px;
 $button-sizes: (
   tiny: 0.6rem,
@@ -302,8 +301,9 @@ $button-sizes: (
 $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
 $button-background-hover-lightness: -20%;
-$button-hollow-hover-lightness: -50%;
+$button-hollow-hover-lightness: -20%;
 $button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+$button-responsive-expanded: false;
 
 // 12. Button Group
 // ----------------
@@ -395,8 +395,8 @@ $dropdownmenu-arrow-color: $anchor-color;
 $dropdownmenu-arrow-size: 6px;
 $dropdownmenu-arrow-padding: 1.5rem;
 $dropdownmenu-min-width: 200px;
-$dropdownmenu-background: $white;
-$dropdownmenu-submenu-background: $dropdownmenu-background;
+$dropdownmenu-background: null;
+$dropdownmenu-submenu-background: $white;
 $dropdownmenu-padding: $global-menu-padding;
 $dropdownmenu-nested-margin: 0;
 $dropdownmenu-submenu-padding: $dropdownmenu-padding;
@@ -478,10 +478,8 @@ $menu-nested-margin: $global-menu-nested-margin;
 $menu-items-padding: $global-menu-padding;
 $menu-simple-margin: 1rem;
 $menu-item-color-active: $white;
-$menu-item-color-alt-active: $black;
 $menu-item-background-active: get-color(primary);
 $menu-icon-spacing: 0.25rem;
-$menu-item-background-hover: $light-gray;
 $menu-state-back-compat: true;
 $menu-centered-back-compat: true;
 $menu-icons-back-compat: true;
@@ -814,7 +812,7 @@ $tab-content-padding: 1rem;
 // 52. Thumbnail
 // -------------
 
-$thumbnail-border: solid 4px $white;
+$thumbnail-border: 4px solid $white;
 $thumbnail-margin-bottom: $global-margin;
 $thumbnail-shadow: 0 0 0 1px rgba($black, 0.2);
 $thumbnail-shadow-hover: 0 0 6px 1px rgba($primary-color, 0.5);
@@ -865,9 +863,11 @@ $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
   small: 20px,
-  medium: 30px
+  medium: 30px,
+  xlarge: 45px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;
 $grid-container-max: $global-width;
 $xy-block-grid-max: 8;
+

@@ -1,5 +1,7 @@
 <?php
 
+
+
 // Enqueue Styles
 function h5bs_enqueue_styles() {
     //wp_enqueue_style('font-awesome', 'https://use.fontawesome.com/releases/v5.4.2/css/all.css"');
@@ -255,9 +257,11 @@ function generate_acf_css() {
     require get_stylesheet_directory() . '/includes/acf-configs/acf-styles.php';
     // Store output in a variable, then flush the buffer
     $css = ob_get_clean();
+
     // Minify output
     $css = preg_replace('!/\*[^*]*\*+([^/][^*]*\*+)*/!', '', $css);
     $css = str_replace(array("\r\n", "\r", "\n", "\t", '  ', '    ', '    '), '', $css);
+
     // Save as a css file
     file_put_contents(get_stylesheet_directory() . '/assets/css/acf-styles.css', $css, LOCK_EX);
 }
@@ -309,10 +313,24 @@ if( function_exists('acf_add_options_page') ) {
 // Removes the WYSIWYG <p> tags that are automatically added
 function acf_wysiwyg_remove_wpautop() {
   remove_filter('acf_the_content', 'wpautop' );
+  add_filter( 'acf_the_content', 'nl2br' );
 }
 add_action('acf/init', 'acf_wysiwyg_remove_wpautop', 15);
 
-// Makes a very lightweight WYSIWIG, basically an enhanced text area field
+add_filter('acf_the_content', 'shortcode_empty_paragraph_fix');
+function shortcode_empty_paragraph_fix($content) {
+	$array = array (
+		'<p>[' => '[',
+		']</p>' => ']',
+		']<br />' => ']'
+	);
+
+	$content = strtr($content, $array);
+
+	return $content;
+}
+
+
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'acf_wysiwig_toolbars'  );
 function acf_wysiwig_toolbars( $toolbars )
 {
@@ -324,28 +342,31 @@ function acf_wysiwig_toolbars( $toolbars )
   $toolbars['Very Basic' ][1] = array('bold', 'italic', 'underline', 'link', 'bullist');
 
   // Some of the available buttons are:
-  // bold, italic, underline, bullist, link
+  // bold, italic, underline, bullist, link)
 
 	// Edit the "Full" toolbar and remove 'code'
+	// - delet from array code from http://stackoverflow.com/questions/7225070/php-array-delete-by-value-not-key
 	if( ($key = array_search('code' , $toolbars['Full' ][2])) !== false )
 	{
 	    unset( $toolbars['Full' ][2][$key] );
 	}
 
 	// remove the 'Basic' toolbar completely
-	//unset( $toolbars['Basic'] );
+	unset( $toolbars['Basic' ] );
 
-	// return $toolbars
   return $toolbars;
 }
 
-
-// [nbsp] shortcode
-// Without the code tab visible,
-// there isn't an easy way to add non-breaking spaces.
-// This adds a non-breaking space using a shortcode.
+//[nbsp] shortcode
 function nbsp_shortcode( $atts, $content = null ) {
   $content = '&nbsp';
   return $content;
+  }
+  add_shortcode( 'nbsp', 'nbsp_shortcode' );
+
+function donateForm_shortcode() {
+    ob_start();
+    include(dirname(__FILE__) .'/parts/donate_form.php');
+    return ob_get_clean();
 }
-add_shortcode( 'nbsp', 'nbsp_shortcode' );
+add_shortcode( 'donateForm', 'donateForm_shortcode' );

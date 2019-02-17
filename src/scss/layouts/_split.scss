@@ -4,17 +4,22 @@
 .splitLeft, .splitRight {
   // Move left/right into one column
   width: 100%;
+  flex: 1 0 auto;
+  align-self: flex-start;
 
   &__content {
     width: 100%;
   }
 
+  &__imageWrap {
+    position: relative;
+    top: rem-calc(10);
+  }
+
   &__image {
-    display: none;
     border-radius: 10px;
-    @include shadow($move: false);
-    height: auto;
-    margin: 0 auto;
+    @include shadow($move: false, $borderRadius: 10px);
+
   }
 
   &__textContent {
@@ -26,21 +31,28 @@
   }
 
   &__heading {
-    color: $darkOnLightHeadingColor;
   }
 
   &__text {
-    color: $darkOnLighttextColor;
   }
 
-  &__button {
-    @include shadow($blur: rem-calc(4), $newBlur: rem-calc(6));
+  .text {
+    width: 100%;
   }
+}
 
-  @include breakpoint(medium) {
+.splitLeft {
+  .leftImageWrap {
+    @include breakpoint(large) {
+      justify-content: flex-end;
+    }
+  }
+}
 
-    &__image {
-      display: block;
+.splitRight {
+  .rightImageWrap {
+    @include breakpoint(large) {
+      justify-content: flex-start;
     }
   }
 }

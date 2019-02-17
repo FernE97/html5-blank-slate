@@ -1,0 +1,19 @@
+Flexible Template Theme TODO
+Things I'd like to add/improve:
+
+- [General] Set better, more "sensible" default styles in _page.scss and the layout files
+- [General] Set styles that work smoothly at all screen sizes, for all content
+- [General] Add support for section icons that go above the header, for example like this (https://i.imgur.com/QpCxYes.png)
+- [General] Allow button type to be selected (hollow, clear) and ideally color settings
+- [General] Offer option to link a button to a form modal. There is an ACF plugin that does this for NinjaForms, but there is probably a better solution
+
+- [Post Type Grid] Create a few post grid type "pre-built" templates that can be selected in the settings
+  Ideas:
+  -- Default that shows featured image as background, and when hovered changes to background color and post title
+  -- A "card" made up of all text, heading/title has background color
+  -- Heading visible with background color, on hover it shows the text content and/or image
+
+- [ACF Frontend] Add a "clear selected" button for the color picker field
+- [ACF Frontend] Find out if anything is confusing to use, or doesn't act as expected
+
+- [Slider] Add fields to put headings/text beneath slider images (common for news/events/articles)

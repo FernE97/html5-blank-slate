@@ -143,34 +143,26 @@ var keepSquare = function (selector, matchAttr) {
 }
 
 
+var resizePostItems = function(postGrids) {
+  postGrids.map(function(postItem) {
+    postItem.map(function (item) {
+      let max = 0;
+      item.map(function (el) {
+        // Remove current inline style so that it won't keep reusing the largest size set previously
+        el.style.height = '';
+        if (el.offsetHeight > max) {
+          max = el.offsetHeight;
+        }
+      });
 
-window.onresize = function(){
-  equalHeight(true);
+      if (max > 0) {
+        item.map(function (el) {
+          el.style.height = max+'px';
+        });
+      }
+    });
+  });
 }
-
-function equalHeight(resize) {
-  var elements = document.querySelectorAll(resize),
-      allHeights = [],
-      i = 0;
-  if(resize === true){
-    for(i = 0; i < elements.length; i++){
-      elements[i].style.height = 'auto';
-    }
-  }
-  for(i = 0; i < elements.length; i++){
-    var elementHeight = elements[i].clientHeight;
-    allHeights.push(elementHeight);
-  }
-  for(i = 0; i < elements.length; i++){
-    elements[i].style.height = Math.max.apply( Math, allHeights) + 'px';
-    // Optional: Add show class to prevent FOUC
-    if(resize === false){
-      elements[i].className = elements[i].className + " show";
-    }
-  }
-}
-
-
 
 // Document load/ready promise, calls 'ready' method when completed
 HTMLDocument.prototype.ready = function () {
@@ -185,59 +177,38 @@ HTMLDocument.prototype.ready = function () {
   });
 };
 
-
-
-var resizePostItems = function(postItem) {
-  postItem.map(function (item) {
-    let max = 0;
-    item.map(function (el) {
-      // Remove current inline style so that it won't keep reusing the largest size set previously
-      el.style.height = '';
-      if (el.offsetHeight > max) {
-        max = el.offsetHeight;
-      }
-    });
-
-    if (max > 0) {
-      item.map(function (el) {
-        el.style.height = max+'px';
-      });
-    }
-  });
-}
-
 // Custom global scripts
 document.ready().then(function () {
 
-  // var postItems = [...document.querySelectorAll('.postGrid__item')];
-  var postItemHeading = [...document.querySelectorAll('.postGrid__itemHeading')];
-  var postItemText = [...document.querySelectorAll('.postGrid__itemText')];
-  var postItemButton = [...document.querySelectorAll('.postGrid__itemButton')];
-  var postItem = [postItemHeading, postItemText, postItemButton];
+  var postGrids = [];
+  var postGrid = [...document.querySelectorAll('.postGrid')];
+
+  for (let i = 0; i < postGrid.length; i++) {
+    let postItemHeading = [...postGrid[i].querySelectorAll('.postGrid__itemHeading')];
+    let postItemText = [...postGrid[i].querySelectorAll('.postGrid__itemText')];
+    let postItemButton = [...postGrid[i].querySelectorAll('.postGrid__itemButton')];
+    let postItem = [postItemHeading, postItemText, postItemButton];
+    postGrids[i] = postItem;
+  }
 
   window.addEventListener('load', function() {
-    resizePostItems(postItem)
+    resizePostItems(postGrids)
   });
 
   window.addEventListener('resize', function() {
-    resizePostItems(postItem)
+    resizePostItems(postGrids)
   });
+
 
   var glide = document.querySelectorAll('.glide');
   if (glide.length > 0) {
     for (let i = 0; i < glide.length; i++) {
       new Glide(glide[i], {
         type: 'carousel',
-        perView: 5,
+        perView: 3,
         gap: 35,
         breakpoints: {
-          1200: {
-            perView: 3
-          },
           800: {
-            perView: 2
-          },
-          450: {
             perView: 1
           }
         }
@@ -246,9 +217,10 @@ document.ready().then(function () {
   }
 
   // Initial resize
-  keepSquare('.glide__slide');
+  keepSquare('.glide__slide--square, .glide__slide--circle');
 });
 
 window.addEventListener("optimizedResize", function () {
-  keepSquare('.glide__slide');
+  keepSquare('.glide__slide--square, .glide__slide--circle');
+  keepSquare('.postGrid__itemPhoto');
 });

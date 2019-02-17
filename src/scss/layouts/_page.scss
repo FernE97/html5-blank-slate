@@ -1,31 +1,25 @@
 // General styling, mostly handling the background images, background overlays, and text overlays
 .layout {
   position: relative;
-  padding: rem-calc(15);
-  @include poly-fluid-sizing('padding', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
-}
+  min-height: 60vh;
+  height: auto;
 
-.text {
-  @include poly-fluid-sizing('font-size', ($small: .75rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem));
-}
-
-// Non-banner headings. Taglines/subheadings are h3
-.heading {
-  @include poly-fluid-sizing('font-size', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
-  @include poly-fluid-sizing('line-height', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
-  margin-bottom: rem-calc(30);
-}
-
-// Banner heading. Taglines/subheadings are h2
-.banner {
-  &__heading {
-    @include poly-fluid-sizing('font-size', ($small: 2rem, $medium: 3rem, $large: 5rem, $xlarge: 7rem));
+  li {
+    @include poly-fluid-sizing('font-size', ($small: .75rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem));
   }
 
+  .buttons {
+    margin-left: 0;
+  }
 
+  // &.split {
+  //   min-height: 80vh;
+  // }
 }
 
-.layout, .splitLeft, .splitRight {
+.layout,
+.splitLeft,
+.splitRight {
   background-size: cover;
   background-position: center center;
 
@@ -42,50 +36,113 @@
     background-size: cover;
   }
 
-  // Background image
-  &:before {
-    // Lowest of the other values, will always be bottom layer
-    z-index: -3;
-  }
-
   // Background overlay
   &:after {
     // Appear over the background image as a colored overlay
     z-index: -2;
   }
-}
 
-// Content
-.content {
-  position: relative;
+  // Content
+  .content {
+    position: relative;
+    @include poly-fluid-sizing('margin-top', ($small: 1.5rem, $medium: 2.2rem, $large: 2.7rem, $xlarge: 3.5rem));
+    @include poly-fluid-sizing('margin-bottom', ($small: 1.5rem, $medium: 2.2rem, $large: 2.7rem, $xlarge: 3.5rem));
 
-  // Text background overlay
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    min-width: 100%;
-    height: 98%;
-    // Topmost of the backgrounds/overlays
-    z-index: -1;
-    left: 0;
+
+    // Text background overlay
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      min-width: 100%;
+      height: 100%;
+      // Topmost of the backgrounds/overlays
+      z-index: -1;
+      left: 0;
+    }
   }
 }
+
+.layout,
+.splitLeft,
+.splitRight {
+
+  // Background image
+  &:before {
+    // Lowest of the other values, will always be bottom layer
+    z-index: -4;
+  }
+}
+
+.split {
+
+  // If a split section is given a background,
+  // make it cover any left/right half background images
+  &:before {
+    z-index: -3;
+  }
+}
+
+// Non-banner headings (h2). Taglines/subheadings are h3
+.heading {
+  @include poly-fluid-sizing('font-size', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
+  @include poly-fluid-sizing('line-height', ($small: 1.25rem, $medium: 2rem, $large: 3rem, $xlarge: 5rem));
+  margin-bottom: rem-calc(30);
+}
+
+// Banner heading (h1). Taglines/subheadings are h2
+.banner {
+  &__heading {
+    @include poly-fluid-sizing('font-size', ($small: 2rem, $medium: 3rem, $large: 5rem, $xlarge: 7rem));
+    @include poly-fluid-sizing('line-height', ($small: 2rem, $medium: 3rem, $large: 5rem, $xlarge: 7rem));
+  }
+}
+
+// Split section headings
+.leftHeading,
+.rightHeading {
+  @include poly-fluid-sizing('font-size', ($small: 1.5rem, $medium: 2.2rem, $large: 2.7rem, $xlarge: 3.5rem));
+  @include poly-fluid-sizing('line-height', ($small: 1.5rem, $medium: 2.2rem, $large: 2.7rem, $xlarge: 3.5rem));
+}
+
+
+// Body text
+.text {
+  @include poly-fluid-sizing('font-size', ($small: .75rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem));
+  width: 95%;
+
+  @include breakpoint(mediumish) {
+    width: 85%;
+  }
+
+  @include breakpoint(large) {
+    width: 75%;
+  }
+
+  @include breakpoint(xlarge) {
+    width: 65%;
+  }
+}
+
+
+
 
 .buttons {
   .button {
-    @include poly-fluid-sizing('font-size', ($small: .5rem, $medium: .7rem, $large: 1rem, $xlarge: 1rem));
-    @include poly-fluid-sizing('line-height', ($small: .5rem, $medium: .7rem, $large: 1rem, $xlarge: 1rem));
-    border-radius: 1000px !important;
-    padding: 1.8rem 3rem 1.5rem 3rem;
-    margin-left: 0;
+    @include poly-fluid-sizing('font-size', ($small: .5rem, $medium: .7rem, $large: .85rem, $xlarge: 1rem));
+    @include poly-fluid-sizing('padding-left', ($small: 1rem, $medium: 1.5rem, $large: 2.25rem));
+    @include poly-fluid-sizing('padding-right', ($small: 1rem, $medium: 1.5rem, $large: 2.25rem));
+    @include poly-fluid-sizing('padding-top', ($small: .7rem, $medium: 1rem, $large: 1.15rem));
+    @include poly-fluid-sizing('padding-bottom', ($small: .7rem, $medium: 1rem, $large: 1rem));
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
+    margin-left: 0;
   }
- }
+}
 
 .--left {
+
   margin-right: auto;
   margin-left: 0;
 }
@@ -101,6 +158,22 @@
   margin-right: 0;
 }
 
-// .button, .glide__arrow {
-// box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-// }
+@include each-breakpoint(gutterY) {
+  @include xy-gutters($gutter-position: top bottom);
+}
+
+@include each-breakpoint(gutterX) {
+  @include xy-gutters($gutter-position: left right);
+}
+
+@include each-breakpoint(gutterXY) {
+  @include xy-gutters($gutter-position: left right top bottom);
+}
+
+@include each-breakpoint(gridY) {
+  flex-flow: column nowrap;
+}
+
+@include each-breakpoint(gridX) {
+  flex-flow: row wrap;
+}

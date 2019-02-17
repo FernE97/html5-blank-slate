@@ -150,18 +150,21 @@
       z-index: 1;
     }
 
-    &::after {
+
+  }
+
+  &:hover::after {
       opacity: 1;
-    }
   }
 }
+
 
 
 // You can assign the parent/block selector to a variable --> $b: #{&};
 // .top { $b: #{&}; }
 // Then no matter how many times you nest selectors you can still get the output of .parent__selector:
-// .......... @include root(layer3, #{$b}) { ... Outputs .top__layer3 }
-@mixin root($selector, $root) {
+// .......... @include __(layer3, #{$b}) { ... Outputs .top__layer3 }
+@mixin __($selector, $root) {
   @at-root #{$root+$elementSeparator+$selector} {
     @content;
   }
@@ -280,3 +283,60 @@
     #{$property}: map-get($map, nth($keys, $length));
   }
 }
+
+
+
+@mixin poly-property($property, $map) {
+  // Get the number of provided breakpoints
+  $length: length(map-keys($map));
+
+  // Error if the number of breakpoints is < 2
+  @if $length < 2 {
+    @error 'poly-property() $map requires at least values';
+  }
+
+  // Sort the map by viewport width (key)
+  $map: map-sort($map);
+  $keys: map-keys($map);
+
+  // Minimum size
+  #{$property}: map-get($map, nth($keys, 1));
+
+  // Interpolated size through breakpoints
+  @for $i from 1 through $length - 1 {
+    @media (min-width: nth($keys, $i)) {
+      $value1: map-get($map, nth($keys, $i));
+      #{$property}: $value1;
+    }
+  }
+
+  // Maxmimum size
+  @media (min-width: nth($keys, $length)) {
+    #{$property}: map-get($map, nth($keys, $length));
+  }
+}
+
+
+
+
+/// Prefixes selector $class with breakpoint keywords, allowing you to create a batch of breakpoint classes with one chunk of code. If you want to skip a breakpoint (like small, because mobile first and all that), add values to the $omit parameter.
+///
+/// @param {string} $class - Class to prefix with the breakpoint name and a hyphen.
+/// @param {list} $omit - Named breakpoints to skip. No class will be added with breakpoints in this list.
+@mixin each-breakpoint($class, $omit: ()) {
+  // Iterate through breakpoint classes
+  @each $size in $breakpoint-classes {
+    // Only do something if the breakpoint is not in $omit
+    @if index($omit, $size) == null {
+      $val: map-get($breakpoints, $size);
+      // Prefix $class with $size and a hyphen
+      .#{$size + '-' + $class} {
+        @include breakpoint($size) {
+          @content;
+        }
+      }
+    }
+  }
+}
+
+

@@ -150,11 +150,11 @@ document.ready().then(function () {
 
   watchAwaitSelector(function() {
     // Replaces and reduces the inline height and min height, but still allows it to be resized by the user
-   addAttribute('.acf-editor-wrap iframe', 'style', 'min-height: 0px; height: 100px;', true);
-
+    addAttribute('.acf-editor-wrap iframe', 'style', 'min-height: 0px; height: 75px;', true);
+    addAttribute('.wp-editor-area', 'style', 'min-height: 0px; height: 75px;', true);
     // Hides the "Visual/Text" tabs, comment out to keep the tabs visible
     // addAttribute('.wp-editor-tabs', 'style', 'display: none !important;', true);
-  }, '.acf-editor-wrap iframe', document, 1500);
+  }, '.acf-editor-wrap iframe, .wp-editor-area', document, 1500);
 
   // global_settings is an ACF group passed using wp_localize_script() in functions.php
   var colorScheme = global_settings['color_scheme']; // Color picker repeater
@@ -202,7 +202,6 @@ document.ready().then(function () {
       stylesheet('colorpicker_customstyles', '.iris-palette {width: 50px !important; height: 50px !important; margin: .5px !important; padding: 0 !important; border-radius: 0 !important;} .wp-picker-active .iris-picker{display: flex !important;flex-wrap:wrap !important;align-content:flex-start !important; justify-content: center !important;width:255px !important;height:initial !important;padding:0 !important;} .iris-palette-container {width: 100%; position: relative !important; bottom: 0 !important; left: 0 !important; display: flex !important; flex-wrap: wrap !important;}');
     }
   }
-
 
   // Range slider custom styling (the default ACF slider was not visible, but the input box was)
   stylesheet('slider_fix', '[type=range]{margin:0;padding:0;width:12.5em;height:.25em;background:0 0;font:1em/1 arial,sans-serif}[type=range],[type=range]::-webkit-slider-thumb{-webkit-appearance:none}[type=range]::-webkit-slider-runnable-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-moz-range-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-ms-track{box-sizing:border-box;border:none;width:12.5em;height:.25em;background:#ccc}[type=range]::-webkit-slider-thumb{margin-top:-.625em;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-moz-range-thumb{box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-thumb{margin-top:0;box-sizing:border-box;border:none;width:1.5em;height:1.5em;border-radius:50%;background:#f90}[type=range]::-ms-tooltip{display:none}');
