@@ -1,0 +1,66 @@
+@function list-remove($list, $index) {
+  $newList: ();
+
+  @for $i from 1 through length($list) {
+    @if $i != $index {
+      $newList: append($newList, nth($list, $i), 'space');
+    }
+  }
+
+  @return $newList;
+}
+
+@function list-sort($list) {
+  $sortedlist: ();
+
+  @while length($list) > 0 {
+    $value: nth($list, 1);
+
+    @each $item in $list {
+      @if $item < $value {
+        $value: $item;
+      }
+    }
+
+    $sortedlist: append($sortedlist, $value, 'space');
+
+    $list: list-remove($list, index($list, $value));
+  }
+
+  @return $sortedlist;
+}
+
+@function map-sort($map) {
+  $keys: list-sort(map-keys($map));
+  $sortedMap: ();
+
+  @each $key in $keys {
+    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
+  }
+
+  @return $sortedMap;
+}
+
+@function linear-interpolation($map) {
+  $keys: map-keys($map);
+
+  @if length($keys) != 2 {
+    @error 'linear-interpolation() $map must be exactly 2 values';
+  }
+
+  // The slope
+  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1));
+
+  // The y-intercept
+  $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
+
+  // Determine if the sign should be positive or negative
+  $sign: '+';
+
+  @if $b < 0 {
+    $sign: '-';
+    $b: abs($b);
+  }
+
+  @return calc(#{$m * 100}vw #{$sign} #{$b});
+}

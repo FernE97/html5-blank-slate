@@ -32,28 +32,48 @@ function h5bs_register_menus() {
 
 add_action('init', 'h5bs_register_menus');
 
+
 function h5bs_primary_nav() {
-    wp_nav_menu(array(
-        'container' => false, // remove nav container
-        'menu' => 'Primary Nav', // nav name
-        'menu_id' => 'nav-main', // custom id
-        'menu_class' => 'nav-main nav group', // custom class
-        'theme_location' => 'primary', // where it's located in the theme
-        'before' => '', // before the menu
-        'after' => '', // after the menu
-        'link_before' => '', // before each link
-        'link_after' => '', // after each link
-        'depth' => 0, // set to 1 to disable dropdowns
-        'fallback_cb' => 'h5bs_nav_fallback', // fallback function
-    ));
+  wp_nav_menu(array(
+      'container' => false, // remove nav container
+      'menu' => 'Primary Nav', // nav name
+      'menu_id' => 'nav__main', // custom id
+      'menu_class' => 'nav__main nav__menu menu simple align-right align-middle', // custom class
+      'theme_location' => 'primary', // where it's located in the theme
+      'before' => '', // before the menu
+      'after' => '', // after the menu
+      'link_before' => '', // before each link
+      'link_after' => '', // after each link
+      'depth' => 0, // set to 1 to disable dropdowns
+      'fallback_cb' => 'h5bs_nav_fallback', // fallback function
+      'add_li_class'  => 'nav__item nav__mainItem'
+  ));
 }
+
+// Add custom classes to the menu items
+function add_menu_listItem_classes($classes, $item, $args) {
+  if($args->add_li_class) {
+      $classes[] = $args->add_li_class;
+  }
+  return $classes;
+}
+add_filter('nav_menu_css_class', 'add_menu_listItem_classes', 10, 4);
+
+// Add custom classes to the menu links
+function add_menuclass($ulclass) {
+  $classes = 'nav__link';
+   return preg_replace('/<a /', "<a class='$classes'", $ulclass);
+}
+add_filter('wp_nav_menu','add_menuclass');
+
+
 
 function h5bs_secondary_nav() {
     wp_nav_menu(array(
         'container' => false, // remove nav container
         'menu' => 'Secondary Nav', // nav name
-        'menu_id' => 'nav-sub', // custom id
-        'menu_class' => 'nav-sub nav group', // custom class
+        'menu_id' => 'nav__secondary', // custom id
+        'menu_class' => 'nav__secondary nav__menu', // custom class
         'theme_location' => 'secondary', // where it's located in the theme
         'before' => '', // before the menu
         'after' => '', // after the menu
@@ -61,6 +81,7 @@ function h5bs_secondary_nav() {
         'link_after' => '', // after each link
         'depth' => 0, // set to 1 to disable dropdowns
         'fallback_cb' => 'h5bs_nav_fallback', // fallback function
+        'add_li_class'  => 'nav__item nav__secondaryItem'
     ));
 }
 
@@ -68,8 +89,8 @@ function h5bs_footer_nav() {
     wp_nav_menu(array(
         'container' => false, // remove nav container
         'menu' => 'Footer Nav', // nav name
-        'menu_id' => 'nav-footer', // custom id
-        'menu_class' => 'nav-footer nav group', // custom class
+        'menu_id' => 'nav__footer', // custom id
+        'menu_class' => 'footer__nav nav__footer nav__menu menu', // custom class
         'theme_location' => 'footer', // where it's located in the theme
         'before' => '', // before the menu
         'after' => '', // after the menu
@@ -77,6 +98,7 @@ function h5bs_footer_nav() {
         'link_after' => '', // after each link
         'depth' => 0, // set to 1 to disable dropdowns
         'fallback_cb' => 'h5bs_nav_fallback', // fallback function
+        'add_li_class'  => 'nav__item nav__footerItem'
     ));
 }
 
@@ -84,8 +106,8 @@ function h5bs_mobile_nav() {
     wp_nav_menu(array(
         'container' => false, // remove nav container
         'menu' => 'Mobile Nav', // nav name
-        'menu_id' => 'nav-mobile', // custom id
-        'menu_class' => 'nav-mobile nav group', // custom class
+        'menu_id' => 'nav__mobile', // custom id
+        'menu_class' => 'nav__mobile nav__menu', // custom class
         'theme_location' => 'mobile', // where it's located in the theme
         'before' => '', // before the menu
         'after' => '', // after the menu
@@ -93,6 +115,7 @@ function h5bs_mobile_nav() {
         'link_after' => '', // after each link
         'depth' => 0, // set to 1 to disable dropdowns
         'fallback_cb' => 'h5bs_nav_fallback', // fallback function
+        'add_li_class'  => 'nav__item nav__mobileItem'
     ));
 }
 
@@ -296,19 +319,20 @@ function enqueue_acf_styles() {
     wp_enqueue_style('acf-styles', get_template_directory_uri() . '/assets/css/acf-styles.css');
 }
 
-// ACF JavaScript API seems very powerful, could be useful in the future
-// https://www.advancedcustomfields.com/resources/javascript-api/
-
-add_action('acf/input/admin_enqueue_scripts', 'acf_js_enqueue');
-function acf_js_enqueue() {
-    wp_register_script('acf-js', get_template_directory_uri() . '/includes/acf-configs/acf-scripts.js', 'acf-input', false, true);
-    wp_localize_script('acf-js', 'global_settings', get_field('global', 'option')); // Pass 'Global Options' ACF group
-    wp_enqueue_script('acf-js');
-  }
-
+// Create Global Options page
 if( function_exists('acf_add_options_page') ) {
 	acf_add_options_page("Global Options");
 }
+
+// ACF JavaScript API seems very powerful, could be useful in the future
+// https://www.advancedcustomfields.com/resources/javascript-api/
+add_action('acf/input/admin_enqueue_scripts', 'acf_js_enqueue');
+function acf_js_enqueue() {
+  wp_register_script('acf-js', get_template_directory_uri() . '/includes/acf-configs/acf-scripts.js', 'acf-input', false, true);
+  wp_localize_script('acf-js', 'global_settings', get_field('global', 'option')); // Pass 'Global Options' ACF group
+  wp_enqueue_script('acf-js');
+}
+
 
 // Removes the WYSIWYG <p> tags that are automatically added
 function acf_wysiwyg_remove_wpautop() {
@@ -364,6 +388,7 @@ function nbsp_shortcode( $atts, $content = null ) {
   }
   add_shortcode( 'nbsp', 'nbsp_shortcode' );
 
+// Useful for putting the donate form in non-donate layouts, or anywhere else really
 function donateForm_shortcode() {
     ob_start();
     include(dirname(__FILE__) .'/parts/donate_form.php');

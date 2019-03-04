@@ -1,58 +1,69 @@
 // ACF Flexible Content
 // "Split" Layout
 
+
+.split {
+  // If a split section is given a background image,
+  // make it cover any left/right half background images
+  &:before {
+      z-index: -3;
+  }
+}
+
+.splitLeft {
+  @include dynamic($splitOuterGutter, 'padding-left');
+  @include dynamic($splitInnerGutter, 'padding-right');
+ }
+
+ .splitRight {
+  @include dynamic($splitOuterGutter, 'padding-right');
+  @include dynamic($splitInnerGutter, 'padding-left');
+ }
+
+// Each left/right is basically its own standard section,
+// containing headers/subheaders/text/buttons and so on
 .splitLeft, .splitRight {
   // Move left/right into one column
+  @include dynamicCalc($splitOuterGutter, 'padding-top', 'padding-bottom');
   width: 100%;
-  flex: 1 0 auto;
-  align-self: flex-start;
+  flex: 1 1 auto;
+  align-self: stretch;
 
   &__content {
     width: 100%;
   }
 
+  &__textContent {}
+
+  // Split section headings
+  &__heading {
+    @include dynamicCalc($splitHeadingSizes, 'font-size');
+  }
+
+  &__subheading {}
+
+  &__text {}
+
   &__imageWrap {
-    position: relative;
-    top: rem-calc(10);
+    margin: 0 0 rem-calc(30) 0;
+    @include shadow(
+      $borderRadius:  rem-calc(15),
+      $y:             rem-calc(4),
+      $blur:          rem-calc(9),
+      $newX:          rem-calc(1),
+      $newY:          rem-calc(10),
+      $newBlur:       rem-calc(15)
+    );
   }
 
   &__image {
-    border-radius: 10px;
-    @include shadow($move: false, $borderRadius: 10px);
-
+    border-radius: rem-calc(15);
   }
 
-  &__textContent {
-    margin-bottom: 0;
-  }
+  &__buttons {}
 
-  &__buttons {
-    margin-top: 0;
-  }
+  &__button {}
 
-  &__heading {
-  }
-
-  &__text {
-  }
-
-  .text {
-    width: 100%;
-  }
 }
 
-.splitLeft {
-  .leftImageWrap {
-    @include breakpoint(large) {
-      justify-content: flex-end;
-    }
-  }
-}
 
-.splitRight {
-  .rightImageWrap {
-    @include breakpoint(large) {
-      justify-content: flex-start;
-    }
-  }
-}

@@ -3,6 +3,22 @@
     "title": "Theme Settings",
     "fields": [
         {
+            "key": "field_5c6ef85d3b662",
+            "label": "General",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
             "key": "field_5c4fae84ca92e",
             "label": "",
             "name": "global",
@@ -100,5 +116,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1548726892
+    "modified": 1551479139
 }

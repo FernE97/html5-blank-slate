@@ -16,16 +16,23 @@
   <?php if ( have_rows( 'flex', $data->ID ) ): $count = 1; // Each page containing the flex field ?>
     <?php while ( have_rows( 'flex', $data->ID ) ): the_row(); ?>
 
+      <?php
+        // If there is an ID value provided,
+        // use it for the BEM naming and ACF styles.
+        // Otherwise, use a generic section# class name.
+        $id = get_sub_field("section_id") ?: "section{$count}";
+      ?>
+
       <?php //***** Non-split layouts ?>
       <?php if (get_row_layout() != 'split_section'): ?>
         <?php if (get_sub_field( 'bg_image' )): // Section background image ?>
-          .page<?= $data->ID; ?> .section<?= $count; ?>:before {
+          .page<?= $data->ID; ?> .<?= $id; ?>:before {
             background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
           }
         <?php endif; ?>
 
         <?php if(get_sub_field( 'bg_color' )): // Section background color ?>
-          .page<?= $data->ID; ?> .section<?= $count; ?>:after {
+          .page<?= $data->ID; ?> .<?= $id; ?>:after {
 
             background-color: <?= get_sub_field( 'bg_color' ); ?>;
             <?php // If there is a background image, use background color as an overlay ?>
@@ -36,7 +43,7 @@
         <?php endif; ?>
 
         <?php if (get_sub_field( 'text_bg_color' )): // Content background overlay ?>
-          .page<?= $data->ID; ?> .section<?= $count; ?>__content:before {
+          .page<?= $data->ID; ?> .<?= $id; ?>__content:before {
             background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
             <?php if (get_sub_field( 'text_bg_opacity' )): ?>
               opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
@@ -65,7 +72,7 @@
 
         <?php if ( have_rows( 'slide' ) ) : $slide_count = 1; // Slider slides ?>
           <?php while ( have_rows( 'slide' ) ) : the_row(); ?>
-            .page<?= $data->ID; ?> .section<?=$count;?> .glide__slide<?=$slide_count;?> {
+            .page<?= $data->ID; ?> .<?= $id; ?> .glide__slide<?=$slide_count;?> {
               background-image: url('<?= get_sub_field('image')['url']; ?>');
             }
           <?php $slide_count++; endwhile;?>
@@ -75,7 +82,7 @@
       <?php if (get_row_layout() == 'split_section'): //***** Split layout ?>
         <?php $splitImage = get_sub_field( 'split_bg_image' ) || false; // Full background image overrides left/right images ?>
         <?php if ($splitImage): // Add full background image ?>
-          .page<?= $data->ID; ?> .section<?= $count; ?>:before {
+          .page<?= $data->ID; ?> .<?= $id; ?>:before {
             background-image: url('<?= get_sub_field('split_bg_image')['url']; ?>');
           }
         <?php endif; ?>
@@ -84,13 +91,13 @@
           <?php while ( have_rows( 'left' ) ): the_row(); ?>
             <?php // If there isn't a full background image, but the left side has one
             if(!$splitImage && get_sub_field('bg_image')) : ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__left:before {
+              .page<?= $data->ID; ?> .<?= $id; ?>__left:before {
                 background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
               }
             <?php endif; ?>
 
             <?php if(get_sub_field('bg_color')): ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__left:after {
+              .page<?= $data->ID; ?> .<?= $id; ?>__left:after {
                 background-color: <?= get_sub_field( 'bg_color' ); ?>;
                 <?php // If there is a full or left-side background image, use the background color as an overlay
                 if ( get_sub_field( 'bg_image' ) || $splitImage ): ?>
@@ -100,7 +107,7 @@
             <?php endif; ?>
 
             <?php if (get_sub_field( 'text_bg_color' )): // Content background overlay ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__leftContent:before {
+              .page<?= $data->ID; ?> .<?= $id; ?>__leftContent:before {
                 background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
                 <?php if(get_sub_field( 'text_bg_opacity' )): ?>
                   opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;
@@ -116,13 +123,13 @@
           <?php while ( have_rows( 'right' ) ): the_row(); ?>
             <?php // If there isn't a full background image, but the right side has one ?>
             <?php if(!$splitImage && get_sub_field('bg_image')) : ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__right:before {
+              .page<?= $data->ID; ?> .<?= $id; ?>__right:before {
                 background-image: url('<?= get_sub_field('bg_image')['url']; ?>');
               }
             <?php endif; ?>
 
             <?php if(get_sub_field('bg_color')): ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__right:after {
+              .page<?= $data->ID; ?> .<?= $id; ?>__right:after {
                 background-color: <?= get_sub_field( 'bg_color' ); ?>;
                 <?php // If there is a full or right-side background image, use the background color as an overlay
                 if ( get_sub_field( 'bg_image' ) || $splitImage ): ?>
@@ -132,7 +139,7 @@
             <?php endif; ?>
 
             <?php if (get_sub_field( 'text_bg_color' )): // Content background overlay ?>
-              .page<?= $data->ID; ?> .section<?= $count; ?>__rightContent:before {
+              .page<?= $data->ID; ?> .<?= $id; ?>__rightContent:before {
                 background-color: <?= get_sub_field( 'text_bg_color' ); ?>;
                 <?php if(get_sub_field( 'text_bg_opacity' )): ?>
                   opacity: <?= get_sub_field( 'text_bg_opacity' )/100; ?>;

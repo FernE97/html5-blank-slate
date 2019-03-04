@@ -1,5 +1,7 @@
-/*=Helper Classes
----------------------------------------------------------------------*/
+// ============================================ //
+// ============== HELPER CLASSES ============== //
+// ============================================ //
+
 .group {
     @extend .clearfix;
 }
@@ -35,4 +37,46 @@
     margin: 0;
     width: auto;
     height: auto;
+}
+
+
+// Container classes, container.container--large
+.container {
+	@include xy-grid-container;
+
+	@each $breakpoint-name, $breakpoint in $breakpoints {
+		&--#{$breakpoint-name} {max-width: $breakpoint}
+	}
+	// @include m(full) {max-width: 100%};
+	&--full {@include max-width-100;}
+}
+
+// Classes such as .small-gutterY or .large-gutterY
+@include each-breakpoint(gutterY) {
+  // Add top/bottom gutters
+  @include xy-gutters($gutter-position: top bottom);
+}
+
+// Classes such as .small-gutterX or .large-gutterX
+@include each-breakpoint(gutterX) {
+  // Adds left/right gutters
+  @include xy-gutters($gutter-position: left right);
+}
+
+// Classes such as .small-gutterXY or .large-gutterXY
+@include each-breakpoint(gutterXY) {
+  // Add top/bottom/left/right gutters
+  @include xy-gutters($gutter-position: left right top bottom);
+}
+
+// Classes such as .small-gridY or .large-gridY
+@include each-breakpoint(gridY) {
+  // Column flex
+  flex-flow: column nowrap;
+}
+
+// Classes such as .small-gridX or .large-gridX
+@include each-breakpoint(gridX) {
+  // Row flex
+  flex-flow: row wrap;
 }

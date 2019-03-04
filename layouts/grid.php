@@ -8,37 +8,32 @@
   $query  = new WP_Query($args);
 ?>
 <?php if (count($query->posts)): $query_count = 1; ?>
-  <section class="section<?=$count;?> postGrid layout grid-x align-middle">
-  <div class="section<?=$count;?>__content postGrid__content content grid-container fluid small-gutterY">
+  <section id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> postGrid layout grid-x align-middle">
+  <div class="<?= $id; ?>__content postGrid__content content layoutWrapper">
   <?php if($heading || $subheading || $text) : ?>
-      <div class="postGrid__textContent section<?=$count;?>__textContent textContent grid-x grid-padding-x">
+      <div class="postGrid__textContent <?= $id; ?>__textContent textContent">
         <?php if($heading): ?>
-          <h2 class="postGrid__heading section<?=$count;?>__heading heading cell --center"><?= $heading; ?></h2>
+          <h2 class="postGrid__heading <?= $id; ?>__heading heading cell --center"><?= $heading; ?></h2>
         <?php endif; ?>
         <?php if($subheading): ?>
-          <h3 class="postGrid__subheading section<?=$count;?>__subheading subheading cell --center"><?= $subheading; ?></h3>
+          <h3 class="postGrid__subheading <?= $id; ?>__subheading subheading cell --center"><?= $subheading; ?></h3>
         <?php endif; ?>
         <?php if($text): ?>
-          <p class="postGrid__text section<?=$count;?>__text text cell --center small-11 medium-8 xlarge-6"><?= $text; ?></p>
+          <p class="postGrid__text <?= $id; ?>__text text cell --center small-11 medium-8 xlarge-6"><?= $text; ?></p>
         <?php endif; ?>
       </div>
     <?php endif; ?>
 
-  <div class="postGrid__wrapper section<?=$count;?>__postGridWrapper postGridWrapper grid-x grid-margin-x">
+  <div class="postGrid__wrapper <?= $id; ?>__postGridWrapper postGridWrapper ">
     <?php
       // Uses `foreach` loop instead of `while have_posts` because multiple nested queries
       // won't loop over posts correctly using standard WP loop
       // https://support.advancedcustomfields.com/forums/topic/content-after-custom-loop-inside-flexible-content/#post-61513
       foreach ($query->posts as $nested_post):
         if($query_count <= $max || $max == "0"):
-          include( locate_template('/layouts/posts/default.php') );
-          // if( get_post_type($nested_post->ID) == 'post_type_one' ):
-            // include( locate_template('/layouts/posts/one.php') );
-          // elseif( get_post_type($nested_post->ID) == 'post_type_two' ):
-              // include( locate_template('/layouts/posts/two.php') );
-          // else:
-            // include( locate_template('layouts/posts/default.php') );
-          // endif;
+          //if( get_post_type($nested_post->ID) == 'resources' ):
+            //include( locate_template('/layouts/posts/resources.php') );
+            include( locate_template('/layouts/posts/default.php') );
         endif;
         $query_count++;
       endforeach;

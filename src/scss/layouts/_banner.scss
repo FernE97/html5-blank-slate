@@ -1,2 +1,23 @@
 // ACF Flexible Content
 // "Banner" Layout
+
+.banner {
+
+  &__content {}
+
+  &__textContent {}
+
+  // Banner heading (h1). Taglines/subheadings are h2
+  &__heading {
+    @include dynamicCalc($bannerHeadingSizes, 'font-size');
+  }
+
+  &__subheading {}
+
+  &__text {}
+
+  &__buttons {}
+
+  &__button {}
+
+}

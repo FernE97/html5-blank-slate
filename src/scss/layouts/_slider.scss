@@ -7,30 +7,38 @@
 // Optional Theme Glide.js Stylesheet
 @import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
 
-.slider {
-  padding-bottom: 3rem;
+
+.sliderLayout {
+  @include dynamicCalc($splitOuterGutter, 'padding-top', 'padding-bottom');
+  &__heading {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  &__glideWrapper {
+    width: 100%;
+  }
 
   .glide {
-
-    &__track,
-    &__slides {
-      padding: 2rem 0;
-    }
-
     &__controls {
-      position: relative;
+      top: 100%;
+      position: absolute;
+      display: block;
+      width: 100%;
+
+      @include breakpoint(large) {
+        top: 50%;
+      }
     }
 
     &__slide {
       background-size: cover;
       background-repeat: no-repeat;
       position: relative;
-
-      >a {
-        width: 100%;
-        min-height: 100%;
-        display: block;
-      }
+      min-height: rem-calc(250);
+      width: auto;
+      cursor: grab;
+      background-position-x: center;
 
       &--circle {
 
@@ -42,20 +50,63 @@
       }
     }
 
-    &__arrow--left {
-      left: 30%;
-
-      @include breakpoint(medium) {
-        left: 40%;
-      }
+    &__outerSlideLink {
+      width: 100%;
+      height: 100%;
+      min-height: 100%;
+      min-width: 100%;
+      position: absolute;
     }
 
-    &__arrow--right {
-      right: 30%;
+    &__textContent {
+      width: 100%;
+      position: relative;
+      text-align: center;
+    }
 
-      @include breakpoint(medium) {
-        right: 40%;
+    &__link {
+      text-transform: uppercase;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    &__date, &__time {
+      margin-bottom: 0;
+    }
+
+    &__arrow {
+      // CSS variable to fill the inline SVG
+      --fill: #{$secondary};
+      position: absolute;
+      border: 0;
+      box-shadow: none;
+
+      > svg {
+        width: rem-calc(25);
+
+
+        @include breakpoint(large) {
+          width: rem-calc(50);
+        }
       }
+
+      &--left {
+        left: -1rem;
+
+        @include breakpoint(large) {
+          left: -6rem;
+        }
+      }
+
+      &--right {
+        right: -1rem;
+
+      @include breakpoint(large) {
+        right: -6rem;
+      }
+      }
+
     }
   }
 }
+

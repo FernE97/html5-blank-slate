@@ -1,62 +1,64 @@
 // ACF Flexible Content
 // "Donate" Layout
 .donate {
+  display: flex;
+  align-items: center;
 
-  //******************** Section content
-  &__content {
-    @include poly-fluid-sizing('padding-top', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
-    @include poly-fluid-sizing('padding-bottom', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
+  &__text {
+    width: 100%;
   }
 
   //******************** Form wrapper
   &__formWrap {
     // At small sizes, put form beneath the heading/body text
     order: 1;
+    max-width: rem-calc(600);
+    @include dynamicCalc(($small: 1rem, $medium: 1.75rem, $large: 2rem, $xlarge: 2.5rem), 'padding-top');
 
     @include breakpoint(large) {
-
       // Form is on left
       &.--left {
         order: -1;
         justify-content: flex-end;
+        // Push form toward center
+        margin-left: auto;
       }
 
       // Form is on right
       &.--right {
         order: 1;
         justify-content: flex-start;
+        // Push form toward center
+        margin-right: auto;
       }
     }
   }
 
   //********** Form element
-  // .donate__form
   &__form {
     width: 100%;
     text-align: center;
-    @include xy-gutters($gutter-position: left right bottom);
   }
 
   //********** Top half of form
   // Container for once/monthly tabs
-  // .donate__interval
   &__interval {
     display: flex;
     justify-content: space-evenly;
-    border: 3px solid $primary;
-    border-radius: 1000px;
+    border: rem-calc(3) solid $primary;
+    border-radius: rem-calc(1000);
     transition: all .25s $easeInOutCirc;
     background-color: $primary;
-    @include shadow($move: false, $hoverOnly: false, $borderRadius: 1000px, $y: rem-calc(2), $blur: rem-calc(3), $newY: rem-calc(5), $newBlur: rem-calc(6));
+    @include shadow($move: false, $borderRadius: rem-calc(1000), $y: rem-calc(2), $blur: rem-calc(3), $newY: rem-calc(5), $newBlur: rem-calc(6));
 
     &:hover {
       background-color: darken($primary, 10%);
-      border: 3px solid darken($primary, 10%);
+      border: rem-calc(3) solid darken($primary, 10%);
 
       .donate__radioLabel {
         color: darken($primary, 10%);
 
-        &.js--active {
+        &.js--frequency {
           color: $lightest;
         }
       }
@@ -64,58 +66,57 @@
   }
 
   //********** Give once, give monthly
-  // .donate__radioLabel
   &__radioLabel {
     width: 50%;
     text-align: center;
-    letter-spacing: 1px;
-    @include poly-fluid-sizing('padding', ($small: .5rem, $large: .75rem));
-    @include poly-fluid-sizing('font-size', ($small: .7rem, $large: .9rem));
+    letter-spacing: rem-calc(1);
+    @include dynamicCalc(($small: .5rem, $large: .75rem), 'padding');
+    @include dynamicCalc(($small: .7rem, $large: .9rem), 'font-size');
     background-color: $lightest;
     color: $primary;
     font-weight: bold;
-    transition: all .3s $easeInOutCirc;
+    transition: all .15s $easeInOutCirc;
 
     &:hover {
-      background-color: $secondary;
-      color: darken($primary, 10%);
-      @include shadow($move: false, $hoverOnly: true, $borderRadius: 1000px, $newY: rem-calc(5), $newBlur: rem-calc(6));
+      color: $lightest;
+      background-color: lighten($primary, 20%);
     }
 
     // Currently selected tab
-    &.js--active {
-      background-color: $primary;
+    &.js--frequency {
       color: $lightest;
+      background-color: $primary;
 
       &:hover {
-        background-color: darken($primary, 10%);
+        background-color: lighten($primary, 20%);
       }
     }
   }
 
   // Round top/bottom left corners
-  // .donate__onceLabel
   &__onceLabel {
-    border-radius: 1000px 0 0 1000px;
+    &, &:hover {
+      border-radius: rem-calc(1000) 0 0 rem-calc(1000);
+    }
   }
 
   // Round top/bottom right corners
-  // .donate__monthlyLabel
   &__monthlyLabel {
-    border-radius: 0 1000px 1000px 0;
+    &, &:hover {
+      border-radius: 0 rem-calc(1000) rem-calc(1000) 0;
+    }
   }
 
 
   //********** Bottom half of form
   // Includes input field and submit button
-  // .donate__formContent
   &__formContent {
-    border: 3px solid $primary;
-    border-radius: 10px;
+    border: rem-calc(3) solid $primary;
+    border-radius: rem-calc(10);
     background-color: $lightest;
     @include shadow($move: false);
     margin-top: rem-calc(20);
-    @include poly-fluid-sizing('padding', ($small: .7rem, $medium: .9rem, $large: 1.1rem, $xlarge: 1.3rem));
+    @include dynamicCalc(($small: .7rem, $medium: .9rem, $large: 1.1rem, $xlarge: 1.3rem), 'padding');
   }
 
   //********** Text at the top of the form
@@ -123,7 +124,7 @@
     line-height: unset;
     padding-bottom: 2rem;
     color: $darker;
-    @include poly-fluid-sizing('font-size', ($small: .8rem, $medium: 1rem, $large: 1.2rem, $xlarge: 1.5rem));
+    @include dynamicCalc(($small: .8rem, $medium: 1rem, $large: 1.2rem, $xlarge: 1.5rem), 'font-size');
   }
 
 
@@ -133,18 +134,17 @@
 
   //********** Input field element
   &__input {
-    border: 2px solid $darker;
+    border: rem-calc(2) solid $darker;
     background-color: lighten($primary, 40%);
-    border-radius: 1000px;
+    border-radius: rem-calc(1000);
     font-weight: 400;
     color: $primary;
-    // font-family: $font_heading;
-    @include poly-fluid-sizing('padding', ($small: 1.25rem, $large: 1.5rem, $xlarge: 2.5rem));
-    @include poly-fluid-sizing('font-size', ($small: 1.3rem, $medium: 1.5rem, $large: 2rem, $xlarge: 2.35rem));
-    @include poly-fluid-sizing('padding-left', ($small: 1.6rem, $medium: 2rem, $large: 3.2rem, $xlarge: 3.75rem));
+    @include dynamicCalc(($small: 1.25rem, $large: 1.5rem, $xlarge: 2.5rem), 'padding');
+    @include dynamicCalc(($small: 1.3rem, $medium: 1.5rem, $large: 2rem, $xlarge: 2.35rem), 'font-size');
+    @include dynamicCalc(($small: 1.6rem, $medium: 2rem, $large: 3.2rem, $xlarge: 3.75rem), 'padding-left');
 
     &:focus {
-      border: 2px solid $darker;
+      border: rem-calc(2) solid $darker;
       background-color: $primary;
       box-shadow: none;
     }
@@ -155,38 +155,26 @@
   &__currency {
     position: absolute;
     top: 50%;
-    transform: perspective(1px) translateY(-42%);
+    transform: perspective(rem-calc(1)) translateY(-42%);
     color: $darker;
-    font-family: 'Source Sans Pro';
     z-index: 1;
-    @include poly-fluid-sizing('font-size', ($small: .9rem, $medium: 1.15rem, $large: 1.25rem, $xlarge: 1.5rem));
+    @include dynamicCalc(($small: .9rem, $medium: 1.15rem, $large: 1.25rem, $xlarge: 1.5rem), 'font-size');
   }
 
   &__currencySymbol {
-    @include poly-fluid-sizing('left', ($small: rem-calc(10), $medium: rem-calc(15), $large: rem-calc(20), $xlarge: rem-calc(30)));
+   @include dynamicCalc(($small: rem-calc(10), $medium: rem-calc(15), $large: rem-calc(20), $xlarge: rem-calc(30)), 'left');
   }
 
   &__currency {
-    @include poly-fluid-sizing('right', ($small: rem-calc(10), $medium: rem-calc(15), $large: rem-calc(20), $xlarge: rem-calc(30)));
+    @include dynamicCalc(($small: rem-calc(10), $medium: rem-calc(15), $large: rem-calc(20), $xlarge: rem-calc(30)), 'right');
   }
 
   //********** Submit button
   &__button {
-    @include poly-fluid-sizing('padding', ($small: .7rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem));
+    @include dynamicCalc(($small: .7rem, $medium: 1rem, $large: 1.25rem, $xlarge: 1.5rem), 'padding');
     margin-top: 0;
     text-transform: uppercase;
     font-weight: bold;
-    letter-spacing: 2px;
+    letter-spacing: rem-calc(2);
   }
-}
-
-
-// If the static [donateForm] shortcode was used inside of the banner section
-.banner {
-    .donate__form {
-      @include breakpoint(large) {
-        width: 51%;
-        margin: 0 auto;
-      }
-    }
 }

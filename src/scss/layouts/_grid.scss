@@ -3,15 +3,13 @@
 
 .postGrid {
   &__wrapper {
-    @include poly-fluid-sizing('margin-top', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
+    //@include dynamicCalc('margin-top', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
   }
 
   &__item {
     transition: background-color .4s $sineInOut, background-image .4s $sineInOut;
     background-size: cover;
     background-position: center center;
-    min-width: 250px;
-    min-height: 250px;
     display: flex;
     flex-direction: column;
     align-content: space-between;
@@ -24,21 +22,14 @@
 
     @include shadow($move: false, $properties: 'background-color, bottom, box-shadow');
 
-    @include breakpoint(medium) {
-      width: xy-cell-size(1/2);
-    }
+    @include dynamic((
+      $small:       xy-cell-size(1),
+      $medium:      xy-cell-size(1/2),
+      $mediumish:   xy-cell-size(1/3),
+      $large:       xy-cell-size(1/4),
+      $xxlarge:     xy-cell-size(1/5)),
+      'width');
 
-    @include breakpoint(mediumish) {
-      width: xy-cell-size(1/3);
-    }
-
-    @include breakpoint(large) {
-      width: xy-cell-size(1/4);
-    }
-
-    @include breakpoint(xxlarge) {
-      width: xy-cell-size(1/5);
-    }
 
     &:hover h4 {
       display: block;
@@ -53,21 +44,5 @@
   }
 
 
-  &__textContent {
-    &--left {
-      margin-right: auto;
-      margin-left: 0;
-    }
-
-    &--center {
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-
-    &--right {
-      margin-left: auto;
-      margin-right: 0;
-    }
-  }
+  &__textContent {}
 }

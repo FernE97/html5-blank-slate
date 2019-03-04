@@ -1,2 +1,23 @@
-// Buttons
-// ----------------------------------------------
+.buttons {
+  .button {
+    @include dynamicCalc(($small: .7rem, $medium: .8rem, $large: .9rem, $xlarge: 1rem), 'font-size');
+    @include dynamicCalc(($buttonPaddingX), 'padding-left', 'padding-right');
+    @include dynamicCalc(($buttonPaddingY), 'padding-top', 'padding-bottom');
+    @include shadow(
+      $borderRadius: rem-calc(1000),
+      $move: false,
+      $y: rem-calc(9),
+      $blur: rem-calc(12),
+      $newX: rem-calc(1),
+      $newY: rem-calc(15),
+      $newBlur: rem-calc(18)
+    );
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: rem-calc(30);
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

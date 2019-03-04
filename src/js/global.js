@@ -1,4 +1,15 @@
 import Glide from '@glidejs/glide'
+import {
+  throttle,
+  addAttribute,
+  keepSquare,
+  getPostGrids,
+  resizePostGrids,
+  awaitSelector,
+  watchAwaitSelector,
+  externalLinksTargetBlank,
+  slideTextContent
+} from './functions.js';
 
 // Custom global jQuery scripts
 jQuery(document).ready(function ($) {
@@ -8,161 +19,13 @@ jQuery(document).ready(function ($) {
   $(document).foundation();
 
   // Mobile nav toggle
-  $('#nav-mobile-toggle').on('click', function () {
+  $('#nav__toggle').on('click', function () {
     $('#nav-mobile').slideToggle();
+    $('#site-header').toggleClass('nav__mobile--open');
   });
 
-
-  // -------------------- DONATION FORM ------------------- //
-  let donateLabel = document.querySelectorAll('.donate__radioLabel'), i;
-
-  for (i = 0; i < donateLabel.length; ++i) {
-    let el = donateLabel[i];
-    el.addEventListener('click', function () {
-      let formLabel;
-      if (document.querySelector('.donate__form .js--active')) {
-        formLabel = document.querySelector('.donate__form .js--active');
-        formLabel.classList.remove('js--active');
-      }
-      el.classList.add('js--active');
-    })
-  }
-
-  var buttonAmount = $('.donate__input'),
-    customAmount = $('.donate__input'),
-    buttonDonate = $('.js--button-donate'),
-    frequencyButton = $('.js--frequency'),
-    urlValue
-
-  // Toggling amount
-  buttonAmount.on('change', function () {
-    $('.donate__input').val();
-  });
-
-  // Resetting amounts and setting the custom-amount
-  customAmount.on('change', function () {
-    $('.js--amount').removeClass('active');
-  });
-
-  buttonDonate.on('click', function (e) {
-    e.preventDefault();
-    var amountInput = customAmount.val(),
-      amountButton = $('.donate__input').val(),
-      frequency;
-
-    if ($('.donate__form .js--active').data('interval') == 'monthly') {
-      frequency = '&interval=' + $('.donate__form .js--active').data('interval')
-    } else {
-      frequency = ''
-    }
-
-    urlValue = e.target.href + '?amount=' + amountButton + frequency
-    if ($.trim(amountInput).match(/^\d+$/) || $.trim(amountButton).match(/^\d+$/))
-      window.location.replace(urlValue);
-  });
 }(jQuery));
 
-
-// IE11 Custom Elements Polyfill
-(function () {
-  if (typeof window.CustomEvent === "function") return false;
-
-  function CustomEvent(event, params) {
-    params = params || {
-      bubbles: false,
-      cancelable: false,
-      detail: undefined
-    };
-    var evt = document.createEvent('CustomEvent');
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return evt;
-  }
-  CustomEvent.prototype = window.Event.prototype;
-  window.CustomEvent = CustomEvent;
-})();
-
-// Optimized resize custom event
-(function () {
-  var throttle = function (type, name, obj) {
-    obj = obj || window;
-    var running = false;
-    var func = function () {
-      if (running) {
-        return;
-      }
-      running = true;
-      requestAnimationFrame(function () {
-        obj.dispatchEvent(new CustomEvent(name));
-        running = false;
-      });
-    };
-    obj.addEventListener(type, func);
-  };
-  /* init - you can init any event */
-  throttle("resize", "optimizedResize");
-})();
-
-
-var addAttribute = function (selector, attribute, attributeValue) {
-  // If it is a node, such as a variable set to document.getElementById('id');
-  if (selector.nodeType === Node.ELEMENT_NODE) {
-    selector.setAttribute(attribute, attributeValue);
-  }
-  // If selector already is an array
-  else if (Array.isArray(selector)) {
-    selector.map(function (val) {
-      val.setAttribute(attribute, attributeValue)
-    })
-  }
-  // If a string was passed, make an array out of it
-  else if (typeof selector === 'string') {
-    [...document.querySelectorAll(selector)].map(function (val) {
-      val.setAttribute(attribute, attributeValue)
-    })
-  }
-};
-
-var keepSquare = function (selector, matchAttr) {
-  if (typeof selector !== 'undefined') {
-    var s = document.querySelectorAll(selector);
-    if (s.length > 0) {
-      var w = s[0].clientWidth;
-      var h = s[0].clientHeight;
-
-      if (matchAttr == 'height') {
-        for (let i = 0; i < s.length; i++) {
-          s[i].style.width = h + 'px';
-        }
-      } else {
-        for (let i = 0; i < s.length; i++) {
-          s[i].style.height = w + 'px';
-        }
-      }
-    }
-  }
-}
-
-
-var resizePostItems = function(postGrids) {
-  postGrids.map(function(postItem) {
-    postItem.map(function (item) {
-      let max = 0;
-      item.map(function (el) {
-        // Remove current inline style so that it won't keep reusing the largest size set previously
-        el.style.height = '';
-        if (el.offsetHeight > max) {
-          max = el.offsetHeight;
-        }
-      });
-
-      if (max > 0) {
-        item.map(function (el) {
-          el.style.height = max+'px';
-        });
-      }
-    });
-  });
-}
 
 // Document load/ready promise, calls 'ready' method when completed
 HTMLDocument.prototype.ready = function () {
@@ -177,38 +40,108 @@ HTMLDocument.prototype.ready = function () {
   });
 };
 
+
+
 // Custom global scripts
 document.ready().then(function () {
 
-  var postGrids = [];
-  var postGrid = [...document.querySelectorAll('.postGrid')];
+  // Creates a custom, optimized resize event
+  throttle('resize', 'optimizedResize');
 
-  for (let i = 0; i < postGrid.length; i++) {
-    let postItemHeading = [...postGrid[i].querySelectorAll('.postGrid__itemHeading')];
-    let postItemText = [...postGrid[i].querySelectorAll('.postGrid__itemText')];
-    let postItemButton = [...postGrid[i].querySelectorAll('.postGrid__itemButton')];
-    let postItem = [postItemHeading, postItemText, postItemButton];
-    postGrids[i] = postItem;
+  window.addEventListener('load', function () {
+    // For each post grid layout, this resizes the post item parts (heading, text, button)
+    // so they align properly: getPostGrids('.selector1, .selector2, #selector3');
+
+    // Initial resize of slides with the "square" or "circle" setting enabled in ACF
+    keepSquare('.glide__slide--square, .glide__slide--circle');
+
+    // Gets height of slides and height of any text content,
+    // then adds bottom margin to slide and moves text content down accordingly
+    slideTextContent();
+  });
+
+
+  window.addEventListener('optimizedResize', function () {
+    // For each post grid layout, this resizes the post item parts (heading, text,
+    // button) so they align properly resizePostGrids(postGrids)
+    // getPostGrids('.selector1, .selector2, #selector3');
+
+
+    // Keep square dimensions of slides with the "square"
+    // or "circle" shape setting enabled in ACF
+    keepSquare('.glide__slide--square, .glide__slide--circle');
+    slideTextContent();
+  });
+
+  // Whenever new links enter the DOM or are changed,
+  // check if they are external links and need _blank added
+  watchAwaitSelector(function() {
+    externalLinksTargetBlank();
+  }, 'a', document, 3000);
+
+  window.addEventListener('click', function(e) {
+    console.log(e.target);
+  });
+
+  // ============================================ //
+  // =============== #DONATE #FORM ============== //
+  // ============================================ //
+  var donateLabels = document.querySelectorAll('.donate__radioLabel');
+  var donateButton = document.querySelector('.js--donateButton');
+  var donateAmount = document.querySelector('.js--amount');
+  var donateFrequency;
+
+  // Toggle active label/frequency value
+  for (var i = 0; i < donateLabels.length; ++i) {
+    let el = donateLabels[i];
+    el.addEventListener('click', function () {
+      if (document.querySelector('.donate__form .js--frequency')) {
+        document.querySelector('.donate__form .js--frequency').classList.remove('js--frequency');
+      }
+      el.classList.add('js--frequency');
+      donateFrequency = el.getAttribute('data-interval');
+    });
   }
 
-  window.addEventListener('load', function() {
-    resizePostItems(postGrids)
-  });
+  if (donateButton) {
+    donateButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      var amount = donateAmount.value;
+      var frequency = '';
+      var urlValue;
 
-  window.addEventListener('resize', function() {
-    resizePostItems(postGrids)
-  });
+      // Remove any leading/trailing whitespace
+      amount = amount.replace(/\s+/g, '');
+
+      if (donateFrequency == 'monthly') {
+        frequency = '&interval=monthly';
+      }
+
+      urlValue = e.target.href + '?amount=' + amount + frequency;
+      if (amount.match(/^\d+$/) || amount.match(/^\d+$/)) {
+        window.location.replace(urlValue);
+      }
+    });
+  }
 
 
+
+
+
+  // ============================================ //
+  // ============== #SLIDER #GLIDER ============= //
+  // ============================================ //
   var glide = document.querySelectorAll('.glide');
   if (glide.length > 0) {
     for (let i = 0; i < glide.length; i++) {
+      // Initialize Glide slider https://glidejs.com/
+      // An even more lightweight alternative is Glider https://nickpiscitelli.github.io/Glider.js/
       new Glide(glide[i], {
         type: 'carousel',
         perView: 3,
         gap: 35,
         breakpoints: {
-          800: {
+          1000: {
             perView: 1
           }
         }
@@ -216,11 +149,5 @@ document.ready().then(function () {
     }
   }
 
-  // Initial resize
-  keepSquare('.glide__slide--square, .glide__slide--circle');
-});
 
-window.addEventListener("optimizedResize", function () {
-  keepSquare('.glide__slide--square, .glide__slide--circle');
-  keepSquare('.postGrid__itemPhoto');
 });

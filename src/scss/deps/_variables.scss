@@ -1,15 +1,4 @@
 // Colors
-//$primary: ;
-//$secondary: ;
-//$tertiary: ;
-$small: rem-calc(0);
-$smallish: rem-calc(400);
-$medium: rem-calc(640);
-$mediumish: rem-calc(832);
-$large: rem-calc(1024);
-$xlarge: rem-calc(1200);
-$xxlarge: rem-calc(1440);
-
 $primary: hsla(237, 72%, 58%, 1);
 $secondary: hsla(34, 100%, 59%, 1);
 $tertiary: hsla(204, 70%, 53%, 1);
@@ -19,17 +8,28 @@ $dark: #303030;
 $light: #7d7d7d;
 $lighter: #d1d1d1;
 $lightest: #ffffff;
+$font-color: #3a3a3a;
+$link-color: #0ae;
+$link-color-hover: adjust-hue($link-color, -240);
+$slideMinWidth: 150px;
+$slideMinHeight: 150px;
 
-
+// Breakpoint aliases
+$small: rem-calc(map-get($breakpoints, small));
+$smallish: rem-calc(map-get($breakpoints, smallish));
+$medium: rem-calc(map-get($breakpoints, medium));
+$mediumish: rem-calc(map-get($breakpoints, mediumish));
+$large: rem-calc(map-get($breakpoints, large));
+$xlarge: rem-calc(map-get($breakpoints, xlarge));
+$xxlarge: rem-calc(map-get($breakpoints, xxlarge));
 
 $elementSeparator: '__';
 $modifierSeparator: '--';
 
-$font-color: #3a3a3a;
-$link-color: #0ae;
-$link-color-hover: adjust-hue($link-color, -240);
 
 // Font
+//$font__body: ;
+//$font__heading: ;
 $monospace: consolas, monaco, menlo, monospace;
 
 

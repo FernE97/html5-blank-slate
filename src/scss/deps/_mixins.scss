@@ -101,63 +101,14 @@
 @mixin vertical-align {
   position: relative;
   top: 50%;
+  transform: translateY(-50%);
 }
 
-
-
-@mixin shadow($move: true, $hoverOnly: false, $borderRadius: 0, $x: 0, $y: rem-calc(3), $blur: rem-calc(10), $color: rgba(0, 0, 0, .3), $properties: all, $time: .2s, $timeFunction: ease, $distance: rem-calc(4), $newX: 0, $newY: rem-calc(7), $newBlur: rem-calc(15), $newColor: rgba(0, 0, 0, .3)) {
-  // If using the variable:value pair syntax, you can pass them in any order
-  // You can pass as many as you want, anything you don't include will use the default value
-
-
-  // You can specify multiple specific properties using $properties: 'prop1, prop2, prop3', which is useful for transition properties
-  // Quotes are needed to pass multiple values for one parameter
-
-  // Uses transition on psuedo-element opacity for better performance,
-  // since opacity transitions don't trigger paint redraws,
-  // while box-shadow transitions constantly trigger paint redraws
-
-  position: relative;
-  @if $move == true {
-    bottom: 0;
-  }
-
-  @if $hoverOnly == false {
-    box-shadow: $x $y $blur $color;
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    box-shadow: $newX $newY $newBlur $newColor;
-    transition: opacity $time #{$timeFunction};
-    border-radius: $borderRadius;
-  }
-
-  &:hover, &:focus {
-    transition-property: #{$properties}; // Interpolation removes any quotes that were passed with the parameter
-    transition-duration: $time;
-    transition-timing-function: #{$timeFunction};
-
-    @if $move == true {
-      bottom: $distance;
-      z-index: 1;
-    }
-
-
-  }
-
-  &:hover::after {
-      opacity: 1;
-  }
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
 }
-
 
 
 // You can assign the parent/block selector to a variable --> $b: #{&};
@@ -170,88 +121,57 @@
   }
 }
 
-@function list-remove($list, $index) {
-  $newList: ();
 
-  @for $i from 1 through length($list) {
-    @if $i != $index {
-      $newList: append($newList, nth($list, $i), 'space');
-    }
+@mixin dynamic($map, $properties...) {
+  // Get the number of provided breakpoints
+  $length: length(map-keys($map));
+
+  @each $property in $properties {
+
+  // Error if the number of breakpoints is < 2
+  @if $length < 2 {
+    @error 'poly-property() $map requires at least values';
   }
 
-  @return $newList;
-}
-
-@function list-sort($list) {
-  $sortedlist: ();
-
-  @while length($list) > 0 {
-    $value: nth($list, 1);
-
-    @each $item in $list {
-      @if $item < $value {
-        $value: $item;
-      }
-    }
-
-    $sortedlist: append($sortedlist, $value, 'space');
-
-    $list: list-remove($list, index($list, $value));
-  }
-
-  @return $sortedlist;
-}
-
-@function map-sort($map) {
-  $keys: list-sort(map-keys($map));
-  $sortedMap: ();
-
-  @each $key in $keys {
-    $sortedMap: map-merge($sortedMap, ($key: map-get($map, $key)));
-  }
-
-  @return $sortedMap;
-}
-
-@function linear-interpolation($map) {
+  // Sort the map by viewport width (key)
+  $map: map-sort($map);
   $keys: map-keys($map);
 
-  @if length($keys) != 2 {
-    @error 'linear-interpolation() $map must be exactly 2 values';
+  // Minimum size
+  #{$property}: map-get($map, nth($keys, 1));
+
+  @for $i from 1 through $length - 1 {
+    @media (min-width: nth($keys, $i)) {
+      $value: map-get($map, nth($keys, $i));
+      #{$property}: $value;
+    }
   }
 
-  // The slope
-  $m: (map-get($map, nth($keys, 2)) - map-get($map, nth($keys, 1))) / (nth($keys, 2) - nth($keys, 1));
-
-  // The y-intercept
-  $b: map-get($map, nth($keys, 1)) - $m * nth($keys, 1);
-
-  // Determine if the sign should be positive or negative
-  $sign: '+';
-
-  @if $b < 0 {
-    $sign: '-';
-    $b: abs($b);
+  // Maxmimum size
+  @media (min-width: nth($keys, $length)) {
+    #{$property}: map-get($map, nth($keys, $length));
   }
-
-  @return calc(#{$m * 100}vw #{$sign} #{$b});
+}
 }
 
-/// poly-fluid-sizing
+
+/// dynamicCalc
 /// Generate linear interpolated size values through multiple break points
 /// @param $property - A string CSS property name
 /// @param $map - A Sass map of viewport unit and size value pairs
 /// @example
-///   @include poly-fluid-sizing('font-size', (576px: 22px, 768px: 24px, 992px: 34px));
+///   @include dynamicCalc((576px: 22px, 768px: 24px, 992px: 34px), 'font-size, line-height');
 ///   You can use any unit type, but you can't mix them (576px: 3rem)
 
-@mixin poly-fluid-sizing($property, $map) {
+@mixin dynamicCalc($map, $properties...) {
   // Get the number of provided breakpoints
   $length: length(map-keys($map));
 
+  @each $property in $properties {
+
   // Error if the number of breakpoints is < 2
   @if $length < 2 {
-    @error 'poly-fluid-sizing() $map requires at least values';
+    @error 'dynamicCalc() $map requires at least values';
   }
 
   // Sort the map by viewport width (key)
@@ -282,40 +202,8 @@
   @media (min-width: nth($keys, $length)) {
     #{$property}: map-get($map, nth($keys, $length));
   }
-}
-
-
-
-@mixin poly-property($property, $map) {
-  // Get the number of provided breakpoints
-  $length: length(map-keys($map));
-
-  // Error if the number of breakpoints is < 2
-  @if $length < 2 {
-    @error 'poly-property() $map requires at least values';
-  }
-
-  // Sort the map by viewport width (key)
-  $map: map-sort($map);
-  $keys: map-keys($map);
-
-  // Minimum size
-  #{$property}: map-get($map, nth($keys, 1));
-
-  // Interpolated size through breakpoints
-  @for $i from 1 through $length - 1 {
-    @media (min-width: nth($keys, $i)) {
-      $value1: map-get($map, nth($keys, $i));
-      #{$property}: $value1;
-    }
-  }
-
-  // Maxmimum size
-  @media (min-width: nth($keys, $length)) {
-    #{$property}: map-get($map, nth($keys, $length));
   }
 }
-
 
 
 
@@ -339,4 +227,67 @@
   }
 }
 
+@mixin shadowBasic ($level) {
+	@if $level == 1 {
+		box-shadow: 0 0.125em 0.313em rgba(50,50,93,.09), 0 0.063em 0.125em rgba(0,0,0,.07);
+	} @else if $level == 2 {
+    box-shadow: 0 0.250em 0.375em rgba(50,50,93,.09), 0 0.063em 0.188em rgba(0,0,0,.08);
+	} @else if $level == 3 {
+    box-shadow: 0 0.063em 0.313em 0 rgba(0,0,0,.07), 0 0.438em 1.063em 0 rgba(0,0,0,.1);
+	} @else if $level == 4 {
+    box-shadow: 0 0.938em 2.188em rgba(50,50,93,.1), 0 0.313em 0.938em rgba(0,0,0,.07);
+	} @else if $level == 5 {
+    box-shadow: 0 0.938em 2.188em rgba(50,50,93,.15), 0 0.313em 0.938em rgba(0,0,0,.1);
+	}
+}
 
+// You can specify multiple specific properties using $properties: 'prop1, prop2, prop3'
+// Quotes are needed to pass multiple values for one parameter
+@mixin shadow(
+  $move:              true,
+  $hoverOnly:         false,
+  $borderRadius:      0,
+  $x:                 0,
+  $y:                 rem-calc(6),
+  $blur:              rem-calc(12),
+  $color:           rgba(0, 0, 0, .2),
+  $properties:        all,
+  $time:              .2s,
+  $timeFunction:      ease,
+  $distance:          rem-calc(4),
+  $newX:              0,
+  $newY:              rem-calc(7),
+  $newBlur:           rem-calc(15),
+  $newColor:        rgba(0, 0, 0, .3)) {
+
+  position: relative;
+  border-radius: $borderRadius;
+  @if $move == true { bottom: 0; }
+  @if $hoverOnly == false { box-shadow: $x $y $blur $color; }
+
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    box-shadow: $newX $newY $newBlur $newColor;
+    transition: opacity $time #{$timeFunction};
+    border-radius: $borderRadius;
+  }
+
+  &:hover, &:focus {
+    // This is to allow you to have properties with different
+    // timings or functions than the shadow opacity
+    // Interpolation removes any quotes that were passed with the parameter
+    transition-property: #{$properties};
+    transition-duration: $time;
+    transition-timing-function: #{$timeFunction};
+    @if $move == true { bottom: $distance; }
+
+    &::after { opacity: 1; }
+  }
+}

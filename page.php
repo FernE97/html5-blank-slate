@@ -7,10 +7,16 @@
 get_header(); ?>
 
 <div class="content-wrap page-content" role="main">
-
 <?php if ( have_rows( 'flex' ) ): $count = 1; ?>
   <?php while ( have_rows( 'flex' ) ): the_row(); ?>
     <?php
+      $alignment = get_sub_field("alignment");
+      $heading = get_sub_field( "header" );
+      $subheading = get_sub_field( "tagline" );
+      $text = get_sub_field( "body" );
+      $id = get_sub_field("section_id") ?: "section{$count}";
+      $class = get_sub_field("section_class");
+
       if ( get_row_layout() == 'banner' ):                include(locate_template('layouts/banner.php'));
       elseif ( get_row_layout() == 'standard_content' ):  include(locate_template('layouts/standard.php'));
       elseif ( get_row_layout() == 'split_section' ):     include(locate_template('layouts/split.php'));

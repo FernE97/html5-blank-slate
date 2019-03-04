@@ -1,75 +1,136 @@
-// 3rd Party
-// ----------------------------------------------
+// ============================================ //
+// ================= 3RD PARTY ================ //
+// ============================================ //
 @import 'foundation_setup';
 @import 'motion-ui-setup';
 
-// plugins
-// add additional plugin styles here
 
 
-// Dependencies
-// ----------------------------------------------
+// ============================================ //
+// =============== DEPENDENCIES =============== //
+// ============================================ //
+/* purgecss start ignore */
 @import 'deps/variables';
+@import 'deps/functions';
 @import 'deps/mixins';
+/* purgecss end ignore */
 
 
-// Base
-// ----------------------------------------------
-
-// base html elements / no Ids or classes
+// ============================================ //
+// ==== BASE HTML ELEMENTS: NO IDS/CLASSES ==== //
+// ============================================ //
 @import 'base';
 @import 'typography';
 
 
-// Layout
-// ----------------------------------------------
-@import 'layout';
+
+// ============================================ //
+// ============ DYNAMIC SIZING MAPS =========== //
+// ============================================ //
+// SCSS maps to be used with the sizing interpolation mixin
+/* purgecss start ignore */
+@import 'sizing';
+/* purgecss end ignore */
 
 
-// Modules
-// ----------------------------------------------
-
-// Re-usable modules / components
+// ============================================ //
+// ======== REUSABLE MODULES/COMPONENTS ======= //
+// ============================================ //
 @import 'parts/forms';
 @import 'parts/buttons';
 @import 'parts/nav';
 
 
-// Sections
-// ----------------------------------------------
+
+// ============================================ //
+// ============= STANDARD SECTIONS ============ //
+// ============================================ //
 @import 'sections/header';
 @import 'sections/sidebar';
 @import 'sections/footer';
 
 
-// Templates / Page Specific
-// ----------------------------------------------
-@import 'blog';
 
-
-// WordPress Defaults
-// ----------------------------------------------
+// ============================================ //
+// ============ WORDPRESS DEFAULTS ============ //
+// ============================================ //
 @import 'wordpress';
 
 
-// Helpers
-// ----------------------------------------------
 
-// helper classes
+// ============================================ //
+// ============== HELPER CLASSES ============== //
+// ============================================ //
 @import 'helpers';
 
 
-// ACF Flexible Content Page
-// ----------------------------------------------
-// Note:
-// Styles generated from ACF values are located in "/includes/acf-styles.php" and output to "/assets/css/acf-styles.css"
-// Below are styles that don't rely on any ACF values
-@import 'layouts/page';
+
+// ============================================ //
+// =========== ACF FLEXIBLE TEMPLATE ========== //
+// ============================================ //
+/* purgecss start ignore */
+
+// Styles that don't rely on ACF values, and that affect each of the layout types
+@import 'layouts/all';
+// Individual layout styles
 @import 'layouts/banner';
 @import 'layouts/standard';
 @import 'layouts/split';
 @import 'layouts/grid';
 @import 'layouts/slider';
 @import 'layouts/donate';
+
+/* purgecss end ignore */
+
+
+
+// ============================================ //
+// ========== INDIVIDUAL PAGE STYLES ========== //
+// ============================================ //
+
+/* purgecss start ignore */
+
+@import 'pages/home';
+
+/* purgecss end ignore */
+
+
+
+
+
+// ============================================ //
+// ============== #NOTES #README ============== //
+// ============================================ //
+
+// Use "/includes/acf-styles.php" to generate styles from ACF field values.
+// Each time a page/post is updated, those styles are generated and output to "/assets/css/acf-styles.css"
+
+
+// Use the PurgeCSS whitelist tags when needed (must use block comments):
+/* purgecss start ignore */
+    // .dontDeleteMe { background-color: red; }
+    // @import 'deps/saveMe';
+/* purgecss end ignore */
+
+
+/*
+  PurgeCSS works VERY well at removing unused CSS based off of
+  static classes/IDs contained in HTML/PHP/JS files (reducing file size significantly).
+
+  However, with ACF we have a lot of classes/IDs that don't exist yet during build time,
+  so PurgeCSS would remove them for being "unused".
+
+  If you run into problems with some of your styles being removed,
+  add the whitelist tags around your styles or file(s).
+*/
+
+
+
+
+
+
+
+
+
 
 

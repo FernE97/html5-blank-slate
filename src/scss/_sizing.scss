@@ -1,0 +1,136 @@
+// ============================================ //
+// ============== PADDING & WIDTH ============= //
+// ============================================ //
+
+$subtractValues: (
+  // Take your desired outer gutter size and multiply by 2.
+
+  // For layoutWrapper max-width, these will be subtracted from 100vw.
+  // For split layout outer padding, these will be divided by 2.
+  $small:       2.3rem,
+  $smallish:    4rem,
+  $medium:      6rem,
+  $mediumish:   8rem,
+  $large:       12rem,
+  $xlarge:      14rem,
+  $xxlarge:     18rem
+);
+
+
+$layoutWrapperMaxWidth: (
+  $small:       calc(100vw - #{map-get($subtractValues, $small)}),
+  $smallish:    calc(100vw - #{map-get($subtractValues, $smallish)}),
+  $medium:      calc(100vw - #{map-get($subtractValues, $medium)}),
+  $mediumish:   calc(100vw - #{map-get($subtractValues, $mediumish)}),
+  $large:       calc(100vw - #{map-get($subtractValues, $large)}),
+  $xlarge:      calc(100vw - #{map-get($subtractValues, $xlarge)}),
+  $xxlarge:     calc(100vw - #{map-get($subtractValues, $xxlarge)})
+);
+
+
+$splitOuterGutter: (
+  $small:       map-get($subtractValues, $small) / 2,
+  $smallish:    map-get($subtractValues, $smallish) / 2,
+  $medium:      map-get($subtractValues, $medium) / 2,
+  $mediumish:   map-get($subtractValues, $mediumish) / 2,
+  $large:       map-get($subtractValues, $large) / 2,
+  $xlarge:      map-get($subtractValues, $xlarge) / 2,
+  $xxlarge:     map-get($subtractValues, $xxlarge) / 2
+);
+
+
+$splitInnerGutter: (
+  $small: 1.15rem,
+  $smallish: 2rem,
+  $medium: 3rem,
+  $mediumish: 1.2rem,
+  $large: 1.5rem,
+  $xlarge: 1.75rem,
+  $xxlarge: 2rem
+);
+
+
+$buttonPaddingX: (
+  $small: 1rem,
+  $smallish: 1.25rem,
+  $medium: 1.5rem,
+  $mediumish: 1.85rem,
+  $large: 2rem,
+  $xlarge: 2.1rem,
+  $xxlarge: 2.2rem
+);
+
+
+$buttonPaddingY: (
+  $small: .7rem,
+  $smallish: .85rem,
+  $medium: 1rem,
+  $mediumish: 1.05rem,
+  $large: 1.15rem,
+  $xlarge: 1.25rem,
+  $xxlarge: 1.35rem
+);
+
+
+// Elements set to --left or --right in ACF
+$alignedContentWidth: (
+  $mediumish: 70%,
+  $large: 50%,
+  $xlarge: 45%,
+  $xxlarge: 40%
+);
+
+
+// Elements set to --left or --right in ACF
+$alignedOutterGutter: (
+  $mediumish:   map-get($subtractValues, $mediumish) / 2,
+  $large:       map-get($subtractValues, $large) / 2,
+  $xlarge:      map-get($subtractValues, $xlarge) / 2,
+  $xxlarge:     map-get($subtractValues, $xxlarge) / 2
+);
+
+
+
+
+// ============================================ //
+// =============== TEXT SIZING ================ //
+// ============================================ //
+
+$headingSizes: (
+  $small:     1.25rem,
+  $smallish:  1.5rem,
+  $medium:    2rem,
+  $mediumish: 2.5rem,
+  $large:     3rem,
+  $xlarge:    4rem,
+  $xxlarge:   4.5rem
+);
+
+$bannerHeadingSizes: (
+  $small:     2rem,
+  $smallish:  2.5rem,
+  $medium:    3rem,
+  $mediumish: 4rem,
+  $large:     5rem,
+  $xlarge:    6rem,
+  $xxlarge:   7rem
+);
+
+$splitHeadingSizes: (
+  $small:     1.5rem,
+  $smallish:  1.75rem,
+  $medium:    2rem,
+  $mediumish: 2.5rem,
+  $large:     3rem,
+  $xlarge:    3.5rem,
+  $xxlarge:   4rem
+);
+
+$bodyTextSizes: (
+  $small: .75rem,
+  $smallish: .88rem,
+  $medium: 1rem,
+  $mediumish: 1.1rem,
+  $large: 1.3rem,
+  $xlarge: 1.5rem
+);

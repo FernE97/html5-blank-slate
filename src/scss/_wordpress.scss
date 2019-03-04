@@ -65,3 +65,9 @@ img[class*="wp-image-"] {
     height: 1px;
     border: 0;
 }
+
+
+// Hide <br> tags inserted by WordPress in WYSIWYG
+ul>br {
+  display: none;
+}

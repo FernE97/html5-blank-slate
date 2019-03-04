@@ -24,7 +24,7 @@ css:
     cascade: false
 
 browsersync:
-  proxy: localhost
+  proxy: hbs.local
   notify: false
   open: false
   snippetOptions:

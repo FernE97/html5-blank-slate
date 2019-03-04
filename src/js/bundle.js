@@ -19,5 +19,5 @@
 //     var _ = require('underscore');
 
 import './polyfills';
-import './fontawesome';
+import './functions';
 import './global';
