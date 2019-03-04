@@ -8,10 +8,10 @@
   $query  = new WP_Query($args);
 ?>
 <?php if (count($query->posts)): $query_count = 1; ?>
-  <section id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> postGrid layout nonSplitLayout grid-x align-middle">
-  <div class="<?= $id; ?>__content postGrid__content content layoutWrapper">
-  <?php if($heading || $subheading || $text) : ?>
-      <div class="postGrid__textContent <?= $id; ?>__textContent textContent">
+  <section id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> postGrid layout nonSplitLayout grid-x align-center">
+  <div class="<?= $id; ?>__content postGrid__content content">
+    <?php if($heading || $subheading || $text) : ?>
+      <div class="postGrid__textContent <?= $id; ?>__textContent textContent layoutWrapper">
         <?php if($heading): ?>
           <h2 class="postGrid__heading <?= $id; ?>__heading heading cell --center"><?= $heading; ?></h2>
         <?php endif; ?>
@@ -24,7 +24,7 @@
       </div>
     <?php endif; ?>
 
-  <div class="postGrid__wrapper <?= $id; ?>__postGridWrapper postGridWrapper grid-x">
+  <div class="postGrid__wrapper <?= $id; ?>__postGridWrapper postGridWrapper grid-x layoutWrapper">
     <?php
       // Uses `foreach` loop instead of `while have_posts` because multiple nested queries
       // won't loop over posts correctly using standard WP loop

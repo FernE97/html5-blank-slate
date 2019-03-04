@@ -3,6 +3,11 @@
 // ============================================ //
 
 .postGrid {
+  &__wrapper.layoutWrapper {
+    // Uncomment to make grid items full width of page
+    // max-width: 100vw;
+  }
+
   &__item {
     transition: background-color .4s $sineInOut, background-image .4s $sineInOut;
     background-size: cover;
@@ -33,6 +38,8 @@
       margin: 0 auto;
     }
   }
+
+
 
 
   &__textContent {}
