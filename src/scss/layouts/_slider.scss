@@ -34,11 +34,12 @@
     &__slide {
       background-size: cover;
       background-repeat: no-repeat;
+      background-position-x: center;
       position: relative;
       min-height: rem-calc(250);
       width: auto;
       cursor: grab;
-      background-position-x: center;
+
 
       &--circle {
 

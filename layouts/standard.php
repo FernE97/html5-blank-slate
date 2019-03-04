@@ -1,4 +1,4 @@
-<section id="<?=$id;?>" class="<?=$id;?> <?=$class;?> standard layout grid-x align-middle">
+<section id="<?=$id;?>" class="<?=$id;?> <?=$class;?> standard layout nonSplitLayout grid-x align-middle">
     <div class="<?=$id;?>__content standard__content content layoutWrapper --<?= $alignment; ?>">
       <?php if($heading || $subheading || $text) : ?>
       <div class="<?=$id;?>__textContent standard__textContent textContent">

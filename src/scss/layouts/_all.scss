@@ -3,6 +3,10 @@
 //  ALONG WITH THE BACKGROUND IMAGES AND OVERLAYS    //
 // ================================================= //
 
+.nonSplitLayout {
+  @include dynamicCalc($sectionVerticalPadding, 'padding-top', 'padding-bottom');
+}
+
 .layout,
 .splitLeft,
 .splitRight {
@@ -90,14 +94,14 @@
   &.--left {
     @include breakpoint(mediumish) {
       margin-right: auto !important;
-      @include dynamic($alignedOutterGutter, 'margin-left');
+      @include dynamic($alignedOuterGutter, 'margin-left');
     }
   }
 
   &.--right {
     @include breakpoint(mediumish) {
       margin-left: auto !important;
-      @include dynamic($alignedOutterGutter, 'margin-right');
+      @include dynamic($alignedOuterGutter, 'margin-right');
     }
   }
 }

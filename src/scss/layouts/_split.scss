@@ -24,7 +24,7 @@
 // containing headers/subheaders/text/buttons and so on
 .splitLeft, .splitRight {
   // Move left/right into one column
-  @include dynamicCalc($splitOuterGutter, 'padding-top', 'padding-bottom');
+  @include dynamicCalc($sectionVerticalPadding, 'padding-top', 'padding-bottom');
   width: 100%;
   flex: 1 1 auto;
   align-self: stretch;

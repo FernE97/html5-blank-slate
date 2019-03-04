@@ -9,11 +9,9 @@
 // ============================================ //
 // =============== DEPENDENCIES =============== //
 // ============================================ //
-/* purgecss start ignore */
 @import 'deps/variables';
 @import 'deps/functions';
 @import 'deps/mixins';
-/* purgecss end ignore */
 
 
 // ============================================ //
@@ -28,9 +26,7 @@
 // ============ DYNAMIC SIZING MAPS =========== //
 // ============================================ //
 // SCSS maps to be used with the sizing interpolation mixin
-/* purgecss start ignore */
 @import 'sizing';
-/* purgecss end ignore */
 
 
 // ============================================ //
@@ -68,8 +64,6 @@
 // ============================================ //
 // =========== ACF FLEXIBLE TEMPLATE ========== //
 // ============================================ //
-/* purgecss start ignore */
-
 // Styles that don't rely on ACF values, and that affect each of the layout types
 @import 'layouts/all';
 // Individual layout styles
@@ -80,19 +74,12 @@
 @import 'layouts/slider';
 @import 'layouts/donate';
 
-/* purgecss end ignore */
-
 
 
 // ============================================ //
 // ========== INDIVIDUAL PAGE STYLES ========== //
 // ============================================ //
-
-/* purgecss start ignore */
-
 @import 'pages/home';
-
-/* purgecss end ignore */
 
 
 
@@ -104,26 +91,6 @@
 
 // Use "/includes/acf-styles.php" to generate styles from ACF field values.
 // Each time a page/post is updated, those styles are generated and output to "/assets/css/acf-styles.css"
-
-
-// Use the PurgeCSS whitelist tags when needed (must use block comments):
-/* purgecss start ignore */
-    // .dontDeleteMe { background-color: red; }
-    // @import 'deps/saveMe';
-/* purgecss end ignore */
-
-
-/*
-  PurgeCSS works VERY well at removing unused CSS based off of
-  static classes/IDs contained in HTML/PHP/JS files (reducing file size significantly).
-
-  However, with ACF we have a lot of classes/IDs that don't exist yet during build time,
-  so PurgeCSS would remove them for being "unused".
-
-  If you run into problems with some of your styles being removed,
-  add the whitelist tags around your styles or file(s).
-*/
-
 
 
 

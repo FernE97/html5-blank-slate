@@ -1,4 +1,4 @@
-<header id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> banner layout grid-x align-middle">
+<header id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> banner layout nonSplitLayout grid-x align-middle">
   <div class="<?= $id; ?>__content banner__content content layoutWrapper --<?= $alignment; ?>">
     <?php if($heading || $subheading || $text) : ?>
       <div class="<?= $id; ?>__textContent banner__textContent textContent">

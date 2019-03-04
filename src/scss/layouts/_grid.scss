@@ -1,20 +1,18 @@
-// ACF Flexible Content
-// "Post Type Grid" Layout
+// ============================================ //
+// ============== POST TYPE GRID ============== //
+// ============================================ //
 
 .postGrid {
-  &__wrapper {
-    //@include dynamicCalc('margin-top', ($small: 1rem, $medium: 1.75rem, $large: 3rem, $xlarge: 4rem));
-  }
-
   &__item {
     transition: background-color .4s $sineInOut, background-image .4s $sineInOut;
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: center center;
     display: flex;
     flex-direction: column;
-    align-content: space-between;
-    align-items: center;
-    width: 100%;
+    justify-content: center;
+    min-width: $postGridItemMinWidth;
+    min-height: $postGridItemMinHeight;
 
     &:hover {
       background-image: none !important;
@@ -22,13 +20,7 @@
 
     @include shadow($move: false, $properties: 'background-color, bottom, box-shadow');
 
-    @include dynamic((
-      $small:       xy-cell-size(1),
-      $medium:      xy-cell-size(1/2),
-      $mediumish:   xy-cell-size(1/3),
-      $large:       xy-cell-size(1/4),
-      $xxlarge:     xy-cell-size(1/5)),
-      'width');
+    @include dynamic(($small: xy-cell-size(100%),$medium: xy-cell-size(1/2),$mediumish: xy-cell-size(1/3),$large: xy-cell-size(1/4), $xxlarge: xy-cell-size(1/5)), 'width');
 
 
     &:hover h4 {
@@ -39,7 +31,6 @@
       text-align: center;
       display: none;
       margin: 0 auto;
-      @include vertical-align;
     }
   }
 

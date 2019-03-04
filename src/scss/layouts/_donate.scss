@@ -13,7 +13,9 @@
     // At small sizes, put form beneath the heading/body text
     order: 1;
     max-width: rem-calc(600);
+    justify-content: center;
     @include dynamicCalc(($small: 1rem, $medium: 1.75rem, $large: 2rem, $xlarge: 2.5rem), 'padding-top');
+
 
     @include breakpoint(large) {
       // Form is on left

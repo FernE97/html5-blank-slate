@@ -1,7 +1,7 @@
 <?php $alignment = get_sub_field( 'alignment' ); ?>
-<section id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> donate layout">
+<section id="<?=$id;?>" class="<?= $id; ?> <?=$class;?> donate layout nonSplitLayout">
   <div class="grid-container">
-    <div class="donate__content <?= $id; ?>__content grid-x grid-margin-x">
+    <div class="donate__content <?= $id; ?>__content grid-x grid-margin-x align-center">
       <?php if(get_sub_field("header") || get_sub_field("tagline") || get_sub_field("body")) : ?>
       <div class="donate__textContent <?= $id; ?>__textContent cell small-10 medium-8 large-6">
         <?php if(get_sub_field( "header" ) ): ?>

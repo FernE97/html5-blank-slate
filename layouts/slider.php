@@ -1,5 +1,5 @@
 <?php $shape = get_sub_field("shape"); ?>
-<section id="<?= $id; ?>" class="<?= $id; ?> sliderLayout layout grid-y ">
+<section id="<?= $id; ?>" class="<?= $id; ?> sliderLayout layout nonSplitLayout grid-y ">
   <div id="<?= $id; ?>-slider" class="sliderLayout__content <?= $id; ?>__content content layoutWrapper section<?= $count; ?>__layoutWrapper">
     <?php if($heading || $tagline || $body) : ?>
     <div class="sliderLayout__textContent <?= $id; ?>__textContent textContent  grid-x grid-padding-x">

@@ -13,6 +13,8 @@ $link-color: #0ae;
 $link-color-hover: adjust-hue($link-color, -240);
 $slideMinWidth: 150px;
 $slideMinHeight: 150px;
+$postGridItemMinWidth: 100px;
+$postGridItemMinHeight: 100px;
 
 // Breakpoint aliases
 $small: rem-calc(map-get($breakpoints, small));
