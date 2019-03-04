@@ -23,7 +23,6 @@ jQuery(document).ready(function ($) {
     $('#nav-mobile').slideToggle();
     $('#site-header').toggleClass('nav__mobile--open');
   });
-
 }(jQuery));
 
 
@@ -79,9 +78,6 @@ document.ready().then(function () {
     externalLinksTargetBlank();
   }, 'a', document, 3000);
 
-  window.addEventListener('click', function(e) {
-    console.log(e.target);
-  });
 
   // ============================================ //
   // =============== #DONATE #FORM ============== //

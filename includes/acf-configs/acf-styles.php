@@ -54,13 +54,13 @@
         <?php endif; ?>
 
         <?php if (get_sub_field('post_bg_color')): // Post grid item ?>
-          .page<?= $data->ID; ?> .section<?=$count; ?>__item {
+          .page<?= $data->ID; ?> .<?= $id; ?>__item {
             background-color: <?= get_sub_field('post_bg_color'); ?>
           }
         <?php endif; ?>
 
         <?php if (get_sub_field('post_hover_bg_color') || get_sub_field('post_hover_text_color')): // Post grid item on hover ?>
-          .page<?= $data->ID; ?> .section<?=$count; ?>__item:hover {
+          .page<?= $data->ID; ?> .<?= $id; ?>__item:hover {
             <?php if(get_sub_field( 'post_hover_bg_color' )): ?>
               background-color: <?= get_sub_field( 'post_hover_bg_color' ); ?>;
             <?php endif; ?>

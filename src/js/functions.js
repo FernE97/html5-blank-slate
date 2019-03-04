@@ -207,24 +207,3 @@ export var externalLinksTargetBlank = function() {
     }
   }
 };
-
-
-
-// postGrids.map(function(postItem) {
-//   postItem.map(function (item) {
-//     let max = 0;
-//     item.map(function (el) {
-//       // Remove current inline style so that it won't keep reusing the largest size set previously
-//       el.style.height = '';
-//       if (el.offsetHeight > max) {
-//         max = el.offsetHeight;
-//       }
-//     });
-
-//     if (max > 0) {
-//       item.map(function (el) {
-//         el.style.height = max+'px';
-//       });
-//     }
-//   });
-// });
