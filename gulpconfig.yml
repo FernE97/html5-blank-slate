@@ -19,8 +19,6 @@ css:
       - ./node_modules
       - ./node_modules/foundation-sites/scss
   autoprefixer:
-    browsers:
-      - last 2 versions
     cascade: false
 
 browsersync:
