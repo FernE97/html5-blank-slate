@@ -60,15 +60,15 @@ and `require`'ing (CommonJS) or `import`'ing (ES6) the module in your code.
 
 This means for example you could, at the command line:
 
-    yarn add underscore
+  yarn add underscore
 
 Then in a bundled JS file:
 
-    import _ from 'underscore';
+  import _ from 'underscore';
 
 OR equivalently:
 
-    var underscore = require('underscore');
+  var underscore = require('underscore');
 
 If the modules you include grow in number or are complex, you might find that your
 JS build time slows down.  Optionally, you can add modules to the commons bundle 

@@ -1,7 +1,7 @@
 js:
   dest: ./assets/js
   vendor:
-    paths: 
+    paths:
       - ./node_modules/foundation-sites/dist/js/foundation.js
     filename: vendor.bundle.js
   commons:
