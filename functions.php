@@ -2,7 +2,7 @@
 
 // Enqueue Styles
 function h5bs_enqueue_styles() {
-  wp_enqueue_style( 'font-awesome', 'https://use.fontawesome.com/releases/v5.4.2/css/all.css"' );
+  wp_enqueue_style( 'font-awesome', 'https://use.fontawesome.com/releases/v5.13.0/css/all.css' );
   wp_enqueue_style( 'h5bs-theme', get_template_directory_uri() . '/assets/css/theme.css', false, '1.0.0' );
   wp_enqueue_style( 'h5bs-custom', get_template_directory_uri() . '/custom.css', false, '1.0.0' );
 }
