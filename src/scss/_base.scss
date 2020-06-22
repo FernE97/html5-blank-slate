@@ -17,3 +17,7 @@ hr {
   border: 0;
   border-top: 1px solid #ccc;
 }
+
+path {
+  transition: fill 0.3s ease-in-out, stroke 0.3s ease-in-out;
+}

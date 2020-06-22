@@ -94,3 +94,14 @@
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+
+@mixin hideOverflowAllowScroll {
+  overflow-y: scroll;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE 10+ */
+  
+  &::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+  }
+}

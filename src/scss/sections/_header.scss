@@ -2,4 +2,54 @@
 ---------------------------------------------------------------------*/
 .site-header {
   position: relative;
+  padding: rem-calc(16);
+  
+  &__mobileNav {
+    @include hideOverflowAllowScroll();
+    
+    li {
+      margin-bottom: rem-calc(20);
+      
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    
+    a {
+      font-size: rem-calc(24);
+      font-family: $header-font-family;
+      text-transform: uppercase;
+      color: $white;
+      
+      &:hover, &:focus, &:active {
+        color: $primary-color;
+      }
+    }
+  }
+  
+  &__openModal {
+    svg {
+      width: rem-calc(30);
+      height: rem-calc(30);
+    }
+  }
+  
+  &__closeModal {
+    svg {
+      width: rem-calc(35);
+      height: rem-calc(35);
+    }
+    
+    path {
+      fill: $white;
+    }
+  }
+  
+  &__svg {
+    &:hover, &:focus, &:active {
+      path {
+        fill: $primary-color;
+      }
+    }
+  }
 }
