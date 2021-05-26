@@ -1,9 +1,0 @@
-{
-  "presets": [
-    "@babel/preset-env"
-  ],
-  "plugins": [
-    "dynamic-import-node",
-    ["transform-class-properties", { "spec": true }]
-  ]
-}

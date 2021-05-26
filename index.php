@@ -6,15 +6,15 @@
 
 get_header(); ?>
 
-<div class="content-wrap index-content" role="main">
+<div class="container index-content py-4" role="main">
 
   <?php
   if ( have_posts() ) :
     while ( have_posts() ) : the_post();
-      get_template_part( 'parts/post', 'index' );
+      get_template_part( 'partials/post', 'index' );
     endwhile;
 
-    get_template_part( 'parts/post', 'nav' );
+    get_template_part( 'partials/post', 'nav' );
   endif;
   ?>
 

@@ -29,13 +29,10 @@ $RECYCLE.BIN/
 sitemap.xml
 sitemap.xml.gz
 
-# Foundation - run bower update to get foundation files
-bower_components/*
-node_modules/*
-npm-debug.log
-
-# Yarn
+# Yarn / NPM
+node_modules
 yarn-error.log
+npm-debug.log
 
 # Compiled CSS
 assets/css/*
@@ -44,3 +41,8 @@ assets/css/*
 # Compiled JS
 assets/js/*
 *.js.map
+
+# Vite
+dist
+dist-ssr
+*.local

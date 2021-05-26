@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<div class="content-wrap page-content" role="main">
+<div class="container page-content py-4" role="main">
 
   <article id="post-404-error" <?php post_class( 'group' ); ?>>
     <h2><?php _e( 'Page could not be found', 'h5bs' ); ?></h2>

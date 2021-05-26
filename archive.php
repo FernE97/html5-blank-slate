@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<div class="content-wrap archive-content" role="main">
+<div class="container archive-content py-4" role="main">
 
   <header>
     <h1><?php single_cat_title( __( 'Archive for ', 'h5bs' ) ); ?></h1>
@@ -15,10 +15,10 @@ get_header(); ?>
   <?php
   if ( have_posts() ) :
     while ( have_posts() ) : the_post();
-      get_template_part( 'parts/post', 'index' );
+      get_template_part( 'partials/post', 'index' );
     endwhile;
 
-    get_template_part( 'parts/post', 'nav' );
+    get_template_part( 'partials/post', 'nav' );
   endif;
   ?>
 

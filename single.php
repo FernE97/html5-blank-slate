@@ -6,7 +6,7 @@
 
 get_header(); ?>
 
-<div class="content-wrap single-content" role="main">
+<div class="container single-content py-4" role="main">
 
   <?php while ( have_posts() ) : the_post(); ?>
 
