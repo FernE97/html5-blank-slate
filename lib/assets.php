@@ -21,10 +21,13 @@ add_action('wp_enqueue_scripts', 'h5bs_enqueue_scripts');
 // Some dev/prod mechanism would exist in your project
 // Handling manualy here, change to test both cases
 define('IS_DEVELOPMENT', true);
+define('DIST_PATH', get_template_directory_uri().'/dist/');
 
 function vite($entry): string
 {
-  return vite_js_tag($entry).vite_js_preload_imports($entry).vite_css_tag($entry);
+  return vite_js_tag($entry)
+    .vite_js_preload_imports($entry)
+    .vite_css_tag($entry);
 }
 
 // Helpers to print tags
@@ -71,7 +74,7 @@ function vite_css_tag(string $entry): string
 // Helpers to locate files
 function vite_get_manifest(): array
 {
-  $content = file_get_contents(__DIR__.'/dist/manifest.json');
+  $content = file_get_contents(__DIR__.'/../dist/manifest.json');
 
   return json_decode($content, true);
 }
@@ -80,7 +83,7 @@ function vite_asset_url(string $entry): string
 {
   $manifest = vite_get_manifest();
 
-  return isset($manifest[$entry]) ? '/dist/'.$manifest[$entry]['file'] : '';
+  return isset($manifest[$entry]) ? DIST_PATH.$manifest[$entry]['file'] : '';
 }
 
 function vite_imports_urls(string $entry): array
@@ -90,7 +93,7 @@ function vite_imports_urls(string $entry): array
 
   if (!empty($manifest[$entry]['imports'])) {
     foreach ($manifest[$entry]['imports'] as $imports) {
-      $urls[] = '/dist/'.$manifest[$imports]['file'];
+      $urls[] = DIST_PATH.$manifest[$imports]['file'];
     }
   }
 
@@ -104,7 +107,7 @@ function vite_css_urls(string $entry): array
 
   if (!empty($manifest[$entry]['css'])) {
     foreach ($manifest[$entry]['css'] as $file) {
-      $urls[] = '/dist/'.$file;
+      $urls[] = DIST_PATH.$file;
     }
   }
 
