@@ -16,10 +16,7 @@ const { resolve } = require('path')
 
 // https://vitejs.dev/config/
 export default defineConfig({
-
-  plugins: [
-    liveReload([`${__dirname}/*.php`, `${__dirname}/lib/**/*.php`, `${__dirname}/partials/**/*.php`])
-  ],
+  plugins: [liveReload([`${__dirname}/*.php`, `${__dirname}/lib/**/*.php`, `${__dirname}/partials/**/*.php`])],
   root: 'src',
   base: process.env.APP_ENV === 'development' ? '/' : '/dist/',
   build: {
@@ -35,8 +32,8 @@ export default defineConfig({
 
     // our entry
     rollupOptions: {
-      input: '/main.js'
-    }
+      input: '/main.js',
+    },
   },
   server: {
     // required to load scripts from custom host
@@ -44,6 +41,6 @@ export default defineConfig({
 
     // we need a strict port to match on PHP side
     strictPort: true,
-    port: 3000
+    port: 3000,
   },
 })
