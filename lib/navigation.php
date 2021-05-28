@@ -1,4 +1,5 @@
 <?php
+
 // Custom Menus
 function h5bs_register_menus()
 {

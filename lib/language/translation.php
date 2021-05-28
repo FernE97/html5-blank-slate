@@ -1,4 +1,5 @@
 <?php
+
 // Translations
 load_theme_textdomain( 'h5bs', get_template_directory() . '/lib/language' );
 

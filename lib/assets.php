@@ -18,12 +18,24 @@ add_action('wp_enqueue_scripts', 'h5bs_enqueue_scripts');
 
 
 // Vite assets helpers
-// Some dev/prod mechanism would exist in your project
-// Handling manualy here, change to test both cases
-define('IS_DEVELOPMENT', true);
+define('IS_DEVELOPMENT', is_development());
 define('DIST_PATH', get_template_directory_uri().'/dist/');
 
-function vite($entry): string
+function endsWith(string $haystack, string $needle): bool
+{
+  return substr($haystack, -strlen($needle)) === $needle;
+}
+
+function is_development(): bool
+{
+  if ($_SERVER['SERVER_NAME'] == 'localhost' || endsWith($_SERVER['SERVER_NAME'], '.test')) {
+    return true;
+  }
+
+  return false;
+}
+
+function vite(String $entry): string
 {
   return vite_js_tag($entry)
     .vite_js_preload_imports($entry)

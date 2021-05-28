@@ -1,98 +1,110 @@
 # h5bs Theme
-
-### Basic Setup
-
-Install nodejs and yarn:
+## Requirements
 
 - [nodejs](https://nodejs.org/en/)
 - [yarn](https://yarnpkg.com/en/docs/install)
+### NVM (Node Version Manager)
 
-From the console, change directories into the WordPress Theme
+NVM is not required but is recommended for installing different node versions for various projects.
+
+```bash
+# install / update nvm
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+
+# install latest LTS node version
+nvm install --lts
+
+# use latest LTS version
+nvm use --lts
+```
+
+## Setup
+
+From the console, change directories into the WordPress theme.
 
 ```
 cd {path}/wp-content/themes/{theme_name}
 ```
 
-Install gulp (one time)
-
-```
-npm install -g gulp
-```
-
-Run `yarn` to get install the JS dependencies
+Run `yarn` to install the dependencies from `package.json`
 
 ```
 yarn
 ```
 
-Run `gulp dist` once initially, then when it's time to deploy or when you add 
-files to the commons or vendor bundles (see advanced usage below).  This will
-clean the assets dirs and compile all the JS/CSS bundles.  For deploy, you then
-just copy the assets dir up to the server.
+## Local development
 
-```
-gulp dist
-```
+[Vite](https://vitejs.dev/) is used as a build tool to handle the frontend tooling. When working locally you will run
+`yarn dev` to start the dev server and it will handle compiling the javascript and scss and will inject those changes
+automatically. It is also set up to auto-reload when any changes are made to the php files. If you need to add any 
+extra php paths to watch, you can edit the `vite.config.js` file under `plugins` and `liveReload`.
 
-Run `gulp watch` to watch for changes to the apps main scss/js source files as you work. 
-This will compile any changes made to files js/css in `src/` to their bundles
-in `assets/`.  Note this only watches files in `src/`; if, for example, you install
-an npm module and add it to the vendor bundle (see advanced usage) you will need
-to rerun `gulp dist` (or `gulp js-vendor`) to regenerate the vendor bundle.
+Once you are ready to push to production run `yarn build` to compile the assets. This will create a `dist` folder at
+the root which will then needed to be uploaded to the production server.
 
-```
-gulp watch
-```
-
-### Browsersync
-
-As an alternative to `gulp watch`, there is a task to run a 
-[browsersync](https://www.browsersync.io/) server locally, `gulp server`.  By default
-it binds to `localhost`.  This and other options are found in `gulpconfig.yml`.
-
-
-### Advanced JS Pipeline Usage
-
-The JS pipeline allows for writing code using CommonJS/node or ES6 syntax, and
-because of browserify, allows you to use appropriate modules from the npm
-ecosystem in the JS bundle without any configuration outside of `yarn add {the module}`
-and `require`'ing (CommonJS) or `import`'ing (ES6) the module in your code.
-
-This means for example you could, at the command line:
-
-  yarn add underscore
-
-Then in a bundled JS file:
-
-  import _ from 'underscore';
-
-OR equivalently:
-
-  var underscore = require('underscore');
-
-If the modules you include grow in number or are complex, you might find that your
-JS build time slows down.  Optionally, you can add modules to the commons bundle 
-such that they're compiled separately.  Continuing the exmaple above, you'd edit 
-`gulpconfig.yml` to make this happen, adding "underscore" to the commons modules 
-array.
-
-If you need to add other vendor JS scripts which are *not* common required 
-modules, you'd edit `gulpconfig.yml` to add their full paths to the vendor paths 
-array.  By default this is how foundation.js is included.  Other examples would 
-be any self contained script that expects to be loaded via a `<script>` tag, 
-e.g. jQuery plugins or polyfills/shims.
-
-
-### Advanced CSS Pipeline Usage
-
-The CSS pipeline is less complex than the JS, but there are still some options to
-be configured in `gulpconfig.yml`.  The full options objects passed to autoprefixer 
-and sass are found here.  A common change might be the `browsers` targeted by the 
-autoprefixer.  By default it is `latest 2 versions`.  See other examples 
-[here](https://github.com/ai/browserslist#queries).
-
-
-
-```
+```bash
+# start dev server
 yarn dev
+
+# build for production
+yarn build
+```
+
+## Images
+
+There is an `@images` alias set up for the path to the images directory. This can be used in both the scss and js files.
+
+```scss
+body {
+  background-image: url('@images/bg-image.jpg');
+}
+```
+
+```js
+import bgImage from '@images/bg-image.jpg'
+
+document.body.style.backgroundImage = `url(${bgImage})`
+```
+
+## External packages
+
+Use yarn to manage packages. For example if you wanted to add axios to a project you would run `yarn add axios` which
+would add axios as a dependency to the `package.json` file and to your `node_modules` folder.
+
+```bash
+yarn add axios
+```
+
+To include it in the project, at the top of your javascript file add an import.
+
+```js
+import axios from 'axios'
+```
+
+Then use as intended.
+
+```js
+axios
+  .get('https://jsonplaceholder.typicode.com/users/1')
+  .then((response) => {
+    // handle success
+    console.log(response)
+  })
+  .catch((error) => {
+    // handle error
+    console.log(error)
+  })
+```
+
+## Linters
+
+You can use the recommended VS Code extensions to have real-time linting errors and fixes in your editor. Search for
+`@recommended` in the extensions tab. Or you can run the following commands to lint the javascript or scss files.
+
+```bash
+# run eslint on js files
+npx eslint "src/**/*.js" --fix
+
+# run stylelint on scss files
+npx stylelint "src/**/*.scss" --fix
 ```

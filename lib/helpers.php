@@ -4,7 +4,7 @@
 function get_img(string $name): string
 {
   if ($name) {
-    return get_stylesheet_directory_uri()."/assets/images/{$name}";
+    return get_stylesheet_directory_uri()."/src/assets/images/{$name}";
   }
 
   return '';
@@ -20,7 +20,7 @@ function img(string $name)
 function get_svg(string $name): string
 {
   if ($name) {
-    return file_get_contents(get_template_directory()."/assets/images/{$name}.svg");
+    return file_get_contents(get_template_directory()."/src/assets/images/{$name}.svg");
   }
 
   return '';

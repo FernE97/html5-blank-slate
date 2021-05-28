@@ -1,24 +1,28 @@
-// View your website at your own local server
-// for example http://vite-php-setup.test
-
-// http://localhost:3000 is serving Vite on development
-// but accessing it directly will be empty
-
-// IMPORTANT image urls in CSS works fine
-// BUT you need to create a symlink on dev server to map this folder during dev:
-// ln -s {path_to_vite}/src/assets {path_to_public_html}/assets
-// on production everything will work just fine
+// https://vitejs.dev/config/
+// http://localhost:3000 is serving Vite on development but accessing it directly will be empty
 
 import { defineConfig } from 'vite'
+import legacy from '@vitejs/plugin-legacy'
 import liveReload from 'vite-plugin-live-reload'
 
 const { resolve } = require('path')
 
-// https://vitejs.dev/config/
+const themePath = __dirname.substring(__dirname.lastIndexOf('/wp-content/'))
+
 export default defineConfig({
-  plugins: [liveReload([`${__dirname}/*.php`, `${__dirname}/lib/**/*.php`, `${__dirname}/partials/**/*.php`])],
+  plugins: [
+    legacy({
+      targets: ['defaults', 'not IE 11'],
+    }),
+    liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
+  ],
   root: 'src',
-  base: process.env.APP_ENV === 'development' ? '/' : '/dist/',
+  base: process.env.APP_ENV === 'development' ? `${themePath}/src` : `${themePath}/dist`,
+  resolve: {
+    alias: {
+      '@images': resolve(__dirname, './src/assets/images'),
+    },
+  },
   build: {
     // output dir for production build
     outDir: resolve(__dirname, './dist'),
