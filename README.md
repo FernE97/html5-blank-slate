@@ -2,7 +2,7 @@
 ## Requirements
 
 - [nodejs](https://nodejs.org/en/)
-- [yarn](https://yarnpkg.com/en/docs/install)
+
 ### NVM (Node Version Manager)
 
 NVM is not required but is recommended for installing different node versions for various projects.
@@ -13,6 +13,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
 
 # install latest LTS node version
 nvm install --lts
+
+# install latest LTS node version and migrate existing installed packages
+nvm install 'lts/*' --reinstall-packages-from=current
 
 # use latest LTS version
 nvm use --lts
@@ -26,28 +29,28 @@ From the console, change directories into the WordPress theme.
 cd {path}/wp-content/themes/{theme_name}
 ```
 
-Run `yarn` to install the dependencies from `package.json`
+Run `npm install` to install the dependencies from `package.json`
 
 ```
-yarn
+npm install
 ```
 
 ## Local development
 
 [Vite](https://vitejs.dev/) is used as a build tool to handle the frontend tooling. When working locally you will run
-`yarn dev` to start the dev server and it will handle compiling the javascript and scss and will inject those changes
+`npm run dev` to start the dev server and it will handle compiling the javascript and scss and will inject those changes
 automatically. It is also set up to auto-reload when any changes are made to the php files. If you need to add any 
 extra php paths to watch, you can edit the `vite.config.js` file under `plugins` and `liveReload`.
 
-Once you are ready to push to production run `yarn build` to compile the assets. This will create a `dist` folder at
+Once you are ready to push to production run `npm run build` to compile the assets. This will create a `dist` folder at
 the root which will then needed to be uploaded to the production server.
 
 ```bash
 # start dev server
-yarn dev
+npm run dev
 
 # build for production
-yarn build
+npm run build
 ```
 
 ## Images
@@ -68,11 +71,11 @@ document.body.style.backgroundImage = `url(${bgImage})`
 
 ## External packages
 
-Use yarn to manage packages. For example if you wanted to add axios to a project you would run `yarn add axios` which
+Use npm to manage packages. For example if you wanted to add axios to a project you would run `npm i axios` which
 would add axios as a dependency to the `package.json` file and to your `node_modules` folder.
 
 ```bash
-yarn add axios
+npm i axios
 ```
 
 To include it in the project, at the top of your javascript file add an import.
