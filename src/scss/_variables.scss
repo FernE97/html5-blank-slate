@@ -1,0 +1,43 @@
+// Variables
+// ----------------------------------------------
+
+// Colors
+$primary: #6610f2;
+
+// Grid columns
+$grid-gutter-width: 2.5rem; // 40
+
+// Spacing
+$spacing: 0.25rem;
+$spacers: (
+  0: 0,
+  1: $spacing,
+  2: $spacing * 2,
+  3: $spacing * 3,
+  4: $spacing * 4,
+  5: $spacing * 5,
+  6: $spacing * 6,
+  7: $spacing * 7,
+  8: $spacing * 8,
+  9: $spacing * 9,
+  10: $spacing * 10,
+  11: $spacing * 11,
+  12: $spacing * 12,
+  14: $spacing * 14,
+  16: $spacing * 16,
+  18: $spacing * 18,
+  20: $spacing * 20,
+  24: $spacing * 24,
+  28: $spacing * 28,
+  32: $spacing * 32,
+  36: $spacing * 36,
+  40: $spacing * 40,
+  44: $spacing * 44,
+  48: $spacing * 48,
+  52: $spacing * 52,
+  56: $spacing * 56,
+  60: $spacing * 60,
+  64: $spacing * 64,
+  72: $spacing * 72,
+  80: $spacing * 80,
+);
