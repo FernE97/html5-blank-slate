@@ -1,5 +1,5 @@
 // https://vitejs.dev/config/
-// http://localhost:3000 is serving Vite on development but accessing it directly will be empty
+// http://localhost:3005 is serving Vite on development but accessing it directly will be empty
 
 import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
@@ -45,6 +45,6 @@ export default defineConfig({
 
     // we need a strict port to match on PHP side
     strictPort: true,
-    port: 3000,
+    port: 3005,
   },
 })
