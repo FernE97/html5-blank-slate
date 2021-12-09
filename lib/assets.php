@@ -28,12 +28,14 @@ function endsWith(string $haystack, string $needle): bool
 
 function is_development(): bool
 {
-  if (
-    $_SERVER['SERVER_NAME'] == 'localhost'
-    || endsWith($_SERVER['SERVER_NAME'], '.test')
-    || endsWith($_SERVER['SERVER_NAME'], '.local')
-  ) {
-    return true;
+  if (isset($_SERVER['SERVER_NAME'])) {
+    if (
+      $_SERVER['SERVER_NAME'] == 'localhost'
+      || endsWith($_SERVER['SERVER_NAME'], '.test')
+      || endsWith($_SERVER['SERVER_NAME'], '.local')
+    ) {
+      return true;
+    }
   }
 
   return false;
