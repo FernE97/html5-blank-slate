@@ -7,8 +7,6 @@ import liveReload from 'vite-plugin-live-reload'
 
 const { resolve } = require('path')
 
-const themePath = __dirname.substring(__dirname.lastIndexOf('/wp-content/'))
-
 export default defineConfig({
   plugins: [
     legacy({
@@ -17,7 +15,7 @@ export default defineConfig({
     liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
   ],
   root: 'src',
-  base: process.env.APP_ENV === 'development' ? `${themePath}/src` : `${themePath}/dist`,
+  base: process.env.APP_ENV === 'development' ? '/src' : '/dist',
   resolve: {
     alias: {
       '@images': resolve(__dirname, './src/assets/images'),
@@ -32,7 +30,7 @@ export default defineConfig({
     manifest: true,
 
     // esbuild target
-    target: 'es2018',
+    target: 'modules',
 
     // our entry
     rollupOptions: {
