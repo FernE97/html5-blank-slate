@@ -5,7 +5,10 @@ import { defineConfig } from 'vite'
 import legacy from '@vitejs/plugin-legacy'
 import liveReload from 'vite-plugin-live-reload'
 
-const { resolve } = require('path')
+const { resolve, basename } = require('path')
+
+const basePath = basename(__dirname)
+const themePath = `/wp-content/themes/${basePath}`
 
 export default defineConfig({
   plugins: [
@@ -15,7 +18,7 @@ export default defineConfig({
     liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
   ],
   root: 'src',
-  base: process.env.APP_ENV === 'development' ? '/src' : '/dist',
+  base: process.env.APP_ENV === 'development' ? `${themePath}/src` : `${themePath}/dist`,
   resolve: {
     alias: {
       '@images': resolve(__dirname, './src/assets/images'),
