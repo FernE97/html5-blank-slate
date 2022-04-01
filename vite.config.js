@@ -18,7 +18,7 @@ export default defineConfig({
     liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
   ],
   root: 'src',
-  base: process.env.APP_ENV === 'development' ? `${themePath}/src` : `${themePath}/dist`,
+  base: process.env.APP_ENV === 'development' ? `${themePath}/src/` : `${themePath}/dist/`,
   resolve: {
     alias: {
       '@images': resolve(__dirname, './src/assets/images'),
