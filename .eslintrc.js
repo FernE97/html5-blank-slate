@@ -5,9 +5,13 @@ module.exports = {
     node: true,
     es6: true,
   },
+  parserOptions: {
+    ecmaVersion: 2020,
+  },
   rules: {
     'no-console': 'off',
     'global-require': 'off',
+    'no-use-before-define': 'off',
 
     // override airbnb config to allow ForOfStatement
     'no-restricted-syntax': [
