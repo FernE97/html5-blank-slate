@@ -19,7 +19,7 @@
     "sass": "^1.50.1",
     "stylelint": "^14.7.1",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "vite": "^2.9.5",
+    "vite": "^2.9.13",
     "vite-plugin-live-reload": "^2.1.0"
   },
   "dependencies": {
