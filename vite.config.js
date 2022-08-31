@@ -2,7 +2,6 @@
 // http://localhost:3005 is serving Vite on development but accessing it directly will be empty
 
 import { defineConfig } from 'vite'
-import legacy from '@vitejs/plugin-legacy'
 import liveReload from 'vite-plugin-live-reload'
 
 const { resolve, basename } = require('path')
@@ -11,16 +10,12 @@ const basePath = basename(__dirname)
 const themePath = `/wp-content/themes/${basePath}`
 
 export default defineConfig({
-  plugins: [
-    legacy({
-      targets: ['defaults', 'not IE 11'],
-    }),
-    liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
-  ],
-  root: 'src',
+  plugins: [liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`])],
+  root: resolve(__dirname, 'src'),
   base: process.env.APP_ENV === 'development' ? `${themePath}/src/` : `${themePath}/dist/`,
   resolve: {
     alias: {
+      '@bootstrap': resolve(__dirname, 'node_modules/bootstrap'),
       '@images': resolve(__dirname, './src/assets/images'),
     },
   },
@@ -37,7 +32,7 @@ export default defineConfig({
 
     // our entry
     rollupOptions: {
-      input: '/main.js',
+      input: resolve(__dirname, './src/main.js'),
     },
   },
   server: {

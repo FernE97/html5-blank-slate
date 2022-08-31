@@ -12,6 +12,8 @@ module.exports = {
     'no-console': 'off',
     'global-require': 'off',
     'no-use-before-define': 'off',
+    'no-new': 'off',
+    'no-unused-vars': 'warn',
 
     // override airbnb config to allow ForOfStatement
     'no-restricted-syntax': [
