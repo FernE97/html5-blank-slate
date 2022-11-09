@@ -5,7 +5,7 @@
  */
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?> class="h-100">
+<html <?php language_attributes(); ?> class="h-full scroll-smooth">
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,7 +20,7 @@
   <?php wp_head(); ?>
 </head>
 
-<body <?php body_class('d-flex flex-column h-100'); ?>>
+<body <?php body_class('flex flex-col h-full text-gray-800'); ?>>
 
 <header class="site-header" role="banner">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">

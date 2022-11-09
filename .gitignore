@@ -46,3 +46,7 @@ assets/js/*
 dist
 dist-ssr
 *.local
+
+# Notes
+notes.md
+todo.md

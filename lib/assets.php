@@ -3,7 +3,7 @@
 // Enqueue Styles
 function h5bs_enqueue_styles()
 {
-  wp_enqueue_style('h5bs-custom', get_template_directory_uri().'/custom.css', false, '1.0.0');
+  // wp_enqueue_style('example-css', get_template_directory_uri().'/example.css', false, '1.0.0');
 }
 
 add_action('wp_enqueue_scripts', 'h5bs_enqueue_styles');

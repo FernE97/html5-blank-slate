@@ -26,7 +26,6 @@ function h5bs_primary_nav()
     'link_after'      => '',                           // after each link
     'depth'           => 0,                            // set to 1 to disable dropdowns
     'fallback_cb'     => '__return_false',             // fallback function
-    'walker'          => new bootstrap_5_wp_nav_menu_walker()
   ]);
 }
 

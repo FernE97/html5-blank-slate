@@ -2,8 +2,8 @@
 // http://localhost:3005 is serving Vite on development but accessing it directly will be empty
 
 import { defineConfig } from 'vite'
-import legacy from '@vitejs/plugin-legacy'
 import liveReload from 'vite-plugin-live-reload'
+import vue from '@vitejs/plugin-vue'
 
 const { resolve, basename } = require('path')
 
@@ -12,17 +12,15 @@ const themePath = `/wp-content/themes/${basePath}`
 
 export default defineConfig({
   plugins: [
-    legacy({
-      targets: ['defaults', 'not IE 11'],
-    }),
-    liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials)/**/*.php`]),
+    vue(),
+    liveReload([`${__dirname}/*.php`, `${__dirname}/(lib|partials|components|woocommerce)/**/*.php`])
   ],
-  root: 'src',
+  root: resolve(__dirname, 'src'),
   base: process.env.APP_ENV === 'development' ? `${themePath}/src/` : `${themePath}/dist/`,
   resolve: {
     alias: {
       '@images': resolve(__dirname, './src/assets/images'),
-    },
+    }
   },
   build: {
     // output dir for production build
@@ -37,8 +35,8 @@ export default defineConfig({
 
     // our entry
     rollupOptions: {
-      input: '/main.js',
-    },
+      input: resolve(__dirname, './src/main.js')
+    }
   },
   server: {
     // required to load scripts from custom host
@@ -46,6 +44,6 @@ export default defineConfig({
 
     // we need a strict port to match on PHP side
     strictPort: true,
-    port: 3005,
-  },
+    port: 3005
+  }
 })

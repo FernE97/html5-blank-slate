@@ -1,22 +1,11 @@
 /*
-  Theme Name: HTML5 Blank Slate
+  Theme Name: side•sea WP Theme
   Theme URI: https://github.com/FernE97/html5-blank-slate
-  Description: Bootstrap 5 starter theme
+  Description: Tailwind CSS starter theme
   Author: side•sea
   Author URI: https://sidesea.com/
   Version: 1.0.0
   License: WTFPL
   License URI: http://sam.zoy.org/wtfpl/
-  Tags: blank, html5, sass, responsive
+  Tags: html5, tailwindcss, vite, responsive
 */
-
-/**
- * Theme is compiled from scss under /assets/scss/_theme.scss
- *
- * theme.css under /assets/css is the main compiled file
- * which can be edited BUT will be overwritten once it
- * gets compiled again.
- *
- * Use the custom.css file in the themes root directory
- * if you are not using a workflow that compiles scss.
- */

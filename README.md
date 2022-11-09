@@ -1,4 +1,4 @@
-# h5bs Theme
+# side•sea WP Theme
 ## Requirements
 
 - [nodejs](https://nodejs.org/en/)
@@ -9,7 +9,7 @@ NVM is not required but is recommended for installing different node versions fo
 
 ```bash
 # install / update nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
 
 # install latest LTS node version
 nvm install --lts
@@ -38,7 +38,7 @@ npm install
 ## Local development
 
 [Vite](https://vitejs.dev/) is used as a build tool to handle the frontend tooling. When working locally you will run
-`npm run dev` to start the dev server and it will handle compiling the JavaScript and SCSS and will inject those changes
+`npm run dev` to start the dev server and it will handle compiling the JavaScript and CSS and will inject those changes
 automatically. It is also set up to auto-reload when any changes are made to the php files. If you need to add any 
 extra php paths to watch, you can edit the `vite.config.js` file under `plugins` and `liveReload`.
 
@@ -47,7 +47,7 @@ extra php paths to watch, you can edit the `vite.config.js` file under `plugins`
 npm run dev
 ```
 
-The `src/main.js` is set up as the main entry point. This file will be used to import SCSS as well as JavaScript. This
+The `src/main.js` is set up as the main entry point. This file will be used to import CSS as well as JavaScript. This
 is pulled into the theme by the `vite('main.js')` function in the `header.php` file. If you need to add multiple entry
 points, you can edit the `vite.config.js` file under `build:` `rollupOptions:`. Once that is added you will then need to
 add an additional `vite('secondary.js')` function to the `header.php` file to pull in the new file.
@@ -87,10 +87,10 @@ npm run build
 
 ## Images
 
-There is an `@images` alias set up for the `/src/assets/images` path. This can be used in both SCSS and JS files. You
+There is an `@images` alias set up for the `/src/assets/images` path. This can be used in both CSS and JS files. You
 can add additional path aliases in the `vite.config.js` file such as `@fonts` if needed.
 
-```scss
+```css
 body {
   background-image: url('@images/bg-image.jpg');
 }
@@ -135,12 +135,12 @@ axios
 ## Linters
 
 You can use the recommended VS Code extensions to have real-time linting errors and fixes in your editor. Search for
-`@recommended` in the extensions tab. Or you can run the following commands to lint the JavaScript or SCSS files.
+`@recommended` in the extensions tab. Or you can run the following commands to lint the JavaScript or CSS files.
 
 ```bash
 # run eslint on JS files
 npx eslint "src/**/*.js" --fix
 
-# run stylelint on SCSS files
-npx stylelint "src/**/*.scss" --fix
+# run stylelint on CSS files
+npx stylelint "src/**/*.css" --fix
 ```

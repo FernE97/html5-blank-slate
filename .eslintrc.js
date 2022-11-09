@@ -1,17 +1,19 @@
 module.exports = {
-  extends: ['airbnb-base', 'prettier'],
+  extends: ['airbnb-base', 'plugin:vue/vue3-recommended', 'plugin:prettier/recommended'],
   env: {
     browser: true,
     node: true,
-    es6: true,
+    es2022: true
   },
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2022
   },
   rules: {
     'no-console': 'off',
     'global-require': 'off',
     'no-use-before-define': 'off',
+    'no-new': 'off',
+    'no-unused-vars': 'warn',
 
     // override airbnb config to allow ForOfStatement
     'no-restricted-syntax': [
@@ -19,16 +21,16 @@ module.exports = {
       {
         selector: 'ForInStatement',
         message:
-          'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.',
+          'for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array.'
       },
       {
         selector: 'LabeledStatement',
-        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.',
+        message: 'Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand.'
       },
       {
         selector: 'WithStatement',
-        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.',
-      },
+        message: '`with` is disallowed in strict mode because it makes code impossible to predict and optimize.'
+      }
     ],
 
     // override airbnb config for devDependencies
@@ -39,14 +41,11 @@ module.exports = {
 
     'prettier/prettier': [
       'error',
+      {},
       {
-        trailingComma: 'es5',
-        singleQuote: true,
-        printWidth: 120,
-        tabWidth: 2,
-        semi: false,
-      },
-    ],
+        usePrettierrc: true
+      }
+    ]
   },
-  plugins: ['prettier'],
+  plugins: ['vue', 'prettier']
 }
